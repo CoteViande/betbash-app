@@ -1,52 +1,52 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+
+const ReactNative = require('react-native');
+const { AppRegistry, StyleSheet, Text, View, Image } = ReactNative;
+// const FBSDK = require('react-native-fbsdk');
+// const { LoginButton, AccessToken } = FBSDK;
+const FacebookLogin = require('./src/components/FacebookLogin.js');
 
 class AndroidBetBash extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Image
+        source={ require('./assets/images/jeteedecran.png') }
+        style={ styles.imageBgContainer }>
+        <View style={ styles.container }>
+          <FacebookLogin />
+        </View>
+        <View style={ styles.bottomContainer }>
+          <Text style={ styles.instructions }>
+            or login using your email
+          </Text>
+        </View>
+      </Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  imageBgContainer: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // backgroundColor: 'transparent',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  bottomContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'transparent',
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    color: '#FFFFFF'
   },
 });
 
