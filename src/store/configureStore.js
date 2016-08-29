@@ -1,15 +1,17 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import devTools from 'remote-redux-devtools';
-import reducer from '../reducers/rootReducer'; // TODO: check what reducer it picks
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import { apiMiddleware } from '../utils/api-middleware/index'
+import devTools from 'remote-redux-devtools'
+import reducer from '../reducers/rootReducer' // TODO: check what reducer it picks
 
+const configureStore = (initialState) => {
+  const middlewares = [thunk, apiMiddleware];
 
-export default function configureStore(initialState) {
   const store = createStore(
     reducer,
     initialState,
     compose(
-      applyMiddleware(thunk),
+      applyMiddleware(...middlewares),
       devTools()
     )
   );
@@ -24,3 +26,5 @@ export default function configureStore(initialState) {
 
   return store;
 };
+
+export default configureStore;

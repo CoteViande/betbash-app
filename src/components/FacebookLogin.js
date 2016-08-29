@@ -16,6 +16,7 @@ const FacebookLoginButton = ({ dispatch }) => (
         if (error) {
           dispatch(failureFacebookToken(result.error));
         } else if (result.isCancelled) {
+          dispatch(authenticateWithFacebookToken('yoloTEST'));
           dispatch(failureFacebookToken({
             message: 'Login has been canceled.'
           }));

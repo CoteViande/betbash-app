@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import MainLogin from '../components/MainLogin';
-import React from 'react';
+import { connect } from 'react-redux'
+import MainLogin from '../components/MainLogin'
+import React from 'react'
 
 let AuthMain = React.createClass({
   render() {
@@ -10,4 +10,4 @@ let AuthMain = React.createClass({
   }
 });
 
-export default connect()(AuthMain);
+export default connect()(AuthMain)
