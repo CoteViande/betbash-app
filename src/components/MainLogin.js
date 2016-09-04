@@ -1,12 +1,28 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { connect } from 'react-redux'
+import { Text, View, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginManager,
+} = FBSDK; // TODO: move inside facebook login
 
+import styles from '../../assets/styles/main'
 import FacebookLogin from './FacebookLogin'
 
-module.exports = React.createClass({
+const MainLogin = React.createClass({
   render: function() {
+    const { errorMessage, isLoggedIn, isLoggedInOnFacebook } = this.props;
     const goToEmailAuth = () => Actions.AuthEmail();
+    const goToHome = () => Actions.BetBash();
+
+    if ( errorMessage && isLoggedInOnFacebook ) {
+      LoginManager.logOut();
+    }
+    if ( isLoggedIn ) {
+      goToHome();
+    }
+
     return (
       <Image
         source={ require('../../assets/images/jeteedecran.png') }
@@ -25,27 +41,14 @@ module.exports = React.createClass({
   }
 });
 
-const styles = StyleSheet.create({
-  imageBgContainer: {
-    flex: 1,
-    width: null,
-    height: null,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'transparent',
-  },
-  bottomContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'transparent',
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#FFFFFF'
-  },
-});
+const mapStateToProps = (state, { params }) => {
+  return {
+    errorMessage: state.auth.errorMessage,
+    isLoggedInOnFacebook: state.auth.authenticatedOnFacebook,
+    isLoggedIn: state.auth.user.isLoggedIn,
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(MainLogin)

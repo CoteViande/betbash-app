@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 
-import { successFacebookToken, failureFacebookToken, authenticateWithFacebookToken } from '../actions/authActions'
+import { failureFacebookToken, successFacebookToken, authenticateWithFacebookToken, logoutFromFacebook } from '../actions/authActions'
 
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
-  AccessToken
+  AccessToken,
 } = FBSDK;
 
 const FacebookLoginButton = ({ dispatch }) => (
@@ -16,7 +17,6 @@ const FacebookLoginButton = ({ dispatch }) => (
         if (error) {
           dispatch(failureFacebookToken(result.error));
         } else if (result.isCancelled) {
-          dispatch(authenticateWithFacebookToken('yoloTEST'));
           dispatch(failureFacebookToken({
             message: 'Login has been canceled.'
           }));
@@ -24,14 +24,18 @@ const FacebookLoginButton = ({ dispatch }) => (
           AccessToken.getCurrentAccessToken().then(
             (data) => { // https://developers.facebook.com/docs/facebook-login/access-tokens
               let accessToken = data.accessToken;
-              dispatch(successFacebookToken(accessToken.toString()));
+              dispatch(successFacebookToken());
               dispatch(authenticateWithFacebookToken(accessToken.toString()));
+              // if success login Actions.BetBash();
+              // else LoginManager.logout();
             }
           )
         }
       }
     }
-    onLogoutFinished={() => console.log("logout.")}
+    onLogoutFinished={ () => {
+      dispatch(logoutFromFacebook());
+    } }
   />
 );
 

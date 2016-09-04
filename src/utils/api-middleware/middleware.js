@@ -1,9 +1,10 @@
-import isPlainObject from 'lodash.isplainobject';
+import isPlainObject from 'lodash.isplainobject'
 
-import RSAA from './RSAA';
-import { isRSAA, validateRSAA } from './validation';
-import { InvalidRSAA, RequestError, ApiError } from './errors' ;
-import { getJSON, normalizeTypeDescriptors, actionWith } from './util';
+import RSAA from './RSAA'
+import { isRSAA, validateRSAA } from './validation'
+import { InvalidRSAA, RequestError, ApiError } from './errors'
+import { getJSON, normalizeTypeDescriptors, actionWith } from './util'
+import timeout from '../timeout'
 
 /**
  * A Redux middleware that processes RSAA actions.
@@ -99,12 +100,12 @@ function apiMiddleware({ getState }) {
 
     try {
       // Make the API call
-      var res = await fetch(endpoint, { method, body, credentials, headers });
+      var res = await timeout(5000, fetch(endpoint, { method, body, credentials, headers }));
     } catch(e) {
       // The request was malformed, or there was a network error
       return next(await actionWith(
         {
-          ...failureType,
+          ...failureType, // it is requestType in original code, don't know why.
           payload: new RequestError(e.message),
           error: true
         },

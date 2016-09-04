@@ -12,7 +12,12 @@ export function failureFacebookToken(error) {
 export function successFacebookToken(token) {
   return {
     type: 'FACEBOOK_TOKEN_SUCCESS',
-    token,
+  };
+}
+
+export function logoutFromFacebook() {
+  return {
+    type: 'FACEBOOK_LOGOUT',
   };
 }
 

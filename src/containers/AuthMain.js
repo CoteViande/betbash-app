@@ -1,4 +1,3 @@
-import { connect } from 'react-redux'
 import MainLogin from '../components/MainLogin'
 import React from 'react'
 
@@ -10,4 +9,4 @@ let AuthMain = React.createClass({
   }
 });
 
-export default connect()(AuthMain)
+export default AuthMain

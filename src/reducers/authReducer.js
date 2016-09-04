@@ -19,17 +19,6 @@ const user = (state = initLogger, action) => {
   }
 }
 
-const facebookAuth = (state = null, action) => {
-  switch (action.type) {
-    case 'FACEBOOK_TOKEN_SUCCESS':
-      return action.token;
-    case 'FACEBOOK_TOKEN_FAILURE':
-      return null;
-    default:
-      return state;
-  }
-}
-
 const isLoading = (state = false, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_REQUEST':
@@ -57,11 +46,23 @@ const errorMessage = (state = null, action) => {
   }
 }
 
+const authenticatedOnFacebook = (state = false, action) => {
+  switch (action.type) {
+    case 'FACEBOOK_TOKEN_SUCCESS':
+      return true;
+    case 'FACEBOOK_TOKEN_FAILURE':
+    case 'FACEBOOK_LOGOUT':
+      return false;
+    default:
+      return state;
+  }
+}
+
 const authReducer = combineReducers({
   user,
   isLoading,
-  facebookToken: facebookAuth,
   errorMessage,
+  authenticatedOnFacebook,
 })
 
 export default authReducer
