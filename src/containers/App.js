@@ -1,5 +1,5 @@
 import React from 'react'
-import { Actions, Scene, Router, TabBar } from 'react-native-router-flux'
+import { Actions, Scene, Router, TabBar, Switch } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
 import AuthMain from './AuthMain'
@@ -25,6 +25,12 @@ const RouterWithRedux = connect()(Router);
   // <Scene key="App" component={App} title="App main" /> // TODO: maybe not
 const scenes = Actions.create(
   <Scene key="root" hideNavBar={true}>
+  <Scene
+    key="LoginAccessControl" hideNavBar={true}
+    tabs={true} component={connect(state=>({ isLoggedIn: state.auth.user.isLoggedIn }))(Switch)}
+    unmountScenes
+    selector={ props => props.isLoggedIn ? "BetBash" : "AuthMain"}
+  >
 
     <Scene
       key="AuthMain" component={AuthMain}
@@ -58,6 +64,7 @@ const scenes = Actions.create(
       />
     </Scene>
 
+  </Scene>
   </Scene>
 );
 

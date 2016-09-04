@@ -100,7 +100,7 @@ function apiMiddleware({ getState }) {
 
     try {
       // Make the API call
-      var res = await timeout(5000, fetch(endpoint, { method, body, credentials, headers }));
+      var res = await timeout( fetch(endpoint, { method, body, credentials, headers }));
     } catch(e) {
       // The request was malformed, or there was a network error
       return next(await actionWith(

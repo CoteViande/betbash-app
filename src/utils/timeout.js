@@ -1,7 +1,11 @@
-const timeoutPromise = (ms, promise) => {
+const timeoutPromise = (ms, promise, message) => {
+  if (typeof ms !== 'number') {
+    promise = ms;
+    ms = 5000;
+  }
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
-      reject(new Error("Promise timed out"))
+      reject(new Error(message || "Request timed out"))
     }, ms);
     promise.then(
       (res) => {

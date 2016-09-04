@@ -12,6 +12,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'transparent',
   },
+  topRedContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
