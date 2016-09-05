@@ -29,19 +29,25 @@ const scenes = Actions.create(
     key="LoginAccessControl" hideNavBar={true}
     tabs={true} component={connect(state=>({ isLoggedIn: state.auth.user.isLoggedIn }))(Switch)}
     unmountScenes
-    selector={ props => props.isLoggedIn ? "BetBash" : "AuthMain"}
+    selector={ props => props.isLoggedIn ? "BetBash" : "BetBashAuth"}
   >
 
     <Scene
-      key="AuthMain" component={AuthMain}
-      title="Login"
-      hideNavBar={true}
-    />
-    <Scene
-      key="AuthEmail" component={RegisterEmail}
-      title="Register"
-      hideNavBar={false}
-    />
+      key="BetBashAuth"
+      tabs={true} default="AuthMain"
+      hideNavBar={true} tabBarStyle={ { backgroundColor: '#000' } }
+    >
+      <Scene
+        key="AuthMain" component={AuthMain}
+        title="Login"
+        hideNavBar={true}
+      />
+      <Scene
+        key="AuthEmail" component={RegisterEmail}
+        title="Register"
+        hideNavBar={false}
+      />
+    </Scene>
 
     <Scene
       key="BetBash"

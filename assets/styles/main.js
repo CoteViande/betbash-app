@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'transparent',
+  },
+  leftAlignContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   topRedContainer: {
     justifyContent: 'center',
@@ -30,6 +33,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#FFFFFF'
   },
+  fullWidthButtton: {
+    backgroundColor: 'blue',
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  fullWidthButttonText: {
+    color: 'white',
+  }
 });
 
 export default styles;
