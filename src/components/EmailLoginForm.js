@@ -1,55 +1,73 @@
+"use strict"
 import React from 'react'
-import { TouchableHighlight, View, Text, TextInput } from 'react-native'
+import { TouchableHighlight, View, Text } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 
 import styles from '../../assets/styles/main'
-import validator from '../utils/inputValidator'
+import TextField from '../utils/md-textfield/TextField';
+import * as validator from '../utils/inputValidator'
 
-const validate = values => {
-  console.log('YOOO', values);
-  const errors = {}
-  if (!values.username) {
-    errors.username = 'Required'
-  } else if (values.username.length > 15) {
-    errors.username = 'Must be 15 characters or less'
-  }
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-  if (!values.age) {
-    errors.age = 'Required'
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
-  }
+const validate = (values, props) => {
+  let errors = {};
+
+  errors = validator.email('email', values, errors)
+  errors = validator.password('password', values, errors)
+
   return errors
 }
 
-const EmailLoginForm = React.createClass({
-  render: function() {
-    const { handleSubmit } = this.props;
-
-    return (
-      <View style={ styles.leftAlignContainer }>
-        <Field name="email" component={ TextInput } style={{}} placeholder="Email" />
-        <Field name="password" component={ TextInput } style={{}} placeholder="Passwrod" />
-        <TouchableHighlight onPress={ this.handleSubmit } style={ styles.fullWidthButtton }>
-          <Text style={ styles.fullWidthButttonText }>
-            {"Let's log in"}
-          </Text>
-        </TouchableHighlight>
-      </View>
-    );
+const renderTextField = ({ input, meta: { touched, error }, label, type }) => {
+  let keyboardType = 'default';
+  if (type === 'email') {
+    keyboardType = 'email-address';
   }
-});
+  let secureTextEntry = type === 'password';
+
+  return (
+  <View>
+    <TextField
+      label={label}
+      highlightColor={'blue'}
+      dense={false}
+      keyboardType={keyboardType}
+      secureTextEntry={secureTextEntry}
+      autoGrow={false}
+      multiline={false}
+      keepHightlightColor={false}
+      inputError={touched && Boolean(error)}
+      {...input}
+    />
+    <Text style={styles.textError}>
+      { touched && error }
+    </Text>
+  </View>
+)};
+
+const EmailLoginForm = (props) => {
+  const { handleSubmit, } = props;
+
+  return (
+    <View style={{padding: 20, paddingTop: 60}}>
+      <Field name="email" type="email" component={renderTextField} label="Email" />
+      <Field name="password" type="password" component={renderTextField} label="Password" />
+      <TouchableHighlight onPress={handleSubmit} style={styles.fullWidthButtton}>
+        <Text style={styles.fullWidthButttonText}>
+          {"Let's log in"}
+        </Text>
+      </TouchableHighlight>
+    </View>
+  );
+}
 
 // Decorate the form component
 EmailLoginForm = reduxForm({
   form: 'emailLogin',
-  validate
+  validate: validate,
+  touchOnBlur: true,
+  touchOnChange: false,
+  onSubmit: () => {
+    console.warn('sent')
+  }
 })(EmailLoginForm);
 
 export default EmailLoginForm;

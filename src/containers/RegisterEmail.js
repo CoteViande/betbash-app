@@ -6,7 +6,8 @@ import EmailLoginForm from '../components/EmailLoginForm'
 let RegisterEmail = React.createClass({
   render() {
     return(
-      <EmailLoginForm handleSubmit={() => console.warn('sent')} />
+      <EmailLoginForm
+      />
     );
   }
 });

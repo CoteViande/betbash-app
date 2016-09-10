@@ -42,6 +42,10 @@ const styles = StyleSheet.create({
   },
   fullWidthButttonText: {
     color: 'white',
+  },
+  textError: {
+    color: 'red',
+    paddingBottom: 10,
   }
 });
 

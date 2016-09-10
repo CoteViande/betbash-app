@@ -12,7 +12,11 @@ const configureStore = (initialState) => {
     initialState,
     compose(
       applyMiddleware(...middlewares),
-      devTools()
+      devTools({
+        name: 'Bet Bash Android',
+        hostname: 'localhost',
+        port: 5678,
+      })
     )
   );
 
