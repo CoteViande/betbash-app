@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import AuthMain from './AuthMain'
 import RegisterEmail from './RegisterEmail'
+import LoginEmail from './LoginEmail'
 import Home from './Home'
 import Profile from './Profile'
 
@@ -34,8 +35,8 @@ const scenes = Actions.create(
 
     <Scene
       key="BetBashAuth"
-      tabs={true} default="AuthMain"
-      hideNavBar={true} tabBarStyle={ { backgroundColor: '#000' } }
+      direction="vertical" default="AuthMain"
+      hideNavBar={true}
     >
       <Scene
         key="AuthMain" component={AuthMain}
@@ -43,8 +44,13 @@ const scenes = Actions.create(
         hideNavBar={true}
       />
       <Scene
-        key="AuthEmail" component={RegisterEmail}
+        key="RegisterEmail" component={RegisterEmail}
         title="Register"
+        hideNavBar={false}
+      />
+      <Scene
+        key="LoginEmail" component={RegisterEmail}
+        title="Login"
         hideNavBar={false}
       />
     </Scene>

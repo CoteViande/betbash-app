@@ -8,7 +8,7 @@ import FacebookLogin from './FacebookLogin'
 
 const MainLogin = React.createClass({
   render: function() {
-    const goToEmailAuth = () => Actions.AuthEmail();
+    const goToEmailAuth = () => Actions.RegisterEmail();
 
     return (
       <View style={ {flex: 1} }>

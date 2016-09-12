@@ -1,31 +1,20 @@
 import React from 'react'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 
-import EmailLoginForm from '../components/EmailLoginForm'
+import * as styles from '../../assets/styles/main'
 
 const RegisterEmail = React.createClass({
   render() {
-    const { loginError, loginSuccess, isLoading } = this.props
-
     return(
-      <EmailLoginForm
-        loginError={loginError}
-        loginSuccess={loginSuccess}
-        isLoading={isLoading}
-      />
+      <View style={ styles.navBarContainer }>
+        <Text>
+          {'Hello registration'}
+        </Text>
+      </View>
     );
   }
 });
 
-const mapStateToProps = (state, { params }) => {
-  return {
-    loginError: state.auth.errorMessageEmailLogin,
-    loginSuccess: state.auth.user.isLoggedIn,
-    isLoading: state.auth.isLoading,
-  };
-};
-
-export default connect(
-  mapStateToProps
-)(RegisterEmail);
+export default RegisterEmail;
