@@ -46,6 +46,21 @@ const styles = StyleSheet.create({
   textError: {
     color: 'red',
     paddingBottom: 10,
+  },
+  abContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20
+  },
+  loginButtonBackground: {
+    flex: 1,
+    height: 40,
+    borderRadius: 5
+  },
+  loginButtonLabel: {
+    color: 'white'
   }
 });
 

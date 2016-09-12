@@ -38,8 +38,35 @@ export function authenticateWithFacebookToken(accessToken) {
         },
         'FACEBOOK_AUTHENTICATE_FAILURE'
       ],
-      endpoint: endpoint.facebookAuthenticateUrl + '?access_token=' + accessToken,
+      endpoint: endpoint.facebookAuthenticateUrl(accessToken),
       method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}
+
+export function loginWithEmail(email, password) {
+  return {
+    [RSAA]: {
+      types: [
+        'EMAIL_LOGIN_REQUEST',
+        {
+          type: 'EMAIL_LOGIN_SUCCESS',
+          payload: (action, state, res) => {
+            const contentType = res.headers.get('Content-Type');
+            if (contentType && ~contentType.indexOf('json')) {
+              return res.json().then((json) => normalize(json, { userToken: userToken }));
+            }
+          }
+        },
+        'EMAIL_LOGIN_FAILURE'
+      ],
+      endpoint: endpoint.userLoginUrl,
+      method: 'POST',
+      body: JSON.stringify({ email: email, password: password }),
       headers: {
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json'

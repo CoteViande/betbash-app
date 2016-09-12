@@ -45,7 +45,7 @@ const mapStateToProps = (state, { params }) => {
   return {
     isLoggedInOnFacebook: state.auth.authenticatedOnFacebook,
     isLoggedIn: state.auth.user.isLoggedIn,
-    errorMessage: state.auth.errorMessage,
+    errorMessage: state.auth.errorMessageFBAuth,
     isLoading: state.auth.isLoading,
   };
 };

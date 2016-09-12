@@ -3,66 +3,82 @@ import { combineReducers } from 'redux'
 const initLogger = {
   isLoggedIn: false,
   accessToken: null,
-  userId: null
+  userId: null,
 }
 const user = (state = initLogger, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-      let res = action.payload.result;
+    case 'EMAIL_LOGIN_SUCCESS':
+      let res = action.payload.result
       return {
         isLoggedIn: true,
         accessToken: res.access_token,
-        userId: res.userId
-      };
+        userId: res.userId,
+      }
     default:
-      return state;
+      return state
   }
 }
 
 const isLoading = (state = false, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_REQUEST':
-      return true;
+    case 'EMAIL_LOGIN_REQUEST':
+      return true
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
-      return false;
+    case 'EMAIL_LOGIN_SUCCESS':
+    case 'EMAIL_LOGIN_FAILURE':
+      return false
     default:
-      return state;
+      return state
   }
 }
 
-const errorMessage = (state = null, action) => {
+const errorMessageFBAuth = (state = null, action) => {
   switch (action.type) {
     case 'FACEBOOK_TOKEN_SUCCESS':
-      return null;
+      return null
     case 'FACEBOOK_TOKEN_FAILURE':
-      return action.message;
+      return action.message
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-      return null;
+      return null
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
-      return action.payload.message;
+      return action.payload.message
     default:
-      return state;
+      return state
+  }
+}
+
+const errorMessageEmailLogin = (state = null, action) => {
+  switch (action.type) {
+    case 'EMAIL_LOGIN_SUCCESS':
+      return null
+    case 'EMAIL_LOGIN_FAILURE':
+      return action.payload.message
+    default:
+      return state
   }
 }
 
 const authenticatedOnFacebook = (state = false, action) => {
   switch (action.type) {
     case 'FACEBOOK_TOKEN_SUCCESS':
-      return true;
+      return true
     case 'FACEBOOK_TOKEN_FAILURE':
     case 'FACEBOOK_LOGOUT':
-      return false;
+      return false
     default:
-      return state;
+      return state
   }
 }
 
 const authReducer = combineReducers({
   user,
   isLoading,
-  errorMessage,
+  errorMessageFBAuth,
   authenticatedOnFacebook,
+  errorMessageEmailLogin,
 })
 
 export default authReducer

@@ -1,14 +1,16 @@
 "use strict"
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
+import AwesomeButton from 'react-native-awesome-button'
 import { Field, reduxForm } from 'redux-form'
 
 import styles from '../../assets/styles/main'
-import TextField from '../utils/md-textfield/TextField';
+import TextField from '../utils/md-textfield/TextField'
 import * as validator from '../utils/inputValidator'
+import { loginWithEmail } from '../actions/authActions'
 
 const validate = (values, props) => {
-  let errors = {};
+  let errors = {}
 
   errors = validator.email('email', values, errors)
   errors = validator.password('password', values, errors)
@@ -44,17 +46,53 @@ const renderTextField = ({ input, meta: { touched, error }, label, type }) => {
 )};
 
 const EmailLoginForm = (props) => {
-  const { handleSubmit, } = props;
+  const { handleSubmit, loginError, isLoading, loginSuccess } = props;
+  let buttonState = (isLoading, loginSuccess) => {
+    if (isLoading) { return 'busy' }
+    if (loginSuccess) { return 'success' }
+    if (loginError) { return 'error' }
+    return 'idle'
+  }
 
   return (
     <View style={{padding: 20, paddingTop: 60}}>
       <Field name="email" type="email" component={renderTextField} label="Email" />
       <Field name="password" type="password" component={renderTextField} label="Password" />
-      <TouchableHighlight onPress={handleSubmit} style={styles.fullWidthButtton}>
-        <Text style={styles.fullWidthButttonText}>
-          {"Let's log in"}
+      <View>
+        <Text style={styles.textError}>
+          { loginError }
         </Text>
-      </TouchableHighlight>
+      </View>
+      <View style={styles.abContainer}>
+        <AwesomeButton
+          backgroundStyle={styles.loginButtonBackground}
+          labelStyle={styles.loginButtonLabel}
+          transitionDuration={200}
+          states={{
+            idle: {
+              text: 'Log In',
+              onPress: handleSubmit,
+              backgroundColor: '#1155DD',
+            },
+            busy: {
+              text: 'Logging In',
+              backgroundColor: '#002299',
+              spinner: true,
+            },
+            success: {
+              text: 'Logged In',
+              backgroundColor: '#339944'
+            },
+            error: {
+              text: 'Try Again',
+              onPress: handleSubmit,
+              backgroundColor: '#000000'
+            }
+          }}
+          buttonState={buttonState(isLoading, loginSuccess)}
+        />
+      </View>
+
     </View>
   );
 }
@@ -65,8 +103,11 @@ EmailLoginForm = reduxForm({
   validate: validate,
   touchOnBlur: true,
   touchOnChange: false,
-  onSubmit: () => {
-    console.warn('sent')
+  onSubmit: (fields, dispatch) => {
+    dispatch(loginWithEmail(
+      fields.email,
+      fields.password
+    ));
   }
 })(EmailLoginForm);
 

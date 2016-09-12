@@ -52,7 +52,7 @@ function apiMiddleware({ getState }) {
     } catch (e) {
       return next(await actionWith(
         {
-          ...requestType,
+          ...failureType,
           payload: new RequestError('[RSAA].bailout function failed'),
           error: true
         },
@@ -67,7 +67,7 @@ function apiMiddleware({ getState }) {
       } catch (e) {
         return next(await actionWith(
           {
-            ...requestType,
+            ...failureType,
             payload: new RequestError('[RSAA].endpoint function failed'),
             error: true
           },
@@ -83,7 +83,7 @@ function apiMiddleware({ getState }) {
       } catch (e) {
         return next(await actionWith(
           {
-            ...requestType,
+            ...failureType,
             payload: new RequestError('[RSAA].headers function failed'),
             error: true
           },
@@ -100,7 +100,7 @@ function apiMiddleware({ getState }) {
 
     try {
       // Make the API call
-      var res = await timeout( fetch(endpoint, { method, body, credentials, headers }));
+      var res = await timeout(fetch(endpoint, { method, body, credentials, headers }));
     } catch(e) {
       // The request was malformed, or there was a network error
       return next(await actionWith(
