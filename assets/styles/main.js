@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
   },
   navBarContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 80,
   },
   leftAlignContainer: {
     flex: 1,

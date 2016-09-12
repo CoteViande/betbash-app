@@ -5,7 +5,7 @@ import AwesomeButton from 'react-native-awesome-button'
 import { Field, reduxForm } from 'redux-form'
 
 import styles from '../../assets/styles/main'
-import TextField from '../utils/md-textfield/TextField'
+import TextFieldWithError from './TextFieldRenderer'
 import * as validator from '../utils/inputValidator'
 import { loginWithEmail } from '../actions/authActions'
 
@@ -18,33 +18,6 @@ const validate = (values, props) => {
   return errors
 }
 
-const renderTextField = ({ input, meta: { touched, error }, label, type }) => {
-  let keyboardType = 'default';
-  if (type === 'email') {
-    keyboardType = 'email-address';
-  }
-  let secureTextEntry = type === 'password';
-
-  return (
-  <View>
-    <TextField
-      label={label}
-      highlightColor={'blue'}
-      dense={false}
-      keyboardType={keyboardType}
-      secureTextEntry={secureTextEntry}
-      autoGrow={false}
-      multiline={false}
-      keepHightlightColor={false}
-      inputError={touched && Boolean(error)}
-      {...input}
-    />
-    <Text style={styles.textError}>
-      { touched && error }
-    </Text>
-  </View>
-)};
-
 const EmailLoginForm = (props) => {
   const { handleSubmit, loginError, isLoading, loginSuccess } = props;
   let buttonState = (isLoading, loginSuccess) => {
@@ -56,8 +29,8 @@ const EmailLoginForm = (props) => {
 
   return (
     <View style={{padding: 20, paddingTop: 60}}>
-      <Field name="email" type="email" component={renderTextField} label="Email" />
-      <Field name="password" type="password" component={renderTextField} label="Password" />
+      <Field name="email" type="email" component={TextFieldWithError} label="Email" />
+      <Field name="password" type="password" component={TextFieldWithError} label="Password" />
       <View>
         <Text style={styles.textError}>
           { loginError }
