@@ -49,7 +49,7 @@ const scenes = Actions.create(
         hideNavBar={false}
       />
       <Scene
-        key="LoginEmail" component={RegisterEmail}
+        key="LoginEmail" component={LoginEmail}
         title="Login"
         hideNavBar={false}
       />

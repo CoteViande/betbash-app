@@ -1,4 +1,3 @@
-"use strict"
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
 import AwesomeButton from 'react-native-awesome-button'
@@ -7,6 +6,8 @@ import { Field, reduxForm } from 'redux-form'
 import styles from '../../assets/styles/main'
 import TextFieldWithError from './TextFieldRenderer'
 import * as validator from '../utils/inputValidator'
+import btnStates from '../utils/buttonStates'
+
 import { loginWithEmail } from '../actions/authActions'
 
 const validate = (values, props) => {
@@ -20,6 +21,7 @@ const validate = (values, props) => {
 
 const EmailLoginForm = (props) => {
   const { handleSubmit, loginError, isLoading, loginSuccess } = props;
+
   let buttonState = (isLoading, loginSuccess) => {
     if (isLoading) { return 'busy' }
     if (loginSuccess) { return 'success' }
@@ -28,9 +30,11 @@ const EmailLoginForm = (props) => {
   }
 
   return (
-    <View style={{padding: 20, paddingTop: 60}}>
-      <Field name="email" type="email" component={TextFieldWithError} label="Email" />
-      <Field name="password" type="password" component={TextFieldWithError} label="Password" />
+    <View style={styles.navBarContainer}>
+      <View style={styles.box}>
+        <Field name="email" type="email" component={TextFieldWithError} label="Email" />
+        <Field name="password" type="password" component={TextFieldWithError} label="Password" />
+      </View>
       <View>
         <Text style={styles.textError}>
           { loginError }
@@ -41,27 +45,7 @@ const EmailLoginForm = (props) => {
           backgroundStyle={styles.loginButtonBackground}
           labelStyle={styles.loginButtonLabel}
           transitionDuration={200}
-          states={{
-            idle: {
-              text: 'Log In',
-              onPress: handleSubmit,
-              backgroundColor: '#1155DD',
-            },
-            busy: {
-              text: 'Logging In',
-              backgroundColor: '#002299',
-              spinner: true,
-            },
-            success: {
-              text: 'Logged In',
-              backgroundColor: '#339944'
-            },
-            error: {
-              text: 'Try Again',
-              onPress: handleSubmit,
-              backgroundColor: '#000000'
-            }
-          }}
+          states={btnStates(handleSubmit)}
           buttonState={buttonState(isLoading, loginSuccess)}
         />
       </View>
