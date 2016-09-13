@@ -6,9 +6,10 @@ import devTools from 'remote-redux-devtools'
 import reducer from '../reducers/rootReducer' // TODO: check what reducer it picks
 
 import keychainManager from '../reducers/managers/keychainManager'
+import logoutManager from '../reducers/managers/logoutManager'
 
 const configureStore = (initialState) => {
-  const middlewares = [thunk, apiMiddleware, onStateChanged(keychainManager)];
+  const middlewares = [thunk, apiMiddleware, onStateChanged(keychainManager), onStateChanged(logoutManager)];
 
   const store = createStore(
     reducer,
