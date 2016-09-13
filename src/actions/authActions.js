@@ -58,7 +58,15 @@ export function loginWithEmail(email, password) {
           payload: (action, state, res) => {
             const contentType = res.headers.get('Content-Type');
             if (contentType && ~contentType.indexOf('json')) {
-              return res.json().then((json) => normalize(json, { userToken: userToken }));
+              return res.json().then(
+                (json) => {
+                  return {
+                    ...normalize(json, { userToken: userToken }),
+                    email: email,
+                    password: password
+                  }
+                }
+              );
             }
           }
         },
@@ -100,4 +108,36 @@ export function registerWithEmail(email, password) {
       }
     }
   }
+}
+
+export function saveCredentialsKeychain() {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_SAVE',
+  };
+}
+
+export function saveCredentialsKeychainFailure(error) {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE',
+    message: error || 'Could not save to keychain'
+  };
+}
+
+export function getCredentialsKeychain() {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_GET'
+  }
+}
+
+export function getCredentialsKeychainFailure(error) {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_GET_FAILURE',
+    message: error || 'Could not save to keychain'
+  };
+}
+
+export function removeCredentialsKeychain() {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_REMOVE',
+  };
 }

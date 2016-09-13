@@ -8,12 +8,18 @@ const initLogger = {
 const user = (state = initLogger, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-    case 'EMAIL_LOGIN_SUCCESS':
       let res = action.payload.result
       return {
         isLoggedIn: true,
         accessToken: res.access_token,
         userId: res.userId,
+      }
+    case 'EMAIL_LOGIN_SUCCESS':
+      let emailLoginRes = action.payload.result
+      return {
+        isLoggedIn: true,
+        accessToken: emailLoginRes.id,
+        userId: emailLoginRes.userId,
       }
     default:
       return state
@@ -25,12 +31,12 @@ const isLoading = (state = false, action) => {
     case 'FACEBOOK_AUTHENTICATE_REQUEST':
     case 'EMAIL_LOGIN_REQUEST':
     case 'EMAIL_REGISTER_REQUEST':
+    case 'EMAIL_REGISTER_SUCCESS':
       return true
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
     case 'EMAIL_LOGIN_SUCCESS':
     case 'EMAIL_LOGIN_FAILURE':
-    case 'EMAIL_REGISTER_SUCCESS':
     case 'EMAIL_REGISTER_FAILURE':
       return false
     default:
@@ -58,7 +64,6 @@ const errorMessageEmailLogin = (state = null, action) => {
     case 'EMAIL_LOGIN_SUCCESS':
       return null
     case 'EMAIL_LOGIN_FAILURE':
-      console.log(action.payload, JSON.stringify(action.payload))
       return action.payload.message
     default:
       return state
@@ -97,14 +102,40 @@ const authenticatedOnEmail = (state = false, action) => {
   }
 }
 
+const keychain = (state = {
+  saved: false,
+  error: null
+}, action) => {
+  switch (action.type) {
+    case 'KEYCHAIN_CREDENTIALS_SAVE':
+      return {
+        saved: true,
+        error: null
+      }
+    case 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE':
+      return {
+        saved: false,
+        error: action.message
+      }
+    case 'KEYCHAIN_CREDENTIALS_REMOVE':
+      return {
+        saved: false,
+        error: null
+      };
+    default:
+      return state
+  }
+}
+
 const authReducer = combineReducers({
   user,
   isLoading,
-  errorMessageFBAuth,
   authenticatedOnFacebook,
+  errorMessageFBAuth,
   authenticatedOnEmail,
   errorMessageEmailLogin,
   errorMessageEmailRegister,
+  keychain,
 })
 
 export default authReducer

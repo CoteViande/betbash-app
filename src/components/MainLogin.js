@@ -18,7 +18,7 @@ const MainLogin = React.createClass({
         <View style={ styles.bottomContainer }>
           <Text style={ styles.instructions }
             onPress={ goToEmailAuth }>
-            Log in with your email
+            {'Don\'t have Facebook?'}
           </Text>
         </View>
       </View>

@@ -1,11 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { apiMiddleware } from '../utils/api-middleware/index'
+import onStateChanged from '../utils/onStateChangedMiddleware'
 import devTools from 'remote-redux-devtools'
 import reducer from '../reducers/rootReducer' // TODO: check what reducer it picks
 
+import keychainManager from '../reducers/managers/keychainManager'
+
 const configureStore = (initialState) => {
-  const middlewares = [thunk, apiMiddleware];
+  const middlewares = [thunk, apiMiddleware, onStateChanged(keychainManager)];
 
   const store = createStore(
     reducer,
