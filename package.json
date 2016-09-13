@@ -13,7 +13,7 @@
     "normalizr": "^2.2.1",
     "react": "15.2.1",
     "react-native": "^0.30.0",
-    "react-native-awesome-button": "git+https://github.com/larsvinter/react-native-awesome-button#8b6a92bdcfbdb8a2713ba38ce97ed2418e559bbc",
+    "react-native-awesome-button": "^1.6.0",
     "react-native-fbsdk": "^0.3.0",
     "react-native-keychain": "^0.3.2",
     "react-native-md-textinput": "git+https://github.com/evblurbs/react-native-md-textinput.git#8359f45b38499116ac37a493252b82a35fc25b86",
