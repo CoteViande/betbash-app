@@ -7,8 +7,9 @@ export const facebookAuthenticateUrl = (accessToken) => {
   return ROOT_URL + '/auth/facebook-token/callback?access_token=' + accessToken
 };
 
-export const userLoginUrl = BASE_URL + '/BaseUsers/login';
-export const userLogoutUrl = BASE_URL + '/BaseUsers/logout';
+export const userUrl = BASE_URL + '/BaseUsers';
+export const userLoginUrl = userUrl + '/login';
+export const userLogoutUrl = userUrl + '/logout';
 export const userByIdUrl = (userId) => {
-  return BASE_URL + '/BaseUsers/' + userId
+  return userUrl + '/' + userId
 };

@@ -74,3 +74,30 @@ export function loginWithEmail(email, password) {
     }
   }
 }
+
+export function registerWithEmail(email, password) {
+  return {
+    [RSAA]: {
+      types: [
+        'EMAIL_REGISTER_REQUEST',
+        {
+          type: 'EMAIL_REGISTER_SUCCESS',
+          payload: (action, state, res) => {
+            const contentType = res.headers.get('Content-Type');
+            if (contentType && ~contentType.indexOf('json')) {
+              return res.json().then((json) => json);
+            }
+          }
+        },
+        'EMAIL_REGISTER_FAILURE'
+      ],
+      endpoint: endpoint.userUrl,
+      method: 'POST',
+      body: JSON.stringify({ email: email, password: password }),
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}

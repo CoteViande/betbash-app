@@ -15,7 +15,7 @@ const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) =>
   <View>
     <TextField
       label={label}
-      highlightColor={'blue'}
+      highlightColor={'#1155DD'}
       dense={false}
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}

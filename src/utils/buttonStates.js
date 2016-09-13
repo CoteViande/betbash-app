@@ -1,21 +1,21 @@
-const btnStates = (onPress) => {
+const btnStates = (onPress, labelIdle, labelBusy, labelSuccess, labelError) => {
   return {
     idle: {
-      text: 'Log In',
+      text: labelIdle,
       onPress: onPress,
       backgroundColor: '#1155DD',
     },
     busy: {
-      text: 'Logging In',
+      text: labelBusy,
       backgroundColor: '#002299',
       spinner: true,
     },
     success: {
-      text: 'Logged In',
+      text: labelSuccess,
       backgroundColor: '#339944'
     },
     error: {
-      text: 'Try Again',
+      text: labelError,
       onPress: onPress,
       backgroundColor: '#000000'
     }

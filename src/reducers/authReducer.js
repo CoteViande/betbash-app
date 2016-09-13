@@ -24,11 +24,14 @@ const isLoading = (state = false, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_REQUEST':
     case 'EMAIL_LOGIN_REQUEST':
+    case 'EMAIL_REGISTER_REQUEST':
       return true
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
     case 'EMAIL_LOGIN_SUCCESS':
     case 'EMAIL_LOGIN_FAILURE':
+    case 'EMAIL_REGISTER_SUCCESS':
+    case 'EMAIL_REGISTER_FAILURE':
       return false
     default:
       return state
@@ -55,6 +58,18 @@ const errorMessageEmailLogin = (state = null, action) => {
     case 'EMAIL_LOGIN_SUCCESS':
       return null
     case 'EMAIL_LOGIN_FAILURE':
+      console.log(action.payload, JSON.stringify(action.payload))
+      return action.payload.message
+    default:
+      return state
+  }
+}
+
+const errorMessageEmailRegister = (state = null, action) => {
+  switch (action.type) {
+    case 'EMAIL_REGISTER_SUCCESS':
+      return null
+    case 'EMAIL_REGISTER_FAILURE':
       return action.payload.message
     default:
       return state
@@ -73,12 +88,23 @@ const authenticatedOnFacebook = (state = false, action) => {
   }
 }
 
+const authenticatedOnEmail = (state = false, action) => {
+  switch (action.type) {
+    case 'EMAIL_REGISTER_SUCCESS':
+      return true
+    default:
+      return state
+  }
+}
+
 const authReducer = combineReducers({
   user,
   isLoading,
   errorMessageFBAuth,
   authenticatedOnFacebook,
+  authenticatedOnEmail,
   errorMessageEmailLogin,
+  errorMessageEmailRegister,
 })
 
 export default authReducer

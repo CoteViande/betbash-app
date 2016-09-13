@@ -22,7 +22,7 @@ const validate = (values, props) => {
 const EmailLoginForm = (props) => {
   const { handleSubmit, loginError, isLoading, loginSuccess } = props;
 
-  let buttonState = (isLoading, loginSuccess) => {
+  let buttonState = (isLoading, loginSuccess, loginError) => {
     if (isLoading) { return 'busy' }
     if (loginSuccess) { return 'success' }
     if (loginError) { return 'error' }
@@ -45,8 +45,14 @@ const EmailLoginForm = (props) => {
           backgroundStyle={styles.loginButtonBackground}
           labelStyle={styles.loginButtonLabel}
           transitionDuration={200}
-          states={btnStates(handleSubmit)}
-          buttonState={buttonState(isLoading, loginSuccess)}
+          states={btnStates(
+            handleSubmit,
+            'Log in',
+            'Logging in...',
+            'Logged in',
+            'Error. Try logging in again?'
+          )}
+          buttonState={buttonState(isLoading, loginSuccess, loginError)}
         />
       </View>
 

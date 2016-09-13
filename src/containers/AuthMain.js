@@ -13,6 +13,13 @@ import ErrorMessage from '../components/ErrorMessage'
 import styles from '../../assets/styles/main'
 
 let AuthMain = React.createClass({
+  componentWillReceiveProps(nextProps) {
+    const { errorMessage, isLoggedInOnFacebook} = nextProps;
+    if ( errorMessage && isLoggedInOnFacebook ) {
+      LoginManager.logOut();
+    }
+  },
+
   render() {
     const { isLoading, errorMessage, isLoggedInOnFacebook, isLoggedIn } = this.props;
 
@@ -20,10 +27,6 @@ let AuthMain = React.createClass({
       return(
         <LoadingPage />
       )
-    }
-
-    if ( errorMessage && isLoggedInOnFacebook ) {
-      LoginManager.logOut();
     }
 
     return(
