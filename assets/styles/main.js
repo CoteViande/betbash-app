@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   navBarContainer: {
-    marginTop: 80,
+    marginTop: 60,
   },
   leftAlignContainer: {
     flex: 1,

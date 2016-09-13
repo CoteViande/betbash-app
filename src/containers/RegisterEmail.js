@@ -34,13 +34,16 @@ const RegisterEmail = React.createClass({
           />
         </View>
 
-        <View style={styles.abContainer}>
+        <View style={styles.box}>
+          <Text>
+            {'Already registered?'}
+          </Text>
           <AwesomeButton
             backgroundStyle={styles.loginButtonBackground}
             labelStyle={styles.loginButtonLabel}
             states={{
               default: {
-                text: 'Already registered? Log in!',
+                text: 'Log in!',
                 backgroundColor: '#1155DD',
                 onPress: goToEmailLogin,
               }

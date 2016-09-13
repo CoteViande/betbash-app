@@ -32,7 +32,7 @@ const EmailRegisterForm = (props) => {
   return (
     <View>
 
-      <View style={styles.box}>
+      <View>
         <Field name="email" type="email" component={TextFieldWithError} label="Email" />
         <Field name="password" type="password" component={TextFieldWithError} label="Password" />
       </View>
@@ -43,7 +43,7 @@ const EmailRegisterForm = (props) => {
         </Text>
       </View>
 
-      <View style={styles.box}>
+      <View>
         <AwesomeButton
           backgroundStyle={styles.loginButtonBackground}
           labelStyle={styles.loginButtonLabel}

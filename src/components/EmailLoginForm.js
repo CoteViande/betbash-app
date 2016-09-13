@@ -31,16 +31,14 @@ const EmailLoginForm = (props) => {
 
   return (
     <View style={styles.navBarContainer}>
+
       <View style={styles.box}>
         <Field name="email" type="email" component={TextFieldWithError} label="Email" />
         <Field name="password" type="password" component={TextFieldWithError} label="Password" />
-      </View>
-      <View>
+
         <Text style={styles.textError}>
           { loginError }
         </Text>
-      </View>
-      <View style={styles.abContainer}>
         <AwesomeButton
           backgroundStyle={styles.loginButtonBackground}
           labelStyle={styles.loginButtonLabel}
