@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    padding: 20,
+    margin: 20,
   },
   navBarContainer: {
     marginTop: 80,
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20
   },
   loginButtonBackground: {
     flex: 1,
