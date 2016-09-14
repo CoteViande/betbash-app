@@ -61,7 +61,7 @@ class ApiError extends Error {
     this.status = status;
     this.statusText = statusText;
     this.response = response;
-    this.message = `${status} - ${statusText}`;
+    this.message = response.error.message || 'Something went wrong';
   }
 }
 
