@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
   navBarContainer: {
     marginTop: 60,
   },
+  tabBarContainer: {
+    marginBottom: 60,
+  },
   leftAlignContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'transparent',
     paddingTop: 20,
     paddingBottom: 20,
   },

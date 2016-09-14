@@ -1,10 +1,15 @@
 import Keychain from 'react-native-keychain'
-import { reset } from 'redux-form'
+import { Actions } from 'react-native-router-flux'
 
-import { saveCredentialsKeychain, saveCredentialsKeychainFailure, getCredentialsKeychain, getCredentialsKeychainFailure } from '../../actions/authActions'
+import {
+  saveCredentialsKeychain, saveCredentialsKeychainFailure,
+  getCredentialsKeychain, getCredentialsKeychainFailure,
+  removeCredentialsKeychain, removeCredentialsKeychainFailure,
+} from '../../actions/authActions'
 
 const keychainManager = (prevState, nextState, action, dispatch) => {
   if (action.type === 'EMAIL_LOGIN_SUCCESS') {
+    Actions.BetBash({type: 'reset'}) // FIXME should not be here + Switch should do it
     Keychain
       .setGenericPassword(action.payload.email, action.payload.password)
       .then(() => {
@@ -12,9 +17,17 @@ const keychainManager = (prevState, nextState, action, dispatch) => {
       })
       .catch((error) => {
         dispatch(saveCredentialsKeychainFailure(error.message));
+      })
+  }
+  if (action.type === 'APP_LOGOUT') {
+    Keychain
+      .resetGenericPassword(action.payload.email, action.payload.password)
+      .then(() => {
+        dispatch(removeCredentialsKeychain());
+      })
+      .catch((error) => {
+        dispatch(removeCredentialsKeychainFailure(error.message));
       });
-    dispatch(reset('emailRegister'));
-    dispatch(reset('emailLogin'));
   }
 }
 

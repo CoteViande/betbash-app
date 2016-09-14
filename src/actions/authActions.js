@@ -110,12 +110,29 @@ export function registerWithEmail(email, password) {
   }
 }
 
+export function logoutFromApp() {
+  return {
+    [RSAA]: {
+      types: [
+        'APP_LOGOUT_REQUEST',
+        'APP_LOGOUT_SUCCESS',
+        'APP_LOGOUT_FAILURE'
+      ],
+      endpoint: endpoint.userLogoutUrl,
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}
+
 export function saveCredentialsKeychain() {
   return {
     type: 'KEYCHAIN_CREDENTIALS_SAVE',
   };
 }
-
 export function saveCredentialsKeychainFailure(error) {
   return {
     type: 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE',
@@ -128,7 +145,6 @@ export function getCredentialsKeychain() {
     type: 'KEYCHAIN_CREDENTIALS_GET'
   }
 }
-
 export function getCredentialsKeychainFailure(error) {
   return {
     type: 'KEYCHAIN_CREDENTIALS_GET_FAILURE',
@@ -139,5 +155,11 @@ export function getCredentialsKeychainFailure(error) {
 export function removeCredentialsKeychain() {
   return {
     type: 'KEYCHAIN_CREDENTIALS_REMOVE',
+  };
+}
+export function removeCredentialsKeychainFailure(error) {
+  return {
+    type: 'KEYCHAIN_CREDENTIALS_REMOVE_FAILURE',
+    message: error || 'Could not save to keychain'
   };
 }

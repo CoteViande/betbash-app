@@ -23,60 +23,51 @@ class TabIcon extends React.Component {
 const RouterWithRedux = connect()(Router);
 // setup the router table with App selected as the initial component
 // note: See https://github.com/aksonov/react-native-router-flux/issues/948
-  // <Scene key="App" component={App} title="App main" /> // TODO: maybe not
+  // <Scene key="App" component={App} title="App main" /> maybe not
 const scenes = Actions.create(
   <Scene key="root" hideNavBar={true}>
-  <Scene
-    key="LoginAccessControl" hideNavBar={true}
-    tabs={true} component={connect(state=>({ isLoggedIn: state.auth.user.isLoggedIn }))(Switch)}
-    unmountScenes
-    selector={ props => props.isLoggedIn ? "BetBash" : "BetBashAuth"}
-  >
-
     <Scene
-      key="BetBashAuth"
-      direction="vertical" default="AuthMain"
-      hideNavBar={true}
+      key="LoginAccessControl" hideNavBar={true} tabs={true}
+      component={
+        connect(
+          state=>({ isLoggedIn: state.auth.user.isLoggedIn })
+        )(Switch)
+      }
+      selector={
+        props => props.isLoggedIn ? "BetBash" : "BetBashAuth"
+      }
+      unmountScenes
     >
-      <Scene
-        key="AuthMain" component={AuthMain}
-        title="Login"
-        hideNavBar={true}
-      />
-      <Scene
-        key="RegisterEmail" component={RegisterEmail}
-        title="Register"
-        hideNavBar={false}
-      />
-      <Scene
-        key="LoginEmail" component={LoginEmail}
-        title="Login"
-        hideNavBar={false}
-      />
-    </Scene>
 
-    <Scene
-      key="BetBash"
-      tabs={true} default="Home"
-      hideNavBar={true} tabBarStyle={ { backgroundColor: '#000' } }
-    >
       <Scene
-        key="Home" component={Home}
-        title="Home" icon={TabIcon}
-        hideNavBar={true} initial={true}
-      />
-      <Scene key="Games" component={Profile}
-        title="Games" icon={TabIcon}
-        hideNavBar={true}
-      />
-      <Scene
-        key="Profile" component={Profile}
-        title="Profile" icon={TabIcon}
-        hideNavBar={true}
-      />
-    </Scene>
+        key="BetBashAuth" default="AuthMain" hideNavBar={true}
+      >
+        <Scene
+          key="AuthMain" component={AuthMain} title="Login" hideNavBar={true}
+        />
+        <Scene
+          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false}
+        />
+        <Scene
+          key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false}
+        />
+      </Scene>
 
-  </Scene>
+      <Scene
+        key="BetBash" default="Home" tabs={true} tabBarStyle={ { backgroundColor: '#000' } } hideNavBar={true}
+      >
+        <Scene
+          key="Home" component={Home} title="Home" icon={TabIcon} hideNavBar={true} initial={true}
+        />
+        <Scene
+          key="Games" component={Profile} title="Games" icon={TabIcon} hideNavBar={true}
+        />
+        <Scene
+          key="Profile" component={Profile} title="Profile" icon={TabIcon} hideNavBar={true}
+        />
+      </Scene>
+
+    </Scene>
   </Scene>
 );
 

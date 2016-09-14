@@ -21,6 +21,12 @@ const user = (state = initLogger, action) => {
         accessToken: emailLoginRes.id,
         userId: emailLoginRes.userId,
       }
+    case 'APP_LOGOUT_SUCCESS':
+      return {
+        isLoggedIn: false,
+        accessToken: null,
+        userId: null,
+      }
     default:
       return state
   }
@@ -32,12 +38,15 @@ const isLoading = (state = false, action) => {
     case 'EMAIL_LOGIN_REQUEST':
     case 'EMAIL_REGISTER_REQUEST':
     case 'EMAIL_REGISTER_SUCCESS':
+    case 'APP_LOGOUT_REQUEST':
       return true
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
     case 'EMAIL_LOGIN_SUCCESS':
     case 'EMAIL_LOGIN_FAILURE':
     case 'EMAIL_REGISTER_FAILURE':
+    case 'APP_LOGOUT_SUCCESS':
+    case 'APP_LOGOUT_FAILURE':
       return false
     default:
       return state
@@ -81,6 +90,17 @@ const errorMessageEmailRegister = (state = null, action) => {
   }
 }
 
+const errorMessageLogout = (state = null, action) => {
+  switch (action.type) {
+    case 'APP_LOGOUT_SUCCESS':
+      return null
+    case 'APP_LOGOUT_FAILURE':
+      return action.payload.message
+    default:
+      return state
+  }
+}
+
 const authenticatedOnFacebook = (state = false, action) => {
   switch (action.type) {
     case 'FACEBOOK_TOKEN_SUCCESS':
@@ -97,6 +117,8 @@ const authenticatedOnEmail = (state = false, action) => {
   switch (action.type) {
     case 'EMAIL_REGISTER_SUCCESS':
       return true
+    case 'APP_LOGOUT_SUCCESS':
+      return false
     default:
       return state
   }
@@ -121,7 +143,12 @@ const keychain = (state = {
       return {
         saved: false,
         error: null
-      };
+      }
+    case 'KEYCHAIN_CREDENTIALS_REMOVE_FAILURE':
+      return {
+        saved: true,
+        error: action.message
+      }
     default:
       return state
   }

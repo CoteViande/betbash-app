@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { connect, dispatch } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
+import { formValueSelector } from 'redux-form'
 
 import { loginWithEmail } from '../actions/authActions'
 import AwesomeButton from 'react-native-awesome-button'
@@ -11,14 +12,13 @@ import styles from '../../assets/styles/main'
 
 const RegisterEmail = React.createClass({
   componentWillReceiveProps(nextProps) {
-    const { loginWithEmail } = this.props
-    if (nextProps.registered && nextProps.registered !== this.props.registered) {
-      loginWithEmail(
-        'bob@betbash.com',
-        'LeRoiLionAdmin'
-      );
+    const { loginWithEmail, email, password } = this.props
+    if (nextProps.registered &&
+      nextProps.registered !== this.props.registered) {
+      loginWithEmail(email, password);
     }
   },
+
   render() {
     const { registerError, registered, loginSuccess, isLoading } = this.props
     const goToEmailLogin = () => Actions.LoginEmail()
@@ -56,12 +56,16 @@ const RegisterEmail = React.createClass({
   }
 });
 
+const selector = formValueSelector('emailRegister')
+
 const mapStateToProps = (state) => {
   return {
     registerError: state.auth.errorMessageEmailRegister,
     loginSuccess: state.auth.user.isLoggedIn,
     isLoading: state.auth.isLoading,
     registered: state.auth.authenticatedOnEmail,
+    email: selector(state, 'email'),
+    password: selector(state, 'password'),
   };
 };
 
