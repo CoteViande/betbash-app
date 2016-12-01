@@ -4,12 +4,12 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import AwesomeButton from 'react-native-awesome-button'
 
 import btnStates from '../utils/buttonStates'
-import { appLogout } from '../actions/authActions'
+import { logoutFromApp } from '../actions/authActions'
 import styles from '../../assets/styles/main'
 
 let Profile = React.createClass({
   render() {
-    const { appLogout, isLoading, error, success } = this.props
+    const { logoutFromApp, isLoading, error, success, accessToken } = this.props
     const buttonState = (isLoading, success, error) => {
       if (success) { return 'success' }
       if (error) { return 'error' }
@@ -26,7 +26,9 @@ let Profile = React.createClass({
             labelStyle={styles.loginButtonLabel}
             transitionDuration={200}
             states={btnStates(
-              appLogout,
+              () => {
+                logoutFromApp(accessToken)
+              },
               'Log me out!',
               'Logging out...',
               'Logged out!',
@@ -46,12 +48,13 @@ const mapStateToProps = (state, { params }) => {
     success: !state.auth.user.isLoggedIn,
     isLoading: state.auth.isLoading,
     error: state.auth.errorMessageLogout,
+    accessToken: state.auth.user.accessToken,
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    appLogout,
+    logoutFromApp,
   }
 )(Profile);

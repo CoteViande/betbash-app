@@ -110,7 +110,7 @@ export function registerWithEmail(email, password) {
   }
 }
 
-export function logoutFromApp() {
+export function logoutFromApp(accessToken) {
   return {
     [RSAA]: {
       types: [
@@ -118,7 +118,7 @@ export function logoutFromApp() {
         'APP_LOGOUT_SUCCESS',
         'APP_LOGOUT_FAILURE'
       ],
-      endpoint: endpoint.userLogoutUrl,
+      endpoint: endpoint.userLogoutUrl(accessToken),
       method: 'POST',
       headers: {
         'Cache-Control': 'no-cache',

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { apiMiddleware } from '../utils/api-middleware/index'
 import onStateChanged from '../utils/onStateChangedMiddleware'
-import devTools from 'remote-redux-devtools'
+import { composeWithDevTools } from 'remote-redux-devtools'
 import reducer from '../reducers/rootReducer' // TODO: check what reducer it picks
 
 import keychainManager from '../reducers/managers/keychainManager'
@@ -14,13 +14,8 @@ const configureStore = (initialState) => {
   const store = createStore(
     reducer,
     initialState,
-    compose(
-      applyMiddleware(...middlewares),
-      devTools({
-        name: 'Bet Bash Android',
-        hostname: 'localhost',
-        port: 5678,
-      })
+    composeWithDevTools(
+      applyMiddleware(...middlewares)
     )
   );
 

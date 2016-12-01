@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
+import React from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native'
+import { connect } from 'react-redux'
+import { destroy } from 'redux-form'
 
 let Home = React.createClass({
   render() {
@@ -16,4 +17,10 @@ let Home = React.createClass({
   }
 });
 
-export default connect()(Home);
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

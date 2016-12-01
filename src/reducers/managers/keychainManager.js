@@ -1,5 +1,5 @@
 import Keychain from 'react-native-keychain'
-import { Actions } from 'react-native-router-flux'
+// import { Actions } from 'react-native-router-flux'
 
 import {
   saveCredentialsKeychain, saveCredentialsKeychainFailure,
@@ -9,7 +9,7 @@ import {
 
 const keychainManager = (prevState, nextState, action, dispatch) => {
   if (action.type === 'EMAIL_LOGIN_SUCCESS') {
-    Actions.BetBash({type: 'reset'}) // FIXME should not be here + Switch should do it
+    // Actions.BetBash({type: 'reset'}) // FIXME should not be here + Switch should do it
     Keychain
       .setGenericPassword(action.payload.email, action.payload.password)
       .then(() => {

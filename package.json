@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "remotedev": "remotedev --hostname=localhost --port=5678"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
     "humps": "^1.1.0",
@@ -17,16 +16,17 @@
     "react-native-fbsdk": "^0.3.0",
     "react-native-keychain": "^0.3.2",
     "react-native-md-textinput": "git+https://github.com/evblurbs/react-native-md-textinput.git#8359f45b38499116ac37a493252b82a35fc25b86",
-    "react-native-router-flux": "^3.34.0",
+    "react-native-router-flux": "^3.35.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-api-middleware": "git+https://github.com/agraboso/redux-api-middleware.git#next",
     "redux-form": "^6.0.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "url-parse": "^1.1.3"
   },
   "devDependencies": {
     "eslint": "^3.3.1",
-    "remote-redux-devtools": "^0.4.2",
+    "remote-redux-devtools": "^0.5.4",
     "remotedev-server": "^0.1.8"
   }
 }

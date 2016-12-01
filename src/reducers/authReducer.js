@@ -162,6 +162,7 @@ const authReducer = combineReducers({
   authenticatedOnEmail,
   errorMessageEmailLogin,
   errorMessageEmailRegister,
+  errorMessageLogout,
   keychain,
 })
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import { Actions, Scene, Router, TabBar, Switch } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
@@ -8,7 +9,8 @@ import LoginEmail from './LoginEmail'
 import Home from './Home'
 import Profile from './Profile'
 
-import { StyleSheet, Text, View } from 'react-native'
+import BetBashNavbar from '../components/Navbar'
+
 class TabIcon extends React.Component {
   render(){
     var color = this.props.selected ? '#FF3366' : '#FFB3B3';
@@ -30,26 +32,29 @@ const scenes = Actions.create(
       key="LoginAccessControl" hideNavBar={true} tabs={true}
       component={
         connect(
-          state=>({ isLoggedIn: state.auth.user.isLoggedIn })
+          state => ({ isLoggedIn: state.auth.user.isLoggedIn })
         )(Switch)
       }
       selector={
         props => props.isLoggedIn ? "BetBash" : "BetBashAuth"
       }
-      unmountScenes
+      unmountScenes={true}
     >
 
       <Scene
-        key="BetBashAuth" default="AuthMain" hideNavBar={true}
+        key="BetBashAuth" default="AuthMain" hideNavBar={false} tabs={true}
       >
         <Scene
           key="AuthMain" component={AuthMain} title="Login" hideNavBar={true}
         />
         <Scene
-          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false}
+          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar}
+          onLeft={() => Actions.AuthMain()} leftTitle="Back"
+          onRight={() => Actions.LoginEmail()} rightTitle="Login"
         />
         <Scene
-          key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false}
+          key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false} navBar={BetBashNavbar}
+          onLeft={() => Actions.RegisterEmail()} leftTitle="Register"
         />
       </Scene>
 
@@ -73,7 +78,7 @@ const scenes = Actions.create(
 
 class App extends React.Component {
   render() {
-    return <RouterWithRedux scenes={scenes}/>
+    return (<RouterWithRedux scenes={scenes} />)
   }
 }
 

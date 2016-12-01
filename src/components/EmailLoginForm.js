@@ -2,6 +2,7 @@ import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
 import AwesomeButton from 'react-native-awesome-button'
 import { Field, reduxForm } from 'redux-form'
+import dismissKeyboard from 'dismissKeyboard'
 
 import styles from '../../assets/styles/main'
 import TextFieldWithError from './TextFieldRenderer'
@@ -65,10 +66,11 @@ EmailLoginForm = reduxForm({
   touchOnBlur: true,
   touchOnChange: false,
   onSubmit: (fields, dispatch) => {
+    dismissKeyboard()
     dispatch(loginWithEmail(
       fields.email,
       fields.password
-    ));
+    ))
   }
 })(EmailLoginForm);
 

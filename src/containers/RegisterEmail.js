@@ -34,27 +34,26 @@ const RegisterEmail = React.createClass({
           />
         </View>
 
-        <View style={styles.box}>
-          <Text>
-            {'Already registered?'}
-          </Text>
-          <AwesomeButton
-            backgroundStyle={styles.loginButtonBackground}
-            labelStyle={styles.loginButtonLabel}
-            states={{
-              default: {
-                text: 'Log in!',
-                backgroundColor: '#1155DD',
-                onPress: goToEmailLogin,
-              }
-            }}
-          />
-        </View>
-
       </View>
     );
   }
 });
+// <View style={styles.box}>
+//   <Text>
+//     {'Already registered?'}
+//   </Text>
+//   <AwesomeButton
+//     backgroundStyle={styles.loginButtonBackground}
+//     labelStyle={styles.loginButtonLabel}
+//     states={{
+//       default: {
+//         text: 'Log in!',
+//         backgroundColor: '#1155DD',
+//         onPress: goToEmailLogin,
+//       }
+//     }}
+//   />
+// </View>
 
 const selector = formValueSelector('emailRegister')
 

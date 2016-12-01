@@ -10,7 +10,7 @@ import styles from '../../assets/styles/main'
 
 let AuthMain = React.createClass({
   render() {
-    const { isLoading, errorMessage, isLoggedIn } = this.props;
+    const { isLoading, errorMessage, isLoggedIn } = this.props
 
     if ( isLoading || isLoggedIn ) { // isLoggedIn to avoid seeing auth screen during redirection to landing
       return(
