@@ -16,7 +16,7 @@
     "react-native-fbsdk": "^0.3.0",
     "react-native-keychain": "^0.3.2",
     "react-native-md-textinput": "git+https://github.com/evblurbs/react-native-md-textinput.git#8359f45b38499116ac37a493252b82a35fc25b86",
-    "react-native-router-flux": "^3.35.0",
+    "react-native-router-flux": "git+https://github.com/sarovin/react-native-router-flux.git#bd891e0f400976fe9cb950a425bcf0d3f9d4235b",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-api-middleware": "git+https://github.com/agraboso/redux-api-middleware.git#next",

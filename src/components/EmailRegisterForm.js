@@ -54,7 +54,7 @@ const EmailRegisterForm = (props) => {
             'Register',
             'Registering',
             'Registered!',
-            'Error. Try again?'
+            'Try again?'
           )}
           buttonState={buttonState(isLoading, loginSuccess, registerError)}
         />

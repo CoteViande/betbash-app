@@ -2,7 +2,7 @@ import parse from 'url-parse'
 
 const ROOT_URL = process.env.NODE_ENV === 'production' ?
   'http://betbash.com' :
-  'http://192.168.0.246:3000'
+  'http://192.168.0.247:3000'
 const BASE_URL = ROOT_URL + '/api'
 
 export const facebookAuthenticateUrl = (accessToken) => {

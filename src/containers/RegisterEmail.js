@@ -19,6 +19,10 @@ const RegisterEmail = React.createClass({
     }
   },
 
+  // componentWillUnMount() {
+  //   console.warn('unmounted!!')
+  // },
+
   render() {
     const { registerError, registered, loginSuccess, isLoading } = this.props
     const goToEmailLogin = () => Actions.LoginEmail()
@@ -38,22 +42,6 @@ const RegisterEmail = React.createClass({
     );
   }
 });
-// <View style={styles.box}>
-//   <Text>
-//     {'Already registered?'}
-//   </Text>
-//   <AwesomeButton
-//     backgroundStyle={styles.loginButtonBackground}
-//     labelStyle={styles.loginButtonLabel}
-//     states={{
-//       default: {
-//         text: 'Log in!',
-//         backgroundColor: '#1155DD',
-//         onPress: goToEmailLogin,
-//       }
-//     }}
-//   />
-// </View>
 
 const selector = formValueSelector('emailRegister')
 

@@ -1,23 +1,25 @@
+import * as color from '../../assets/styles/colors'
+
 const btnStates = (onPress, labelIdle, labelBusy, labelSuccess, labelError) => {
   return {
     idle: {
       text: labelIdle,
       onPress: onPress,
-      backgroundColor: '#1155DD',
+      backgroundColor: color.green500,
     },
     busy: {
       text: labelBusy,
-      backgroundColor: '#002299',
+      backgroundColor: color.green700,
       spinner: true,
     },
     success: {
       text: labelSuccess,
-      backgroundColor: '#339944'
+      backgroundColor: color.green500,
     },
     error: {
       text: labelError,
       onPress: onPress,
-      backgroundColor: '#000000'
+      backgroundColor: color.green500,
     }
   }
 }

@@ -42,19 +42,19 @@ const scenes = Actions.create(
     >
 
       <Scene
-        key="BetBashAuth" default="AuthMain" hideNavBar={false} tabs={true}
+        key="BetBashAuth" default="AuthMain" hideNavBar={true}
       >
         <Scene
-          key="AuthMain" component={AuthMain} title="Login" hideNavBar={true}
+          key="AuthMain" component={AuthMain} title="Login" hideNavBar={true} direction="vertical"
         />
         <Scene
-          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar}
-          onLeft={() => Actions.AuthMain()} leftTitle="Back"
+          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
           onRight={() => Actions.LoginEmail()} rightTitle="Login"
+          backTitle="Back"
         />
         <Scene
           key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false} navBar={BetBashNavbar}
-          onLeft={() => Actions.RegisterEmail()} leftTitle="Register"
+          backTitle="Register"
         />
       </Scene>
 

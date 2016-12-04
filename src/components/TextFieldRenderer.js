@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import TextField from '../utils/md-textfield/TextField'
 
 import styles from '../../assets/styles/main'
+import * as color from '../../assets/styles/colors'
 
 const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) => {
   let keyboardType = 'default';
@@ -15,7 +16,7 @@ const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) =>
   <View>
     <TextField
       label={label}
-      highlightColor={'#1155DD'}
+      highlightColor={ color.green500 }
       dense={false}
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}

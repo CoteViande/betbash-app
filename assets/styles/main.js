@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import * as color from './colors'
 
 const styles = StyleSheet.create({
   imageBgContainer: {
@@ -42,14 +43,14 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
   fullWidthButtton: {
-    backgroundColor: 'blue',
+    backgroundColor: color.green500,
     height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
   fullWidthButttonText: {
-    color: 'white',
+    color: color.white,
   },
   textError: {
     color: 'red',
@@ -64,10 +65,10 @@ const styles = StyleSheet.create({
   loginButtonBackground: {
     flex: 1,
     height: 40,
-    borderRadius: 5
+    borderRadius: 5,
   },
   loginButtonLabel: {
-    color: 'white'
+    color: color.white,
   }
 });
 

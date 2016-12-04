@@ -5,93 +5,18 @@ import {
   Platform,
   Animated,
   Image,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   StatusBar,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import _drawerImage from '../../assets/images/menu_burger.png';
-import _backButtonImage from '../../assets/images/back_chevron.png';
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    color: 'white',
-  },
-  header: {
-    position: 'absolute',
-    top: 0, // FIXME: get status bar size with a variable
-    left: 0,
-    right: 0,
-    height: 60,
-    backgroundColor: 'green',
-    padding: 15,
-  },
-  componentContainer: {
-    flex: 1,
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'transparent',
-  },
-  centerComponent: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  backButton: {
-    width: 130,
-    height: 37,
-    position: 'absolute',
-    ...Platform.select({
-      ios: {
-        top: 22,
-      },
-      android: {
-        top: 10,
-      },
-    }),
-    left: 2,
-    padding: 8,
-    flexDirection: 'row',
-  },
-  rightButton: {
-    alignItems: 'flex-end',
-    flex: 1,
-  },
-  leftButton: {
-    alignItems: 'flex-start',
-    flex: 1,
-  },
-  barRightButtonText: {
-    color: 'white',
-    textAlign: 'right',
-    fontSize: 17,
-  },
-  barBackButtonText: {
-    color: 'white',
-    textAlign: 'left',
-    fontSize: 17,
-    paddingLeft: 6,
-  },
-  barLeftButtonText: {
-    color: 'white',
-    textAlign: 'left',
-    fontSize: 17,
-  },
-  backButtonImage: {
-    width: 13,
-    height: 21,
-  },
-  rightButtonIconStyle: {
+import _drawerImage from '../../assets/images/menu_burger.png'
+import _backButtonImage from '../../assets/images/ic_arrow_back_white_24dp.png'
+import { NavbarStyles } from '../../assets/styles/navbar'
 
-  },
-  defaultImageStyle: {
-    height: 24,
-    resizeMode: 'contain',
-  },
-});
+const styles = NavbarStyles;
 
 const propTypes = {
   navigationState: PropTypes.object,
@@ -260,11 +185,6 @@ class NavBar extends React.Component {
             must be specified for the scene: ${state.name}`
         );
       }
-      if (!state.onRight && state.onLeft) {
-        return (
-          <View style={style}></View>
-        );
-      }
       return null;
     }
     return tryRender(this.props.component, this.props.wrapBy) || tryRender(this.props);
@@ -429,11 +349,15 @@ class NavBar extends React.Component {
           selected.navigationBarStyle,
         ]}
       >
-        <StatusBar backgroundColor="blue" />
+        <StatusBar backgroundColor="#B71C1C" />
         <View style={styles.componentContainer}>
+          <View style={styles.leftContainer}>
           {renderBackButton(navProps) || renderLeftButton(navProps)}
+          </View>
           {renderTitle ? renderTitle(navProps) : state.children.map(this.renderTitle, this)}
+          <View style={styles.rightContainer}>
           {renderRightButton(navProps)}
+          </View>
         </View>
       </Animated.View>
     );
