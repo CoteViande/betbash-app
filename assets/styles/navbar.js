@@ -7,8 +7,9 @@ export const NavbarStyles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 52,
+    height: 60,
     padding: 15,
+    paddingTop: 20,
     backgroundColor: color.red500,
   },
   componentContainer: {

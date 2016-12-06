@@ -25,9 +25,7 @@ let AuthMain = React.createClass({
         <ErrorMessage
           message={ errorMessage }
         />
-        <MainLogin
-          shouldDisconnect
-        />
+        <MainLogin />
       </Image>
     );
   }

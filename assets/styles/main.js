@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   navBarContainer: {
-    marginTop: 60,
+    paddingTop: 60,
+  },
+  topBarContainer: {
+    paddingTop: 60,
   },
   tabBarContainer: {
     marginBottom: 60,

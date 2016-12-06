@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import { Actions, Scene, Router, TabBar, Switch } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
@@ -10,17 +10,10 @@ import Home from './Home'
 import Profile from './Profile'
 
 import BetBashNavbar from '../components/Navbar'
+import BetBashTabIcon from '../components/TabIcon'
+import * as color from '../../assets/styles/colors'
 
-class TabIcon extends React.Component {
-  render(){
-    var color = this.props.selected ? '#FF3366' : '#FFB3B3';
-    return (
-      <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center'}}>
-        <Text style={{color: color}}>{this.props.title}</Text>
-      </View>
-    );
-  }
-}
+const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 
 const RouterWithRedux = connect()(Router);
 // setup the router table with App selected as the initial component
@@ -59,16 +52,16 @@ const scenes = Actions.create(
       </Scene>
 
       <Scene
-        key="BetBash" default="Home" tabs={true} tabBarStyle={ { backgroundColor: '#000' } } hideNavBar={true}
+        key="BetBash" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
       >
         <Scene
-          key="Home" component={Home} title="Home" icon={TabIcon} hideNavBar={true} initial={true}
+          key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
         />
         <Scene
-          key="Games" component={Profile} title="Games" icon={TabIcon} hideNavBar={true}
+          key="Games" component={Profile} title="Games" icon={BetBashTabIcon} hideNavBar={true}
         />
         <Scene
-          key="Profile" component={Profile} title="Profile" icon={TabIcon} hideNavBar={true}
+          key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
         />
       </Scene>
 
@@ -78,7 +71,12 @@ const scenes = Actions.create(
 
 class App extends React.Component {
   render() {
-    return (<RouterWithRedux scenes={scenes} />)
+    return (
+      <View style={{ flex:1 }}>
+        <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
+        <RouterWithRedux scenes={scenes} />
+      </View>
+    )
   }
 }
 

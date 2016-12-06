@@ -18,7 +18,7 @@ let Profile = React.createClass({
     }
 
     return(
-      <View style={styles.tabBarContainer}>
+      <View style={styles.topBarContainer}>
 
         <View style={styles.box}>
           <AwesomeButton
@@ -32,7 +32,7 @@ let Profile = React.createClass({
               'Log me out!',
               'Logging out...',
               'Logged out!',
-              'Oops. Log me out I said!'
+              'Log me out I said!'
             )}
             buttonState={buttonState(isLoading, success, error)}
           />

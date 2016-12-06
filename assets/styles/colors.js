@@ -1,4 +1,5 @@
 export const red500 = '#F44336'
+export const red700 = '#D32F2F'
 export const red900 = '#B71C1C'
 export const red100 = '#FFCDD2'
 export const red50 = '#FFEBEE'
@@ -24,3 +25,4 @@ export const grey900 = '#212121'
 
 export const white = '#FFFFFF'
 export const black = '#000000'
+export const transparent = 'rgba(0,0,0,0)'

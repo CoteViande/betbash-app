@@ -8,7 +8,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  StatusBar,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -349,7 +348,6 @@ class NavBar extends React.Component {
           selected.navigationBarStyle,
         ]}
       >
-        <StatusBar backgroundColor="#B71C1C" />
         <View style={styles.componentContainer}>
           <View style={styles.leftContainer}>
           {renderBackButton(navProps) || renderLeftButton(navProps)}
