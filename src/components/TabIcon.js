@@ -4,7 +4,7 @@ import * as color from '../../assets/styles/colors'
 
 class TabIcon extends React.Component {
   render(){
-    var textColor = this.props.selected ? color.white : color.grey300;
+    var textColor = this.props.selected ? color.white : color.grey800;
     var bottomWidth = this.props.selected ? 3 : 0;
 
     return (

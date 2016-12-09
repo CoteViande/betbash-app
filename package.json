@@ -21,6 +21,7 @@
     "redux": "^3.5.2",
     "redux-api-middleware": "git+https://github.com/agraboso/redux-api-middleware.git#next",
     "redux-form": "^6.0.2",
+    "redux-persist": "^4.0.0-beta1",
     "redux-thunk": "^2.1.0",
     "url-parse": "^1.1.3"
   },

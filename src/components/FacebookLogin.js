@@ -26,8 +26,6 @@ const FacebookLoginButton = ({ dispatch }) => (
               let accessToken = data.accessToken;
               dispatch(successFacebookToken());
               dispatch(authenticateWithFacebookToken(accessToken.toString()));
-              // if success login Actions.BetBash();
-              // else LoginManager.logout();
             }
           )
         }

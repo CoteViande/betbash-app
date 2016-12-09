@@ -19,7 +19,6 @@ let Profile = React.createClass({
 
     return(
       <View style={styles.topBarContainer}>
-
         <View style={styles.box}>
           <AwesomeButton
             backgroundStyle={styles.loginButtonBackground}
@@ -36,6 +35,9 @@ let Profile = React.createClass({
             )}
             buttonState={buttonState(isLoading, success, error)}
           />
+          <Text>
+            { error }
+          </Text>
         </View>
 
       </View>

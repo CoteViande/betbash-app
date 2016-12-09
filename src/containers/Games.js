@@ -9,7 +9,7 @@ let Home = React.createClass({
       justifyContent: 'center',
       alignItems: 'center',} }>
         <Text>
-          Home Landing
+          Games
         </Text>
       </View>
     );

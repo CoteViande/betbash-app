@@ -1,12 +1,13 @@
 import React from 'react'
 import { StatusBar, StyleSheet, Text, View } from 'react-native'
-import { Actions, Scene, Router, TabBar, Switch } from 'react-native-router-flux'
+import { Actions, Scene, Router, TabBar, Switch, ActionConst } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
 import AuthMain from './AuthMain'
 import RegisterEmail from './RegisterEmail'
 import LoginEmail from './LoginEmail'
 import Home from './Home'
+import Games from './Games'
 import Profile from './Profile'
 
 import BetBashNavbar from '../components/Navbar'
@@ -58,7 +59,7 @@ const scenes = Actions.create(
           key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
         />
         <Scene
-          key="Games" component={Profile} title="Games" icon={BetBashTabIcon} hideNavBar={true}
+          key="Games" component={Games} title="Games" icon={BetBashTabIcon} hideNavBar={true}
         />
         <Scene
           key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
@@ -70,7 +71,20 @@ const scenes = Actions.create(
 );
 
 class App extends React.Component {
+
   render() {
+    const { initializing } = this.props
+
+    if (initializing) {
+      return (
+        <View style={{ flex:1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+            BETBASH
+          </Text>
+        </View>
+      )
+    }
+
     return (
       <View style={{ flex:1 }}>
         <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
@@ -80,6 +94,12 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = (state, { params }) => {
+  return {
+    initializing: state.init.initializing,
+  };
+};
 
-
-export default connect()(App);
+export default connect(
+  mapStateToProps
+)(App);

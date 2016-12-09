@@ -48,6 +48,13 @@ export function authenticateWithFacebookToken(accessToken) {
   }
 }
 
+export function refreshBetBashToken(token) {
+  return {
+    type: 'REFRESH_BETBASH_TOKEN',
+    token: token,
+  }
+}
+
 export function loginWithEmail(email, password) {
   return {
     [RSAA]: {
@@ -128,6 +135,7 @@ export function logoutFromApp(accessToken) {
   }
 }
 
+// TODO create a KeychainActions.js file
 export function saveCredentialsKeychain() {
   return {
     type: 'KEYCHAIN_CREDENTIALS_SAVE',

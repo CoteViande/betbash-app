@@ -27,6 +27,12 @@ const user = (state = initLogger, action) => {
         accessToken: null,
         userId: null,
       }
+    case 'REFRESH_BETBASH_TOKEN':
+      return {
+        ...state,
+        isLoggedIn: true,
+        accessToken: action.token,
+      }
     default:
       return state
   }
@@ -59,10 +65,12 @@ const errorMessageFBAuth = (state = null, action) => {
       return null
     case 'FACEBOOK_TOKEN_FAILURE':
       return action.message
-    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-      return null
     case 'FACEBOOK_AUTHENTICATE_FAILURE':
       return action.payload.message
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+    case 'EMAIL_REGISTER_SUCCESS':
+    case 'EMAIL_LOGIN_SUCCESS':
+      return null
     default:
       return state
   }
@@ -70,10 +78,12 @@ const errorMessageFBAuth = (state = null, action) => {
 
 const errorMessageEmailLogin = (state = null, action) => {
   switch (action.type) {
-    case 'EMAIL_LOGIN_SUCCESS':
-      return null
     case 'EMAIL_LOGIN_FAILURE':
       return action.payload.message
+    case 'EMAIL_LOGIN_SUCCESS':
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+    case 'EMAIL_REGISTER_SUCCESS':
+      return null
     default:
       return state
   }
@@ -81,10 +91,12 @@ const errorMessageEmailLogin = (state = null, action) => {
 
 const errorMessageEmailRegister = (state = null, action) => {
   switch (action.type) {
-    case 'EMAIL_REGISTER_SUCCESS':
-      return null
     case 'EMAIL_REGISTER_FAILURE':
       return action.payload.message
+    case 'EMAIL_REGISTER_SUCCESS':
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+    case 'EMAIL_LOGIN_SUCCESS':
+      return null
     default:
       return state
   }
@@ -108,6 +120,9 @@ const authenticatedOnFacebook = (state = false, action) => {
     case 'FACEBOOK_TOKEN_FAILURE':
     case 'FACEBOOK_LOGOUT':
       return false
+    case 'APP_LOGOUT_SUCCESS':
+    case 'EMAIL_REGISTER_SUCCESS':
+      return false
     default:
       return state
   }
@@ -118,6 +133,8 @@ const authenticatedOnEmail = (state = false, action) => {
     case 'EMAIL_REGISTER_SUCCESS':
       return true
     case 'APP_LOGOUT_SUCCESS':
+      return false
+    case 'FACEBOOK_TOKEN_SUCCESS':
       return false
     default:
       return state
