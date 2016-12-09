@@ -10,9 +10,7 @@ import keychainManager from '../reducers/managers/keychainManager'
 import logoutManager from '../reducers/managers/logoutManager'
 import reducer from '../reducers/rootReducer'
 
-import { initializationComplete } from '../actions/initializationActions'
-import { isConnectedToTheInternet } from './connexionCheck'
-import { refreshUserToken } from './refreshUserToken'
+import { initializationScript } from './initializationScript'
 
 
 const configureStore = (initialState) => {
@@ -27,24 +25,11 @@ const configureStore = (initialState) => {
     )
   )
 
-  async function initialization() {
-    try {
-      let isConnected = await isConnectedToTheInternet(store)
-      if (isConnected) {
-        let userToken = await refreshUserToken(store)
-      }
-    } catch (error) {
-      console.log('in intializing function', error)
-      // store.dispatch(errorCheckingForConnexion(error.message))
-      // store.dispatch(forcedLogoutOnError(error.message))
-    }
-    store.dispatch(initializationComplete())
-  }
   const persistConfig = {
     blacklist: ['init'],
     storage: AsyncStorage,
   }
-  persistStore(store, persistConfig, initialization)
+  persistStore(store, persistConfig, initializationScript(store))
 
   if (module.hot) {
     // Enable hot module replacement for reducers
