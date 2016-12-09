@@ -35,7 +35,7 @@ export const refreshUserToken = (store) => {
           .then((credentials) => {
             let email = credentials.username
             let password = credentials.password
-            fetchBetBashTokenFromCredentials(email, password)
+            dispatch(fetchBetBashTokenFromCredentials(email, password))
               .then(() => {
                 resolve(true)
               })
@@ -74,14 +74,18 @@ function fetchBetBashTokenFromFacebookToken(token) {
 
 function fetchBetBashTokenFromCredentials(email, password) {
   return (dispatch) => {
-    return timeout(5000, // should timeout?
-      fetch(endpoint.userLoginUrl(), {
+    return timeout(5000,
+      fetch(endpoint.userLoginUrl, {
           method: 'POST',
-          body: JSON.stringify({email: email, password: password})
+          body: JSON.stringify({ email: email, password: password }),
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          }
         })
         .then((response) => {
-          response.json().then((fullToken) => { // TODO test this
-            let bbToken = fullToken.access_token
+          response.json().then((fullToken) => {
+            let bbToken = fullToken.id
             dispatch(refreshBetBashToken(bbToken))
           })
         })
