@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "humps": "^1.1.0",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "eslint": "^3.3.1",
+    "jest": "^17.0.3",
     "remote-redux-devtools": "^0.5.4",
     "remotedev-server": "^0.1.8"
   }
