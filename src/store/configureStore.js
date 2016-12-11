@@ -9,7 +9,6 @@ import onStateChanged from '../utils/onStateChangedMiddleware'
 import keychainManager from '../reducers/managers/keychainManager'
 import logoutManager from '../reducers/managers/logoutManager'
 import reducer from '../reducers/rootReducer'
-
 import { initializationScript } from './initializationScript'
 
 
@@ -26,7 +25,7 @@ const configureStore = (initialState) => {
   )
 
   const persistConfig = {
-    blacklist: ['init'],
+    blacklist: ['init', 'form', 'connexion'],
     storage: AsyncStorage,
   }
   persistStore(store, persistConfig, initializationScript(store))

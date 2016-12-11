@@ -1,24 +1,15 @@
 import { NetInfo } from 'react-native'
 
-import { connectedToInternet, notConnectedToInternet } from '../actions/connexionActions'
+import { connexionChange, connexionChangeTest } from '../actions/connexionActions'
 
 export const isConnectedToTheInternet = (store) => {
   return new Promise((resolve, reject) => {
     NetInfo.fetch()
       .then((reach) => {
-        let connected = true
-        switch (reach.toUpperCase()) {
-          case 'NONE':
-            connected = false
-            store.dispatch(notConnectedToInternet())
-            break;
-          case 'WIFI':
-            store.dispatch(connectedToInternet(reach))
-            break;
-          default:
-            store.dispatch(connectedToInternet(reach))
-            break;
-        }
+        let connected = isConnected(reach)
+        store.dispatch(connexionChange(connected, reach))
+        NetInfo.addEventListener('connectivityChange', handleConnectivityChange);
+        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest);
         resolve(connected);
       })
       .catch((error) => {
@@ -27,16 +18,40 @@ export const isConnectedToTheInternet = (store) => {
   })
 }
 
+function handleConnectivityChange(reach) {
+  let connected = isConnected(reach)
+  store.dispatch(connexionChange(connected, reach))
+}
 
-// TODO where to place this?
-// function handleFirstConnectivityChange(reach) {
-//   console.log('First change: ' + reach);
-//   NetInfo.removeEventListener(
-//     'change',
-//     handleFirstConnectivityChange
-//   );
-// }
-// NetInfo.addEventListener(
-//   'change',
-//   handleFirstConnectivityChange
-// );
+function handlerTest(isConnected) {
+  let connectedStr = isConnected ? 'online' : 'offline'
+  console.warn('Device is now ' + connectedStr )
+  store.dispatch(connexionChangeTest(isConnected))
+}
+
+function isConnected(reach) {
+  let connected
+  switch (reach.toUpperCase()) {
+    case 'NONE':
+    case 'DUMMY':
+    case 'UKNOWN':
+      connected = false
+      break;
+    case 'WIFI':
+    case 'CELL':
+    case 'MOBILE':
+    case 'MOBILE_HIPRI':
+    case 'ETHERNET':
+    case 'WIMAX':
+    case 'BLUETOOTH':
+    case 'MOBILE_MMS':
+    case 'MOBILE_SUPL':
+    case 'MOBILE_DUN':
+      connected = true
+      break;
+    default:
+      connected = true
+      break;
+  }
+  return connected
+}

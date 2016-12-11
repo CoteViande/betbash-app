@@ -1,12 +1,14 @@
-export function notConnectedToInternet() {
+export function connexionChange(isConnected, connexionType) {
   return {
-    type: 'NO_INTERNET_CONNEXION',
-  };
+    type: 'CONNEXION_CHANGE',
+    isConnected,
+    connexionType,
+  }
 }
 
-export function connectedToInternet(connexionType) {
+export function connexionChangeTest(isConnected) {
   return {
-    type: 'CONNECTED_TO_INTERNET',
-    connexionType: connexionType,
-  };
+    type: 'CONNEXION_CHANGE_TEST',
+    isConnected,
+  }
 }
