@@ -21,6 +21,7 @@ export const grey500 = '#9E9E9E'
 export const grey600 = '#757575'
 export const grey700 = '#616161'
 export const grey800 = '#424242'
+export const grey850 = '#323232'
 export const grey900 = '#212121'
 
 export const white = '#FFFFFF'

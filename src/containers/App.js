@@ -12,14 +12,13 @@ import Profile from './Profile'
 
 import BetBashNavbar from '../components/Navbar'
 import BetBashTabIcon from '../components/TabIcon'
+import Snackbar from '../components/Snackbar'
 import * as color from '../../assets/styles/colors'
 
 const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 
 const RouterWithRedux = connect()(Router);
-// setup the router table with App selected as the initial component
-// note: See https://github.com/aksonov/react-native-router-flux/issues/948
-  // <Scene key="App" component={App} title="App main" /> maybe not
+
 const scenes = Actions.create(
   <Scene key="root" hideNavBar={true}>
     <Scene
@@ -71,7 +70,6 @@ const scenes = Actions.create(
 );
 
 class App extends React.Component {
-
   render() {
     const { initializing } = this.props
 
