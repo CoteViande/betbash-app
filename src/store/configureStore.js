@@ -28,7 +28,7 @@ const configureStore = (initialState) => {
     blacklist: ['init', 'form', 'connexion'],
     storage: AsyncStorage,
   }
-  persistStore(store, persistConfig, initializationScript(store))
+  persistStore(store, persistConfig, initializationScript(store))//.purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers

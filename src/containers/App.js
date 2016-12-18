@@ -71,7 +71,7 @@ const scenes = Actions.create(
 
 class App extends React.Component {
   render() {
-    const { initializing } = this.props
+    const { initializing, isConnected } = this.props
 
     if (initializing) {
       return (
@@ -87,6 +87,7 @@ class App extends React.Component {
       <View style={{ flex:1 }}>
         <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
         <RouterWithRedux scenes={scenes} />
+        <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />
       </View>
     )
   }
@@ -95,6 +96,7 @@ class App extends React.Component {
 const mapStateToProps = (state, { params }) => {
   return {
     initializing: state.init.initializing,
+    isConnected: state.connexion.isConnected,
   };
 };
 

@@ -14,15 +14,15 @@ class Snackbar extends React.Component {
   }
 
   componentWillMount() {
-    this._translateY = this.props.isSnack ? new Animated.Value(0) : new Animated.Value(100)
+    this._animState = this.props.isSnack ? new Animated.Value(0) : new Animated.Value(1)
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isSnack !== nextProps.isSnack) {
-      let nextTranslateYValue = nextProps.isSnack ? 0 : 100
+      let nextAnimState = nextProps.isSnack ? 0 : 1
 
-      Animated.timing(this._translateY, {
-        toValue: nextTranslateYValue,
+      Animated.timing(this._animState, {
+        toValue: nextAnimState,
         duration: duration.oneBeat,
       }).start()
     }
@@ -34,11 +34,20 @@ class Snackbar extends React.Component {
     return (
       <Animated.View style={[
         styles.snackbarContainer,
-        { transform: [{ translateY: this._translateY }] }
+        { transform: [{ translateY: this._animState.interpolate({
+          inputRange: [0,1],
+          outputRange: [0,100],
+        }) }] }
       ]}>
-        <Text style={ styles.snackbarMessage }>
+        <Animated.Text style={[
+          styles.snackbarMessage,
+          { opacity: this._animState.interpolate({
+            inputRange: [0,1],
+            outputRange: [1,0],
+          }) }
+        ]}>
           { snackMessage }
-        </Text>
+        </Animated.Text>
       </Animated.View>
     )
   }

@@ -27,7 +27,6 @@ class Home extends React.Component {
       <Text style={{margin: 30}}>Button</Text>
     </View>
           </TouchableHighlight>
-        <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />
       </View>
     );
   }
