@@ -4,7 +4,7 @@ import { Text, View, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../../assets/styles/main'
-import * as color from '../../assets/styles/colors'
+import * as color from '../../assets/constants/colors'
 import FacebookLogin from './FacebookLogin'
 
 const MainLogin = React.createClass({

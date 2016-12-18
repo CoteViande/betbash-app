@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import * as color from './colors'
+import * as color from '../constants/colors'
 
 export const NavbarStyles = StyleSheet.create({
   header: {

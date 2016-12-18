@@ -13,7 +13,7 @@ import Profile from './Profile'
 import BetBashNavbar from '../components/Navbar'
 import BetBashTabIcon from '../components/TabIcon'
 import Snackbar from '../components/Snackbar'
-import * as color from '../../assets/styles/colors'
+import * as color from '../../assets/constants/colors'
 
 const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 

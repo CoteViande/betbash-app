@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import TextField from '../utils/md-textfield/TextField'
 
 import styles from '../../assets/styles/main'
-import * as color from '../../assets/styles/colors'
+import * as color from '../../assets/constants/colors'
 
 const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) => {
   let keyboardType = 'default';

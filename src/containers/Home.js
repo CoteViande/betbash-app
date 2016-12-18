@@ -1,9 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 
-let Home = React.createClass({
+import Snackbar from '../components/Snackbar'
+
+class Home extends React.Component {
+  componentWillMount() {
+    this._flag = false
+  }
+
   render() {
+    const { isConnected } = this.props
+
     return(
       <View style={ {flex: 1,
       justifyContent: 'center',
@@ -11,13 +19,24 @@ let Home = React.createClass({
         <Text>
           Home Landing
         </Text>
+        <TouchableHighlight
+        onPress={()=>{
+          console.warn('Button!')
+        }}>
+        <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
+      <Text style={{margin: 30}}>Button</Text>
+    </View>
+          </TouchableHighlight>
+        <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />
       </View>
     );
   }
-});
+}
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    isConnected: state.connexion.isConnected
+  }
 }
 
 const mapDispatchToProps = {}

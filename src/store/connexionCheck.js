@@ -8,8 +8,8 @@ export const isConnectedToTheInternet = (store) => {
       .then((reach) => {
         let connected = isConnected(reach)
         store.dispatch(connexionChange(connected, reach))
-        NetInfo.addEventListener('connectivityChange', handleConnectivityChange);
-        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest);
+        NetInfo.addEventListener('connectivityChange', handleConnectivityChange(store));
+        // NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(store));
         resolve(connected);
       })
       .catch((error) => {
@@ -18,12 +18,12 @@ export const isConnectedToTheInternet = (store) => {
   })
 }
 
-function handleConnectivityChange(reach) {
+const handleConnectivityChange = (store) => (reach) => {
   let connected = isConnected(reach)
   store.dispatch(connexionChange(connected, reach))
 }
 
-function handlerTest(isConnected) {
+const handlerTest = (store) => (isConnected) => {
   let connectedStr = isConnected ? 'online' : 'offline'
   console.warn('Device is now ' + connectedStr )
   store.dispatch(connexionChangeTest(isConnected))
