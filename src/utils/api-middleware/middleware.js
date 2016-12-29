@@ -114,6 +114,9 @@ function apiMiddleware({ getState }) {
     }
 
     // Process the server response
+    // TODO deal with specific errors methodically
+    //   token errors
+    //   server not responding, is it online?
     if (res.ok) {
       return next(await actionWith(
         successType,

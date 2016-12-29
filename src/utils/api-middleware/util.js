@@ -12,7 +12,7 @@ async function getJSON(res) {
   const contentType = res.headers.get('Content-Type');
   const emptyCodes = [204, 205];
 
-  if (!~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json')) {
+  if (!~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json')) { // TODO:10 check what ~ does!
     return await res.json();
   } else {
     return await Promise.resolve();

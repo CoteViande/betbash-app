@@ -1,6 +1,6 @@
 import { Schema, normalize } from 'normalizr'
 import * as endpoint from '../constants/apiEndpoints'
-import { RSAA } from '../utils/api-middleware/index'
+import { RSAA, getJSON } from '../utils/api-middleware/index'
 
 export function failureFacebookToken(error) {
   return {
@@ -29,12 +29,18 @@ export function authenticateWithFacebookToken(accessToken) {
         'FACEBOOK_AUTHENTICATE_REQUEST',
         {
           type: 'FACEBOOK_AUTHENTICATE_SUCCESS',
-          payload: (action, state, res) => {
-            const contentType = res.headers.get('Content-Type');
-            if (contentType && ~contentType.indexOf('json')) {
-              return res.json().then((json) => normalize(json, { userToken: userToken }));
-            }
-          }
+          // TODO test new payload function works
+          payload: (action, state, res) => getJSON(res).then(
+            (json) => normalize(json, { userToken: userToken })
+          )
+          // payload: (action, state, res) => {
+          //   const contentType = res.headers.get('Content-Type');
+          //   if (contentType && ~contentType.indexOf('json')) {
+          //     return res.json().then(
+          //       (json) => normalize(json, { userToken: userToken })
+          //     );
+          //   }
+          // }
         },
         'FACEBOOK_AUTHENTICATE_FAILURE'
       ],
@@ -100,7 +106,9 @@ export function registerWithEmail(email, password) {
           payload: (action, state, res) => {
             const contentType = res.headers.get('Content-Type');
             if (contentType && ~contentType.indexOf('json')) {
-              return res.json().then((json) => json);
+              return res.json().then(
+                (json) => json
+              );
             }
           }
         },
@@ -135,7 +143,7 @@ export function logoutFromApp(accessToken) {
   }
 }
 
-// TODO create a KeychainActions.js file
+// TODO:20 create a KeychainActions.js file
 export function saveCredentialsKeychain() {
   return {
     type: 'KEYCHAIN_CREDENTIALS_SAVE',
