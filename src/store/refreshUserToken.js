@@ -66,7 +66,7 @@ function fetchBetBashTokenFromFacebookToken(token) {
         })
         .catch((error) => {
           console.log('in fetch token function: ------ ', error)
-          // TODO can be tested without API
+          // TODO:0 can be tested without API
         })
     )
   }

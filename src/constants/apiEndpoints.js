@@ -5,6 +5,8 @@ const ROOT_URL = process.env.NODE_ENV === 'production' ?
   'http://192.168.0.247:3000'
 const BASE_URL = ROOT_URL + '/api'
 
+export const betbashMain = BASE_URL
+
 export const facebookAuthenticateUrl = (accessToken) => {
   return ROOT_URL + '/auth/facebook-token/callback?access_token=' + accessToken
 }
@@ -25,7 +27,7 @@ const addParamToUrl = (url, key, value) => {
   return parsed.toString()
 }
 
-const addParamToQuery = (query, key, value) => { // TODO replace duplicates
+const addParamToQuery = (query, key, value) => {
   const questionOrAnd = query === '' ? '?' : '&'
   return (query + questionOrAnd + key + '=' + value)
 }

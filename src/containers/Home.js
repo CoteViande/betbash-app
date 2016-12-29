@@ -23,10 +23,10 @@ class Home extends React.Component {
         onPress={()=>{
           console.warn('Button!')
         }}>
-        <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
-      <Text style={{margin: 30}}>Button</Text>
-    </View>
-          </TouchableHighlight>
+          <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
+            <Text style={{margin: 30}}>Button</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }

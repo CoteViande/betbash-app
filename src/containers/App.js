@@ -88,6 +88,7 @@ class App extends React.Component {
         <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
         <RouterWithRedux scenes={scenes} />
         <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />
+        <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } snackButton="Retry" onPress={()} />
       </View>
     )
   }

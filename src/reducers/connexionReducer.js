@@ -27,10 +27,20 @@ const isConnectedTest = (state = false, action) => {
   }
 }
 
+const isServerConnected = (state = false, action) => {
+  switch(action.type) {
+    case 'SERVER_CONNEXION_CHANGE':
+      return action.isServerConnected
+    default:
+      return state
+  }
+}
+
 const connexionReducer = combineReducers({
   isConnected,
   isConnectedTest,
   connexionType,
+  isServerConnected,
 })
 
 export default connexionReducer

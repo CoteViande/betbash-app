@@ -1,15 +1,19 @@
-import { initializationComplete } from '../actions/initializationActions'
+import { initializationComplete, connectedToInternet, connectedToServer, tokenRefreshed } from '../actions/initializationActions'
 
-import { isConnectedToTheInternet } from './connexionCheck'
+import { isConnectedToTheInternet, isConnectedToTheServer } from './connexionCheck'
 import { refreshUserToken } from './refreshUserToken'
 
 
 export const initializationScript = (store) => {
   return async function initialization() {
     try {
-      let isConnected = await isConnectedToTheInternet(store)
-      if (isConnected) {
+      let isConnectedInternet = await isConnectedToTheInternet(store)
+      if (isConnectedInternet) { store.dispatch(connectedToInternet()) } else { return }
+      let isConnectedServer = await isConnectedToTheServer(store)
+      if (isConnectedServer) { store.dispatch(connectedToServer()) } else { return }
+      if (isConnectedInternet && isConnectedServer) {
         let userToken = await refreshUserToken(store)
+        if(userToken) { store.dispatch(tokenRefreshed()) } else { return }
       }
     } catch (error) {
       console.log('in intializing function', error)
