@@ -1,5 +1,5 @@
 import { serverResponseChange } from '../../actions/connexionActions'
-import { isRSAA } from '../utils/api-middleware/index'
+import { isRSAA } from '../../utils/api-middleware/index'
 
 const apiErrorManager = (prevState, nextState, action, dispatch) => {
   if (isRSAA(action)) {
