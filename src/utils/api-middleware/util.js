@@ -89,6 +89,7 @@ async function actionWith(descriptor, args) {
     descriptor.payload = new InternalError(e.message);
     descriptor.error = true;
   }
+  descriptor.meta = { ...descriptor.meta, 'CALL_API': true }
 
   return descriptor;
 }
