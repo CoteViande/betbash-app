@@ -1,8 +1,11 @@
 import { serverResponseChange } from '../../actions/connexionActions'
 import { RSAA, isRSAA } from '../../utils/api-middleware/index'
 
-const apiErrorManager = (prevState, nextState, action, dispatch) => {
+const apiErrorMiddleware = store => next => action => {
   if (action.error && action.payload) {
+    let dispatch = store.dispatch
+    let state = store.getState()
+
     let error = action.payload
     console.log('action.error', error, error.name)
 
@@ -15,11 +18,13 @@ const apiErrorManager = (prevState, nextState, action, dispatch) => {
     if (error.name === 'FetchError') {
       dispatch(serverResponseChange(false))
     } else {
-      if (!prevState.connexion.isServerConnected) {
+      if (!state.connexion.isServerConnected) {
         dispatch(serverResponseChange(true))
       }
     }
   }
+
+  return next(action)
 }
 
-export default apiErrorManager
+export default apiErrorMiddleware
