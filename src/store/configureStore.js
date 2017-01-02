@@ -7,14 +7,14 @@ import { AsyncStorage } from 'react-native'
 import { apiMiddleware } from '../utils/api-middleware/index'
 import onStateChanged from '../utils/onStateChangedMiddleware'
 import keychainMiddleware from '../reducers/managers/keychainMiddleware'
-import logoutManager from '../reducers/managers/logoutManager'
+import logoutMiddleware from '../reducers/managers/logoutMiddleware'
 import apiErrorMiddleware from '../reducers/managers/apiErrorMiddleware'
 import reducer from '../reducers/rootReducer'
 import { initializationScript } from './initializationScript'
 
 
 const configureStore = (initialState) => {
-  const middlewares = [thunk, apiMiddleware, apiErrorMiddleware, keychainMiddleware, onStateChanged(logoutManager)]
+  const middlewares = [thunk, apiMiddleware, apiErrorMiddleware, keychainMiddleware, logoutMiddleware]
 
   const store = createStore(
     reducer,
