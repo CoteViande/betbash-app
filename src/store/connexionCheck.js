@@ -2,7 +2,7 @@ import { NetInfo } from 'react-native'
 
 import timeout from '../utils/timeout'
 import * as endpoint from '../constants/apiEndpoints'
-import { connexionChange, connexionChangeTest, serverResponseChange } from '../actions/connexionActions'
+import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from '../actions/connexionActions'
 
 export const isConnectedToTheInternet = (store) => {
   return new Promise((resolve, reject) => {
@@ -22,18 +22,12 @@ export const isConnectedToTheInternet = (store) => {
 
 export const isConnectedToTheServer = (store) => {
   return new Promise((resolve, reject) => {
-    fetch(endpoint.betbashMain)
-      .then((response) => {
-        response.json().then((result) => {
-          store.dispatch(serverResponseChange(true))
-          resolve(true)
-        })
+    store.dispatch(pingServer())
+      .then((res) => {
+        resolve(!res.error)
       })
-      .catch((error) => {
-        if (error.name === "TypeError" && error.message === "Network request failed") { // FIXME better test
-          store.dispatch(serverResponseChange(false))
-        }
-        reject(error)
+      .catch((err) => {
+        reject(err)
       })
   })
 }

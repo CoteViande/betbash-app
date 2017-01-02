@@ -8,12 +8,13 @@ import { apiMiddleware } from '../utils/api-middleware/index'
 import onStateChanged from '../utils/onStateChangedMiddleware'
 import keychainManager from '../reducers/managers/keychainManager'
 import logoutManager from '../reducers/managers/logoutManager'
+import apiErrorManager from '../reducers/managers/apiErrorManager'
 import reducer from '../reducers/rootReducer'
 import { initializationScript } from './initializationScript'
 
 
 const configureStore = (initialState) => {
-  const middlewares = [thunk, apiMiddleware, onStateChanged(keychainManager), onStateChanged(logoutManager)]
+  const middlewares = [thunk, apiMiddleware, onStateChanged(apiErrorManager), onStateChanged(keychainManager), onStateChanged(logoutManager)]
 
   const store = createStore(
     reducer,

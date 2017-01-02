@@ -5,7 +5,9 @@ const timeoutPromise = (ms, promise, message) => {
   }
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
-      reject(new Error(message || "Request timed out"))
+      let e = new Error(message || "Request timed out")
+      e.name = 'TimeoutError'
+      reject(e)
     }, ms);
     promise.then(
       (res) => {

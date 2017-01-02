@@ -16,6 +16,7 @@ export const refreshUserToken = (store) => {
         AccessToken.refreshCurrentAccessTokenAsync()
           .then((FBTokenObject) => {
             let FBToken = FBTokenObject.accessToken
+            // TODO dispatch RSAA
             dispatch(fetchBetBashTokenFromFacebookToken(FBToken))
               .then(() => {
                 resolve(true)
@@ -35,6 +36,7 @@ export const refreshUserToken = (store) => {
           .then((credentials) => {
             let email = credentials.username
             let password = credentials.password
+            // dispatch RSAA
             dispatch(fetchBetBashTokenFromCredentials(email, password))
               .then(() => {
                 resolve(true)
@@ -66,7 +68,7 @@ function fetchBetBashTokenFromFacebookToken(token) {
         })
         .catch((error) => {
           console.log('in fetch token function: ------ ', error)
-          // TODO:0 can be tested without API
+          // TODO can be tested without API
         })
     )
   }

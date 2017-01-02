@@ -1,3 +1,24 @@
+import * as endpoint from '../constants/apiEndpoints'
+import { RSAA, getJSON } from '../utils/api-middleware/index'
+
+export function pingServer() {
+  return {
+    [RSAA]: {
+      types: [
+        'SERVER_PING_REQUEST',
+        'SERVER_PING_SUCCESS',
+        'SERVER_PING_FAILURE'
+      ],
+      endpoint: endpoint.betbashMain,
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}
+
 export function connexionChange(isConnected, connexionType) {
   return {
     type: 'CONNEXION_CHANGE',

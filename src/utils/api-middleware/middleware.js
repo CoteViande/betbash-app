@@ -2,7 +2,7 @@ import isPlainObject from 'lodash.isplainobject'
 
 import RSAA from './RSAA'
 import { isRSAA, validateRSAA } from './validation'
-import { InvalidRSAA, RequestError, ApiError } from './errors'
+import { InvalidRSAA, RequestError, FetchError, ApiError } from './errors'
 import { getJSON, normalizeTypeDescriptors, actionWith } from './util'
 import timeout from '../timeout'
 
@@ -92,21 +92,20 @@ function apiMiddleware({ getState }) {
       }
     }
 
-    // We can now dispatch the request FSA
+    // Dispatch the request FSA
     next(await actionWith(
       requestType,
       [action, getState()]
     ));
 
     try {
-      // Make the API call
+      // API call
       var res = await timeout(fetch(endpoint, { method, body, credentials, headers }));
     } catch(e) {
-      // The request was malformed, or there was a network error
       return next(await actionWith(
         {
-          ...failureType, // it is requestType in original code, don't know why.
-          payload: new RequestError(e.message),
+          ...failureType, // was requestType in original code
+          payload: new FetchError(e.message, (e.name === 'TimeoutError')), // TODO create actual TimeoutError
           error: true
         },
         [action, getState()]

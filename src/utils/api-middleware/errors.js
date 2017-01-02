@@ -45,6 +45,18 @@ class RequestError extends Error {
 }
 
 /**
+ * Error class for fetch error
+ */
+class FetchError extends Error {
+  constructor(message, timedOut) {
+    super()
+    this.name = 'FetchError'
+    this.timedOut = timedOut
+    this.message = message
+  }
+}
+
+/**
  * Error class for an API response outside the 200 range
  *
  * @class ApiError
@@ -65,4 +77,4 @@ class ApiError extends Error {
   }
 }
 
-export { InvalidRSAA, InternalError, RequestError, ApiError };
+export { InvalidRSAA, InternalError, RequestError, FetchError, ApiError };
