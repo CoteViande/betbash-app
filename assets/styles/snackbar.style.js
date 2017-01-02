@@ -3,6 +3,7 @@ import * as color from '../constants/colors'
 const SnackbarStyles = {
   snackbarContainer: {
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: color.grey850,
     padding: 24,
     position: 'absolute',
@@ -10,8 +11,18 @@ const SnackbarStyles = {
     left: 0,
     right: 0,
   },
+  snackbarMessageContainer: {
+    flex: 1,
+  },
   snackbarMessage: {
     color: color.white,
+  },
+  snackbarButtonContainer: {
+    marginLeft: 24,
+  },
+  snackbarButton: {
+    color: color.blue500,
+    fontWeight: 'bold',
   },
 }
 

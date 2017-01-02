@@ -15,6 +15,8 @@ import BetBashTabIcon from '../components/TabIcon'
 import Snackbar from '../components/Snackbar'
 import * as color from '../../assets/constants/colors'
 
+import { pingServer } from '../actions/connexionActions'
+
 const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 
 const RouterWithRedux = connect()(Router);
@@ -71,7 +73,12 @@ const scenes = Actions.create(
 
 class App extends React.Component {
   render() {
-    const { initializing, isConnected } = this.props
+    const {
+      initializing,
+      isConnected,
+      isServerConnected,
+      pingServer,
+    } = this.props
 
     if (initializing) {
       return (
@@ -88,7 +95,9 @@ class App extends React.Component {
         <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
         <RouterWithRedux scenes={scenes} />
         <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />
-        <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } snackButton="Retry" onPress={()=>true} />
+        <Snackbar isSnack={ isConnected && !isServerConnected } snackMessage={ "Server seems to be down" }
+          snackButtonText="Retry" onSnackButtonPress={() => pingServer()}
+        />
       </View>
     )
   }
@@ -98,9 +107,12 @@ const mapStateToProps = (state, { params }) => {
   return {
     initializing: state.init.initializing,
     isConnected: state.connexion.isConnected,
+    isServerConnected: state.connexion.isServerConnected,
   };
 };
 
-export default connect(
-  mapStateToProps
-)(App);
+const mapDispatchToProps = {
+  pingServer,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

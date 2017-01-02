@@ -12,6 +12,12 @@ export const green900 = '#1B5E20'
 export const green100 = '#C8E6C9'
 export const green50 = '#E8F5E9'
 
+export const blue500 = '#2196F3'
+export const blue700 = '#1976D2'
+export const blue800 = '#1565C0'
+export const blue900 = '#0D47A1'
+export const blue100 = '#BBDEFB'
+
 export const grey50 = '#FAFAFA'
 export const grey100 = '#F5F5F5'
 export const grey200 = '#EEEEEE'
