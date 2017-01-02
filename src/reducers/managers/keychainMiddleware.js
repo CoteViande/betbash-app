@@ -7,7 +7,10 @@ import {
   removeCredentialsKeychain, removeCredentialsKeychainFailure,
 } from '../../actions/authActions'
 
-const keychainManager = (prevState, nextState, action, dispatch) => {
+const keychainMiddleware = store => next => action => {
+  let dispatch = store.dispatch
+  let state = store.getState()
+
   if (action.type === 'EMAIL_LOGIN_SUCCESS') {
     // Actions.BetBash({type: 'reset'}) // FIXME should not be here + Switch should do it
     Keychain
@@ -29,6 +32,8 @@ const keychainManager = (prevState, nextState, action, dispatch) => {
         dispatch(removeCredentialsKeychainFailure(error.message));
       });
   }
+
+  return next(action)
 }
 
-export default keychainManager
+export default keychainMiddleware
