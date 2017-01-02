@@ -6,9 +6,9 @@ import { AsyncStorage } from 'react-native'
 
 import { apiMiddleware } from '../utils/api-middleware/index'
 import onStateChanged from '../utils/onStateChangedMiddleware'
-import keychainMiddleware from '../reducers/managers/keychainMiddleware'
-import logoutMiddleware from '../reducers/managers/logoutMiddleware'
-import apiErrorMiddleware from '../reducers/managers/apiErrorMiddleware'
+import keychainMiddleware from '../reducers/middlewares/keychainMiddleware'
+import logoutMiddleware from '../reducers/middlewares/logoutMiddleware'
+import apiErrorMiddleware from '../reducers/middlewares/apiErrorMiddleware'
 import reducer from '../reducers/rootReducer'
 import { initializationScript } from './initializationScript'
 
