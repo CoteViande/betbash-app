@@ -19,8 +19,6 @@ export const initializationScript = (store) => {
       }
     } catch (error) {
       console.log('in intializing function', error)
-      // store.dispatch(errorCheckingForConnexion(error.message))
-      // store.dispatch(forcedLogoutOnError(error.message))
     }
     store.dispatch(initializationComplete())
   }
