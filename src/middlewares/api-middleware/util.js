@@ -89,7 +89,10 @@ async function actionWith(descriptor, args) {
     descriptor.payload = new InternalError(e.message);
     descriptor.error = true;
   }
-  descriptor.meta = { ...descriptor.meta, 'CALL_API': true }
+  descriptor.meta = {
+    ...descriptor.meta,
+    'CALL_API': true,
+  } // FIXME make note of an FSA without preventing internal errors
 
   return descriptor;
 }

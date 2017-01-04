@@ -144,9 +144,25 @@ function validateRSAA(action) {
     if (typeof failureType !== 'string' && typeof failureType !== 'symbol' && !isValidTypeDescriptor(failureType)) {
       validationErrors.push('Invalid failure type');
     }
+    // PERSO
+    // TODO deal with symbols
+    const requestName = typeToName(requestType)
+    if (!requestName.endsWith('REQUEST')) { validationErrors.push('Request type name must end with REQUEST'); }
+    const successName = typeToName(successType)
+    if (!successName.endsWith('SUCCESS')) { validationErrors.push('Success type name must end with SUCCESS'); }
+    const failureName = typeToName(failureType)
+    if (!requestName.endsWith('FAILURE')) { validationErrors.push('Failure type name must end with FAILURE'); }
   }
 
   return validationErrors;
+}
+
+function typeToName(type) {
+  if (type.hasOwnProperty('type')) {
+    return type.type
+  } else {
+    return type
+  }
 }
 
 /**
@@ -161,4 +177,20 @@ function isValidRSAA(action) {
   return !validateRSAA(action).length;
 }
 
-export { isRSAA, isValidTypeDescriptor, validateRSAA, isValidRSAA };
+function isFSA(action) {
+  return (action.meta && action.meta.hasOwnProperty("CALL_API"))
+}
+
+function isRequestFSA(action) {
+  return (isFSA(action) && action.type.endsWith('REQUEST'))
+}
+
+function isSuccessFSA(action) {
+  return (isFSA(action) && action.type.endsWith('SUCCESS'))
+}
+
+function isFailureFSA(action) {
+  return (isFSA(action) && action.type.endsWith('FAILURE') && action.error && action.payload)
+}
+
+export { isRSAA, isValidTypeDescriptor, validateRSAA, isValidRSAA, isFSA, isRequestFSA, isSuccessFSA, isFailureFSA };

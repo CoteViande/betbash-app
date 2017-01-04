@@ -1,18 +1,20 @@
 import { serverResponseChange } from '../../actions/connexionActions'
+import { isFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from './api-middleware/index'
 
 const apiErrorMiddleware = store => next => action => {
-  if (!action.meta || !action.meta.hasOwnProperty('CALL_API')) {
+  if (!isFSA(action)) {
     return next(action)
   }
 
   let dispatch = store.dispatch
   let state = store.getState()
 
-  if (action.error && action.payload) {
+  if (isFailureFSA(action)) {
     let error = action.payload
     console.log('action.error', error, error.name)
 
     if (error.name === 'ApiError') { // FIXME find better test
+      dispatch(serverResponseChange(true))
       let apiError = error.response
       console.log('Middleware object: ', error)
       console.log('API Error: ', apiError, 'code: ', apiError.code)
@@ -24,11 +26,8 @@ const apiErrorMiddleware = store => next => action => {
   }
 
   if (!state.connexion.isConnectedServer
-    && (
-      action.type.endsWith('SUCCESS')
-      || (action.type.endsWith('FAILURE') && action.payload.name !== 'FetchError')
-    )
-  ) { // FIXME find better test, not using action.error because of action REQUEST
+    && isSuccessFSA(action)
+  ) {
     dispatch(serverResponseChange(true))
   }
 
