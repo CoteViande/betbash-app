@@ -4,7 +4,7 @@ import RSAA from './RSAA'
 import { isRSAA, validateRSAA } from './validation'
 import { InvalidRSAA, RequestError, FetchError, ApiError } from './errors'
 import { getJSON, normalizeTypeDescriptors, actionWith } from './util'
-import timeout from '../timeout'
+import timeout from '../../utils/timeout'
 
 /**
  * A Redux middleware that processes RSAA actions.
@@ -24,15 +24,17 @@ function apiMiddleware({ getState }) {
     if (validationErrors.length) {
       const callAPI = action[RSAA];
       if (callAPI.types && Array.isArray(callAPI.types)) {
-        let requestType = callAPI.types[0];
+        let requestType = callAPI.types[2];
         if (requestType && requestType.type) {
           requestType = requestType.type;
         }
-        next({
+        console.log(validationErrors)
+        next(await actionWith({
           type: requestType,
           payload: new InvalidRSAA(validationErrors),
           error: true
-        });
+        },
+        [action, getState()]));
       }
       return;
     }

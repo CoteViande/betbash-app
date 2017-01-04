@@ -151,18 +151,16 @@ function validateRSAA(action) {
     const successName = typeToName(successType)
     if (!successName.endsWith('SUCCESS')) { validationErrors.push('Success type name must end with SUCCESS'); }
     const failureName = typeToName(failureType)
-    if (!requestName.endsWith('FAILURE')) { validationErrors.push('Failure type name must end with FAILURE'); }
+    if (!failureName.endsWith('FAILURE')) { validationErrors.push('Failure type name must end with FAILURE'); }
   }
 
   return validationErrors;
 }
 
 function typeToName(type) {
-  if (type.hasOwnProperty('type')) {
-    return type.type
-  } else {
-    return type
-  }
+  return type.hasOwnProperty('type')
+    ? type.type
+    : type
 }
 
 /**

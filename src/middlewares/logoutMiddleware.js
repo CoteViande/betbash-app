@@ -3,7 +3,7 @@ const {
   LoginManager,
 } = FBSDK;
 
-import { logoutFromFacebook } from '../../actions/authActions'
+import { logoutFromFacebook } from '../actions/authActions'
 
 // import { Actions } from 'react-native-router-flux'
 

@@ -1,4 +1,4 @@
-import { serverResponseChange } from '../../actions/connexionActions'
+import { serverResponseChange } from '../actions/connexionActions'
 import { isFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from './api-middleware/index'
 
 const apiErrorMiddleware = store => next => action => {
@@ -12,6 +12,7 @@ const apiErrorMiddleware = store => next => action => {
   if (isFailureFSA(action)) {
     let error = action.payload
     console.log('action.error', error, error.name)
+    if (error.name === 'InvalidRSAA') { console.log(error.name, ': ', error.validationErrors) }
 
     if (error.name === 'ApiError') { // FIXME find better test
       dispatch(serverResponseChange(true))

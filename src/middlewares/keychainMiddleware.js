@@ -5,7 +5,7 @@ import {
   saveCredentialsKeychain, saveCredentialsKeychainFailure,
   getCredentialsKeychain, getCredentialsKeychainFailure,
   removeCredentialsKeychain, removeCredentialsKeychainFailure,
-} from '../../actions/authActions'
+} from '../actions/authActions'
 
 const keychainMiddleware = store => next => action => {
   let dispatch = store.dispatch

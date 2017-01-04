@@ -53,19 +53,19 @@ export function loginWithEmail(email, password, tokenRefresh) {
         {
           type: 'EMAIL_LOGIN_SUCCESS',
           payload: (action, state, res) => getJSON(res).then(
-            (json) => {
-              ...normalize(json, { userToken: userToken }),
-              email: email,
-              password: password,
-            }
             // (json) => {
-            //   const response = {
-            //     ...normalize(json, { userToken: userToken }),
-            //     email: email,
-            //     password: password,
-            //   }
-            //   return response
+            //   ...normalize(json, { userToken: userToken }),
+            //   email: email,
+            //   password: password,
             // }
+            (json) => {
+              const response = {
+                ...normalize(json, { userToken: userToken }),
+                email: email,
+                password: password,
+              }
+              return response
+            }
           ),
           meta: { tokenRefresh }
         },
@@ -90,8 +90,8 @@ export function registerWithEmail(email, password) {
         {
           type: 'EMAIL_REGISTER_SUCCESS',
           payload: (action, state, res) => getJSON(res).then(
-            (json) => json
-          );
+            json => json
+          )
         },
         'EMAIL_REGISTER_FAILURE'
       ],
