@@ -5,7 +5,7 @@ import { RSAA, getJSON } from '../middlewares/api-middleware/index'
 export function failureFacebookToken(error) {
   return {
     type: 'FACEBOOK_TOKEN_FAILURE',
-    message: error.message || 'Something went wrong.',
+    message: error.message || 'Something went wrong with Facebook token request.',
   };
 }
 
@@ -29,18 +29,9 @@ export function authenticateWithFacebookToken(accessToken) {
         'FACEBOOK_AUTHENTICATE_REQUEST',
         {
           type: 'FACEBOOK_AUTHENTICATE_SUCCESS',
-          // TODO test new payload function works
           payload: (action, state, res) => getJSON(res).then(
             (json) => normalize(json, { userToken: userToken })
           )
-          // payload: (action, state, res) => {
-          //   const contentType = res.headers.get('Content-Type');
-          //   if (contentType && ~contentType.indexOf('json')) {
-          //     return res.json().then(
-          //       (json) => normalize(json, { userToken: userToken })
-          //     );
-          //   }
-          // }
         },
         'FACEBOOK_AUTHENTICATE_FAILURE'
       ],
@@ -54,34 +45,29 @@ export function authenticateWithFacebookToken(accessToken) {
   }
 }
 
-export function refreshBetBashToken(token) {
-  return {
-    type: 'REFRESH_BETBASH_TOKEN',
-    token: token,
-  }
-}
-
-export function loginWithEmail(email, password) {
+export function loginWithEmail(email, password, tokenRefresh) {
   return {
     [RSAA]: {
       types: [
         'EMAIL_LOGIN_REQUEST',
         {
           type: 'EMAIL_LOGIN_SUCCESS',
-          payload: (action, state, res) => {
-            const contentType = res.headers.get('Content-Type');
-            if (contentType && ~contentType.indexOf('json')) {
-              return res.json().then(
-                (json) => {
-                  return {
-                    ...normalize(json, { userToken: userToken }),
-                    email: email,
-                    password: password
-                  }
-                }
-              );
+          payload: (action, state, res) => getJSON(res).then(
+            (json) => {
+              ...normalize(json, { userToken: userToken }),
+              email: email,
+              password: password,
             }
-          }
+            // (json) => {
+            //   const response = {
+            //     ...normalize(json, { userToken: userToken }),
+            //     email: email,
+            //     password: password,
+            //   }
+            //   return response
+            // }
+          ),
+          meta: { tokenRefresh }
         },
         'EMAIL_LOGIN_FAILURE'
       ],
@@ -103,14 +89,9 @@ export function registerWithEmail(email, password) {
         'EMAIL_REGISTER_REQUEST',
         {
           type: 'EMAIL_REGISTER_SUCCESS',
-          payload: (action, state, res) => {
-            const contentType = res.headers.get('Content-Type');
-            if (contentType && ~contentType.indexOf('json')) {
-              return res.json().then(
-                (json) => json
-              );
-            }
-          }
+          payload: (action, state, res) => getJSON(res).then(
+            (json) => json
+          );
         },
         'EMAIL_REGISTER_FAILURE'
       ],
@@ -143,7 +124,7 @@ export function logoutFromApp(accessToken) {
   }
 }
 
-// TODO:20 create a KeychainActions.js file
+// TODO create a KeychainActions.js file
 export function saveCredentialsKeychain() {
   return {
     type: 'KEYCHAIN_CREDENTIALS_SAVE',

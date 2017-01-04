@@ -190,7 +190,7 @@ function isSuccessFSA(action) {
 }
 
 function isFailureFSA(action) {
-  return (isFSA(action) && action.type.endsWith('FAILURE') && action.error && action.payload)
+  return (isFSA(action) && action.type.endsWith('FAILURE') && action.error)
 }
 
 export { isRSAA, isValidTypeDescriptor, validateRSAA, isValidRSAA, isFSA, isRequestFSA, isSuccessFSA, isFailureFSA };

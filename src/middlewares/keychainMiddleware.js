@@ -11,7 +11,7 @@ const keychainMiddleware = store => next => action => {
   let dispatch = store.dispatch
   let state = store.getState()
 
-  if (action.type === 'EMAIL_LOGIN_SUCCESS') {
+  if (action.type === 'EMAIL_LOGIN_SUCCESS' && !action.meta.tokenRefresh) {
     // Actions.BetBash({type: 'reset'}) // FIXME should not be here + Switch should do it
     Keychain
       .setGenericPassword(action.payload.email, action.payload.password)

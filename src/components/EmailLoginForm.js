@@ -67,10 +67,7 @@ EmailLoginForm = reduxForm({
   touchOnChange: false,
   onSubmit: (fields, dispatch) => {
     dismissKeyboard()
-    dispatch(loginWithEmail(
-      fields.email,
-      fields.password
-    ))
+    dispatch(loginWithEmail(fields.email, fields.password, false))
   }
 })(EmailLoginForm);
 

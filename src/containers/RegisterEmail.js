@@ -15,7 +15,7 @@ const RegisterEmail = React.createClass({
     const { loginWithEmail, email, password } = this.props
     if (nextProps.registered &&
       nextProps.registered !== this.props.registered) {
-      loginWithEmail(email, password);
+      loginWithEmail(email, password, false);
     }
   },
 
