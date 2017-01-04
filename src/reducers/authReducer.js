@@ -27,12 +27,6 @@ const user = (state = initLogger, action) => {
         accessToken: null,
         userId: null,
       }
-    case 'REFRESH_BETBASH_TOKEN':
-      return {
-        ...state,
-        isLoggedIn: true,
-        accessToken: action.token,
-      }
     default:
       return state
   }
