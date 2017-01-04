@@ -1,11 +1,9 @@
 import parse from 'url-parse'
 
-const ROOT_URL = process.env.NODE_ENV === 'production' ?
-  'http://betbash.com' :
-  'http://192.168.0.247:3000'
+const ROOT_URL = 'https://cascade-requin.herokuapp.com'
 const BASE_URL = ROOT_URL + '/api'
 
-export const betbashMain = BASE_URL
+export const betbashMain = ROOT_URL
 
 export const facebookAuthenticateUrl = (accessToken) => {
   return ROOT_URL + '/auth/facebook-token/callback?access_token=' + accessToken
@@ -31,3 +29,7 @@ const addParamToQuery = (query, key, value) => {
   const questionOrAnd = query === '' ? '?' : '&'
   return (query + questionOrAnd + key + '=' + value)
 }
+
+// const ROOT_URL = process.env.NODE_ENV === 'production'
+// ? 'https://cascade-requin.herokuapp.com'
+// : 'http://192.168.0.247:3000'

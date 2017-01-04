@@ -1,4 +1,9 @@
-import { initializationComplete, connectedToInternet, connectedToServer, tokenRefreshed } from '../actions/initializationActions'
+import {
+  initializationComplete,
+  connectedToInternet,
+  connectedToServer,
+  tokenRefreshed,
+} from '../actions/initializationActions'
 
 import { isConnectedToTheInternet, isConnectedToTheServer } from './connexionCheck'
 import { refreshUserToken } from './refreshUserToken'
