@@ -1,6 +1,6 @@
 import { Schema, normalize } from 'normalizr'
 import * as endpoint from '../constants/apiEndpoints'
-import { RSAA, getJSON } from '../utils/api-middleware/index'
+import { RSAA, getJSON } from '../middlewares/api-middleware/index'
 
 export function failureFacebookToken(error) {
   return {

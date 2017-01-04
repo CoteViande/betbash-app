@@ -4,7 +4,7 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { AsyncStorage } from 'react-native'
 
-import { apiMiddleware } from '../utils/api-middleware/index'
+import { apiMiddleware } from '../middlewares/api-middleware/index'
 import apiErrorMiddleware from '../middlewares/apiErrorMiddleware'
 import keychainMiddleware from '../middlewares/keychainMiddleware'
 import logoutMiddleware from '../middlewares/logoutMiddleware'
