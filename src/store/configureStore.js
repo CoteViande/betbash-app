@@ -5,9 +5,9 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import { AsyncStorage } from 'react-native'
 
 import { apiMiddleware } from '../utils/api-middleware/index'
-import apiErrorMiddleware from '../reducers/middlewares/apiErrorMiddleware'
-import keychainMiddleware from '../reducers/middlewares/keychainMiddleware'
-import logoutMiddleware from '../reducers/middlewares/logoutMiddleware'
+import apiErrorMiddleware from '../middlewares/apiErrorMiddleware'
+import keychainMiddleware from '../middlewares/keychainMiddleware'
+import logoutMiddleware from '../middlewares/logoutMiddleware'
 import reducer from '../reducers/rootReducer'
 import { initializationScript } from './initializationScript'
 
