@@ -21,7 +21,6 @@ const user = (state = initLogger, action) => {
       }
     case 'EMAIL_LOGIN_SUCCESS':
       let emailLoginRes = action.payload
-      console.log('Payload from EMAIL_LOGIN_SUCCESS: ', emailLoginRes)
       return {
         isLoggedIn: true,
         accessToken: {

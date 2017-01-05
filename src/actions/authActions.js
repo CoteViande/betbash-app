@@ -46,6 +46,15 @@ export function loginWithEmail(email, password, tokenRefresh) {
         'EMAIL_LOGIN_REQUEST',
         {
           type: 'EMAIL_LOGIN_SUCCESS',
+          payload: (action, state, res) => getJSON(res).then(
+            json => {
+              return {
+                ...json,
+                email,
+                password,
+              }
+            }
+          ),
           meta: { tokenRefresh }
         },
         'EMAIL_LOGIN_FAILURE'
