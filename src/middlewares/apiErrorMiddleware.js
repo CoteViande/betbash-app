@@ -15,20 +15,20 @@ const apiErrorMiddleware = store => next => action => {
     if (error.name === 'InvalidRSAA') { console.log(error.name, ': ', error.validationErrors) }
 
     if (error.name === 'ApiError') { // FIXME find better test
-      dispatch(serverResponseChange(true))
+      if (!state.connexion.isConnectedServer) { dispatch(serverResponseChange(true)) }
       console.log('Middleware object: ', error)
       const apiError = error.response.error
       switch(apiError.code) {
         case 'LOGIN_FAILED':
         break
         default:
+          if (apiError.message === 'could not find accessToken') {} // TODO backend: better error with code
           console.log('API Error: ', apiError, 'code: ', apiError.code)
         break
       }
-      // TODO backend error 500 "could not find accessToken"
     }
 
-    if (error.name === 'FetchError') { // FIXME find better test
+    if (error.name === 'FetchError') {
       dispatch(serverResponseChange(false))
     }
   }
@@ -37,7 +37,7 @@ const apiErrorMiddleware = store => next => action => {
     && isSuccessFSA(action)
   ) {
     dispatch(serverResponseChange(true))
-    // refresh token when ttl is low?
+    // TODO refresh token when ttl is low
   }
 
   return next(action)
