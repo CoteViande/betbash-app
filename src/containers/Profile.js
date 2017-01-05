@@ -26,7 +26,7 @@ let Profile = React.createClass({
             transitionDuration={200}
             states={btnStates(
               () => {
-                logoutFromApp(accessToken)
+                logoutFromApp(accessToken.id)
               },
               'Log me out!',
               'Logging out...',

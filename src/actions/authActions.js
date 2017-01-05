@@ -21,18 +21,12 @@ export function logoutFromFacebook() {
   };
 }
 
-const userToken = new Schema('userToken');
 export function authenticateWithFacebookToken(accessToken) {
   return {
     [RSAA]: {
       types: [
         'FACEBOOK_AUTHENTICATE_REQUEST',
-        {
-          type: 'FACEBOOK_AUTHENTICATE_SUCCESS',
-          payload: (action, state, res) => getJSON(res).then(
-            (json) => normalize(json, { userToken: userToken })
-          )
-        },
+        'FACEBOOK_AUTHENTICATE_SUCCESS',
         'FACEBOOK_AUTHENTICATE_FAILURE'
       ],
       endpoint: endpoint.facebookAuthenticateUrl(accessToken),
@@ -52,21 +46,6 @@ export function loginWithEmail(email, password, tokenRefresh) {
         'EMAIL_LOGIN_REQUEST',
         {
           type: 'EMAIL_LOGIN_SUCCESS',
-          payload: (action, state, res) => getJSON(res).then(
-            // (json) => {
-            //   ...normalize(json, { userToken: userToken }),
-            //   email: email,
-            //   password: password,
-            // }
-            (json) => {
-              const response = {
-                ...normalize(json, { userToken: userToken }),
-                email: email,
-                password: password,
-              }
-              return response
-            }
-          ),
           meta: { tokenRefresh }
         },
         'EMAIL_LOGIN_FAILURE'
@@ -87,12 +66,7 @@ export function registerWithEmail(email, password) {
     [RSAA]: {
       types: [
         'EMAIL_REGISTER_REQUEST',
-        {
-          type: 'EMAIL_REGISTER_SUCCESS',
-          payload: (action, state, res) => getJSON(res).then(
-            json => json
-          )
-        },
+        'EMAIL_REGISTER_SUCCESS',
         'EMAIL_REGISTER_FAILURE'
       ],
       endpoint: endpoint.userUrl,

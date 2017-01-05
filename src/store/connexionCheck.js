@@ -24,7 +24,6 @@ export const isConnectedToTheServer = (store) => {
   return new Promise((resolve, reject) => {
     store.dispatch(pingServer())
       .then((res) => {
-        console.log(res)
         resolve(!res.error)
       })
       .catch((err) => {

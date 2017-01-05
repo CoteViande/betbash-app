@@ -16,9 +16,16 @@ const apiErrorMiddleware = store => next => action => {
 
     if (error.name === 'ApiError') { // FIXME find better test
       dispatch(serverResponseChange(true))
-      let apiError = error.response
       console.log('Middleware object: ', error)
-      console.log('API Error: ', apiError, 'code: ', apiError.code)
+      const apiError = error.response.error
+      switch(apiError.code) {
+        case 'LOGIN_FAILED':
+        break
+        default:
+          console.log('API Error: ', apiError, 'code: ', apiError.code)
+        break
+      }
+      // TODO backend error 500 "could not find accessToken"
     }
 
     if (error.name === 'FetchError') { // FIXME find better test
@@ -30,6 +37,7 @@ const apiErrorMiddleware = store => next => action => {
     && isSuccessFSA(action)
   ) {
     dispatch(serverResponseChange(true))
+    // refresh token when ttl is low?
   }
 
   return next(action)
