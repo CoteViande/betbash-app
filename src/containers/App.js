@@ -22,52 +22,50 @@ const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 6
 const RouterWithRedux = connect()(Router);
 
 const scenes = Actions.create(
-  <Scene key="root" hideNavBar={true}>
+  <Scene
+    key="LoginAccessControl" hideNavBar={true} tabs={true}
+    component={
+      connect(
+        state => ({ isLoggedIn: state.auth.user.isLoggedIn })
+      )(Switch)
+    }
+    selector={
+      props => props.isLoggedIn ? "BetBash" : "BetBashAuth"
+    }
+    unmountScenes={true}
+  >
+
     <Scene
-      key="LoginAccessControl" hideNavBar={true} tabs={true}
-      component={
-        connect(
-          state => ({ isLoggedIn: state.auth.user.isLoggedIn })
-        )(Switch)
-      }
-      selector={
-        props => props.isLoggedIn ? "BetBash" : "BetBashAuth"
-      }
-      unmountScenes={true}
+      key="BetBashAuth" default="AuthMain" hideNavBar={true}
     >
-
       <Scene
-        key="BetBashAuth" default="AuthMain" hideNavBar={true}
-      >
-        <Scene
-          key="AuthMain" component={AuthMain} title="Login" hideNavBar={true} direction="vertical"
-        />
-        <Scene
-          key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
-          onRight={() => Actions.LoginEmail()} rightTitle="Login"
-          backTitle="Back"
-        />
-        <Scene
-          key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false} navBar={BetBashNavbar}
-          backTitle="Register"
-        />
-      </Scene>
-
+        key="AuthMain" component={AuthMain} title="Login" hideNavBar={true} direction="vertical"
+      />
       <Scene
-        key="BetBash" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
-      >
-        <Scene
-          key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
-        />
-        <Scene
-          key="Games" component={Games} title="Games" icon={BetBashTabIcon} hideNavBar={true}
-        />
-        <Scene
-          key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
-        />
-      </Scene>
-
+        key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
+        onRight={() => Actions.LoginEmail()} rightTitle="Login"
+        backTitle="Back"
+      />
+      <Scene
+        key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false} navBar={BetBashNavbar}
+        backTitle="Register"
+      />
     </Scene>
+
+    <Scene
+      key="BetBash" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
+    >
+      <Scene
+        key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
+      />
+      <Scene
+        key="Games" component={Games} title="Games" icon={BetBashTabIcon} hideNavBar={true}
+      />
+      <Scene
+        key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
+      />
+    </Scene>
+
   </Scene>
 );
 

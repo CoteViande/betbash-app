@@ -25,7 +25,6 @@ const RegisterEmail = React.createClass({
 
   render() {
     const { registerError, registered, loginSuccess, isLoading } = this.props
-    const goToEmailLogin = () => Actions.LoginEmail()
 
     return(
       <View style={styles.navBarContainer}>
