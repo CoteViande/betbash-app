@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import dismissKeyboard from 'dismissKeyboard'
 
 import styles from '../../assets/styles/main'
-import TextFieldWithError from './general/TextFieldWithError'
+import TextFieldWithError from './general/md-textfield/TextFieldWithError'
 import * as validator from '../utils/inputValidator'
 import btnStates from '../utils/buttonStates'
 

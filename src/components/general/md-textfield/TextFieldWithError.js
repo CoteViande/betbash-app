@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import TextField from '../utils/md-textfield/TextField'
+import TextField from './TextField'
 
 import styles from '../../assets/styles/main'
 import * as color from '../../assets/constants/colors'
