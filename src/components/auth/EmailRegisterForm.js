@@ -1,11 +1,11 @@
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
-import AwesomeButton from './AwesomeButton/AwesomeButton'
+import AwesomeButton from './general/awesome-button/AwesomeButton'
 import { Field, reduxForm } from 'redux-form'
 import dismissKeyboard from 'dismissKeyboard'
 
 import styles from '../../assets/styles/main'
-import TextFieldWithError from './TextFieldRenderer'
+import TextFieldWithError from './general/TextFieldWithError'
 import * as validator from '../utils/inputValidator'
 import btnStates from '../utils/buttonStates'
 

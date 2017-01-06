@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 
-import EmailLoginForm from '../components/EmailLoginForm'
+import EmailLoginForm from '../components/auth/EmailLoginForm'
 
 const LoginEmail = React.createClass({
   render() {

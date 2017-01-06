@@ -2,8 +2,6 @@ import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 
-import Snackbar from '../components/Snackbar'
-
 class Home extends React.Component {
   componentWillMount() {
     this._flag = false

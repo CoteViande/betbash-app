@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import { formValueSelector } from 'redux-form'
 
 import { loginWithEmail } from '../actions/authActions'
-import EmailRegisterForm from '../components/EmailRegisterForm'
+import EmailRegisterForm from '../components/auth/EmailRegisterForm'
 
 import styles from '../../assets/styles/main'
 

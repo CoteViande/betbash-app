@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, Image } from 'react-native'
 
-import MainLogin from '../components/MainLogin'
-import LoadingPage from '../components/LoadingPage'
-import ErrorMessage from '../components/ErrorMessage'
+import MainLogin from '../components/auth/MainLogin'
+import LoadingPage from '../components/general/LoadingPage'
+import ErrorMessage from '../components/general/ErrorMessage'
 
 import styles from '../../assets/styles/main'
 
