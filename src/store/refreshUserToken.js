@@ -1,9 +1,9 @@
 import Keychain from 'react-native-keychain'
 import { AccessToken } from 'react-native-fbsdk'
 
-import timeout from '../utils/timeout'
-import * as endpoint from '../constants/apiEndpoints'
-import { authenticateWithFacebookToken, loginWithEmail } from '../actions/authActions'
+import timeout from 'utils/timeout'
+import * as endpoint from 'constants/apiEndpoints'
+import { authenticateWithFacebookToken, loginWithEmail } from 'actions/authActions'
 
 
 export const refreshUserToken = (store) => {

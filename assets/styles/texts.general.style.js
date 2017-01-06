@@ -1,4 +1,4 @@
-import * as color from '../constants/colors'
+import * as color from 'assets/constants/colors'
 
 const TextStyles = {
   instructions: {

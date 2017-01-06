@@ -1,5 +1,5 @@
-import { serverResponseChange } from '../actions/connexionActions'
-import { isFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from './api-middleware/index'
+import { serverResponseChange } from 'actions/connexionActions'
+import { isFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from 'middlewares/api-middleware/index'
 
 const apiErrorMiddleware = store => next => action => {
   if (!isFSA(action)) {

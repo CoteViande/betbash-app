@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Text, View, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
-import styles from '../../assets/styles/main'
-import * as color from '../../assets/constants/colors'
-import FacebookLogin from './auth/FacebookLogin'
+import styles from 'assets/styles/main'
+import * as color from 'assets/constants/colors'
+import FacebookLogin from 'components/auth/FacebookLogin'
 
 const MainLogin = React.createClass({
   render: function() {

@@ -5,7 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 
 import ProgressBar from './ProgressBar'

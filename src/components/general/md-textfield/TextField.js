@@ -1,9 +1,8 @@
-'use strict';
-import React, {Component, PropTypes} from "react";
-import {View, TextInput, StyleSheet} from "react-native";
+import React, {Component, PropTypes} from "react"
+import {View, TextInput, StyleSheet} from "react-native"
 
-import Underline from './Underline';
-import FloatingLabel from './FloatingLabel';
+import Underline from './Underline'
+import FloatingLabel from './FloatingLabel'
 
 export default class TextField extends Component {
   constructor(props: Object, context: Object) {

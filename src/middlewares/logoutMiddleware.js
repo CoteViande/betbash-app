@@ -1,8 +1,6 @@
 import { LoginManager } from 'react-native-fbsdk'
 
-import { logoutFromFacebook } from '../actions/authActions'
-
-// import { Actions } from 'react-native-router-flux'
+import { logoutFromFacebook } from 'actions/authActions'
 
 const logoutMiddleware = store => next => action => {
   let dispatch = store.dispatch
@@ -18,7 +16,6 @@ const logoutMiddleware = store => next => action => {
     if (signedInWithFacebook) {
       dispatch(logoutFromFacebook());
     }
-    // Actions.BetBashAuth({type: 'reset'}) // FIXME Switch should do it + does not remount other scene when action goes ot it
   }
 
   return next(action)

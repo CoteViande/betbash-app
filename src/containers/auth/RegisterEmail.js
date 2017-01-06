@@ -4,10 +4,10 @@ import { connect, dispatch } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { formValueSelector } from 'redux-form'
 
-import { loginWithEmail } from '../actions/authActions'
-import EmailRegisterForm from '../components/auth/EmailRegisterForm'
+import { loginWithEmail } from 'actions/authActions'
+import EmailRegisterForm from 'components/auth/EmailRegisterForm'
 
-import styles from '../../assets/styles/main'
+import styles from 'assets/styles/main'
 
 const RegisterEmail = React.createClass({
   componentWillReceiveProps(nextProps) {

@@ -1,8 +1,8 @@
 import { NetInfo } from 'react-native'
 
-import timeout from '../utils/timeout'
-import * as endpoint from '../constants/apiEndpoints'
-import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from '../actions/connexionActions'
+import timeout from 'utils/timeout'
+import * as endpoint from 'constants/apiEndpoints'
+import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from 'actions/connexionActions'
 
 export const isConnectedToTheInternet = (store) => {
   return new Promise((resolve, reject) => {

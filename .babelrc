@@ -1,3 +1,21 @@
 {
-"presets": ["react-native"]
+  "presets": [
+    "react-native"
+  ],
+  "plugins": [[
+    "module-alias", [
+      { "src": "./src", "expose": "app" },
+      { "src": "./src/actions", "expose": "actions" },
+      { "src": "./src/components", "expose": "components" },
+      { "src": "./src/constants", "expose": "constants" },
+      { "src": "./src/containers", "expose": "containers" },
+      { "src": "./src/middlewares", "expose": "middlewares" },
+      { "src": "./src/reducers", "expose": "reducers" },
+      { "src": "./src/store", "expose": "store" },
+      { "src": "./src/utils", "expose": "utils" },
+      { "src": "./assets", "expose": "assets" },
+      { "src": "./assets/images", "expose": "images" },
+    ]
+   ]]
+ }
 }

@@ -1,6 +1,4 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React, { PropTypes } from 'react'
 import {
   Platform,
   Animated,
@@ -8,12 +6,12 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import {Actions} from 'react-native-router-flux';
+} from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
-import _drawerImage from '../../assets/images/menu_burger.png'
-import _backButtonImage from '../../assets/images/ic_arrow_back_white_24dp.png'
-import { NavbarStyles } from '../../assets/styles/navbar'
+import _drawerImage from 'images/menu_burger.png'
+import _backButtonImage from 'images/ic_arrow_back_white_24dp.png'
+import { NavbarStyles } from 'assets/styles/navbar' // TODO merge navbar styles with main styles
 
 const styles = NavbarStyles;
 

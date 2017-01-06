@@ -1,5 +1,5 @@
-import * as endpoint from '../constants/apiEndpoints'
-import { RSAA, getJSON } from '../middlewares/api-middleware/index'
+import * as endpoint from 'constants/apiEndpoints'
+import { RSAA, getJSON } from 'middlewares/api-middleware/index'
 
 export function pingServer() {
   return {

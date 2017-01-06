@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
+import { LoginButton, AccessToken } from 'react-native-fbsdk'
 
-import { failureFacebookToken, successFacebookToken, authenticateWithFacebookToken, logoutFromFacebook } from '../actions/authActions'
-
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken,
-} = FBSDK;
+import {
+  failureFacebookToken,
+  successFacebookToken,
+  authenticateWithFacebookToken,
+  logoutFromFacebook,
+} from 'actions/authActions'
 
 const FacebookLoginButton = ({ dispatch }) => (
   <LoginButton

@@ -1,10 +1,10 @@
-import auth from './authReducer'
-import init from './initializationReducer'
-import connexion from './connexionReducer'
-import scenes from './sceneReducer'
-import { reducer as form } from 'redux-form'
-
 import { combineReducers } from 'redux'
+
+import auth from 'reducers/authReducer'
+import init from 'reducers/initializationReducer'
+import connexion from 'reducers/connexionReducer'
+import scenes from 'reducers/sceneReducer'
+import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({
   auth,

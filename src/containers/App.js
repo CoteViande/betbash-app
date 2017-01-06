@@ -3,19 +3,19 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import { Actions, Scene, Router, TabBar, Switch, ActionConst } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
-import AuthMain from './auth/AuthMain'
-import RegisterEmail from './auth/RegisterEmail'
-import LoginEmail from './auth/LoginEmail'
-import Home from './main/Home'
-import Games from './main/Games'
-import Profile from './main/Profile'
+import AuthMain from 'containers/auth/AuthMain'
+import RegisterEmail from 'containers/auth/RegisterEmail'
+import LoginEmail from 'containers/auth/LoginEmail'
+import Home from 'containers/main/Home'
+import Games from 'containers/main/Games'
+import Profile from 'containers/main/Profile'
 
-import BetBashNavbar from '../components/general/Navbar'
-import BetBashTabIcon from '../components/general/TabIcon'
-import Snackbar from '../components/general/Snackbar'
-import * as color from '../../assets/constants/colors'
+import BetBashNavbar from 'components/general/Navbar'
+import BetBashTabIcon from 'components/general/TabIcon'
+import Snackbar from 'components/general/Snackbar'
+import * as color from 'assets/constants/colors'
 
-import { pingServer } from '../actions/connexionActions'
+import { pingServer } from 'actions/connexionActions'
 
 const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 

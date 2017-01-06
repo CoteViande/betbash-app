@@ -1,4 +1,4 @@
-import * as color from '../../assets/constants/colors'
+import * as color from 'assets/constants/colors'
 
 const btnStates = (onPress, labelIdle, labelBusy, labelSuccess, labelError) => {
   return {

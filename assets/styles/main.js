@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native'
+
 // general
-import ContainerStyles from './containers.general.style'
-import ButtonStyles from './buttons.general.style'
-import TextStyles from './texts.general.style'
+import ContainerStyles from 'assets/styles/containers.general.style'
+import ButtonStyles from 'assets/styles/buttons.general.style'
+import TextStyles from 'assets/styles/texts.general.style'
 // components
-import SnackbarStyles from './snackbar.style'
+import SnackbarStyles from 'assets/styles/snackbar.style'
 
 const MainStyle = {}
 

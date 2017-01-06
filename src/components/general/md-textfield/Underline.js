@@ -1,6 +1,5 @@
-'use strict';
-import React, {Component, PropTypes} from "react";
-import {View, StyleSheet, Animated} from "react-native";
+import React, {Component, PropTypes} from "react"
+import {View, StyleSheet, Animated} from "react-native"
 
 export default class Underline extends Component {
 	constructor(props: Object) {

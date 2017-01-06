@@ -3,10 +3,10 @@ import {
   connectedToInternet,
   connectedToServer,
   tokenRefreshed,
-} from '../actions/initializationActions'
+} from 'actions/initializationActions'
 
-import { isConnectedToTheInternet, isConnectedToTheServer } from './connexionCheck'
-import { refreshUserToken } from './refreshUserToken'
+import { isConnectedToTheInternet, isConnectedToTheServer } from 'store/connexionCheck'
+import { refreshUserToken } from 'store/refreshUserToken'
 
 
 export const initializationScript = (store) => {

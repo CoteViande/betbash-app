@@ -4,12 +4,12 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { AsyncStorage } from 'react-native'
 
-import { apiMiddleware } from '../middlewares/api-middleware/index'
-import apiErrorMiddleware from '../middlewares/apiErrorMiddleware'
-import keychainMiddleware from '../middlewares/keychainMiddleware'
-import logoutMiddleware from '../middlewares/logoutMiddleware'
-import reducer from '../reducers/rootReducer'
-import { initializationScript } from './initializationScript'
+import { apiMiddleware } from 'middlewares/api-middleware/index'
+import apiErrorMiddleware from 'middlewares/apiErrorMiddleware'
+import keychainMiddleware from 'middlewares/keychainMiddleware'
+import logoutMiddleware from 'middlewares/logoutMiddleware'
+import reducer from 'reducers/rootReducer'
+import { initializationScript } from 'store/initializationScript'
 
 
 const configureStore = (initialState) => {

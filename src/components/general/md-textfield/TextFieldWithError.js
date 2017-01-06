@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import TextField from './TextField'
 
-import styles from '../../assets/styles/main'
-import * as color from '../../assets/constants/colors'
+import styles from 'assets/styles/main'
+import * as color from 'assets/constants/colors'
 
 const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) => {
   let keyboardType = 'default';

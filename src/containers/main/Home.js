@@ -3,13 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 
 class Home extends React.Component {
-  componentWillMount() {
-    this._flag = false
-  }
-
   render() {
-    const { isConnected } = this.props
-
     return(
       <View style={ {flex: 1,
       justifyContent: 'center',
@@ -31,9 +25,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    isConnected: state.connexion.isConnected
-  }
+  return {}
 }
 
 const mapDispatchToProps = {}
