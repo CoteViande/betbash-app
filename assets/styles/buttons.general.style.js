@@ -7,6 +7,7 @@ const ButtonStyles = {
   },
   loginButtonLabel: {
     color: color.white,
+    fontSize: 16,
   },
 }
 
