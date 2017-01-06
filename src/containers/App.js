@@ -13,7 +13,7 @@ import Profile from 'containers/main/Profile'
 import BetBashNavbar from 'components/general/Navbar'
 import BetBashTabIcon from 'components/general/TabIcon'
 import Snackbar from 'components/general/Snackbar'
-import * as color from 'assets/constants/colors'
+import * as color from 'constants/colors'
 
 import { pingServer } from 'actions/connexionActions'
 

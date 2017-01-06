@@ -3,13 +3,13 @@ import { TouchableHighlight, View, Text } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import dismissKeyboard from 'dismissKeyboard'
 
-import styles from '../../assets/styles/main'
-import AwesomeButton from '../general/awesome-button/AwesomeButton'
-import TextFieldWithError from '../general/md-textfield/TextFieldWithError'
-import * as validator from '../../utils/inputValidator'
-import btnStates from '../../utils/buttonStates'
+import styles from 'assets/styles/main'
+import AwesomeButton from 'components/general/awesome-button/AwesomeButton'
+import TextFieldWithError from 'components/general/md-textfield/TextFieldWithError'
+import * as validator from 'utils/inputValidator'
+import btnStates from 'utils/buttonStates'
 
-import { registerWithEmail } from '../actions/authActions'
+import { registerWithEmail } from 'actions/authActions'
 
 const validate = (values, props) => {
   let errors = {}

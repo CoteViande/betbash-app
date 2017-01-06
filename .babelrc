@@ -4,11 +4,7 @@
   ],
   "plugins": [
     ["module-resolver", {
-      "root": ["./src"],
-      "alias": {
-        "assets": "./assets",
-        "images": "./assets/images"
-      }
+      "root": ["./src"]
     }]
   ]
 }
