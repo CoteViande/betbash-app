@@ -7,7 +7,7 @@ import styles from 'assets/styles/main'
 import AwesomeButton from 'components/general/awesome-button/AwesomeButton'
 import TextFieldWithError from 'components/general/md-textfield/TextFieldWithError'
 import * as validator from 'utils/inputValidator'
-import btnStates from 'utils/buttonStates'
+import btnStates from 'components/general/awesome-button/buttonStates'
 
 import { loginWithEmail } from 'actions/authActions'
 
