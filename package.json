@@ -15,7 +15,7 @@
     "react": "^15.4.1",
     "react-native": "^0.40.0",
     "react-native-awesome-button": "^1.6.0",
-    "react-native-fbsdk": "^0.3.0",
+    "react-native-fbsdk": "^0.4.0",
     "react-native-keychain": "^0.3.2",
     "react-native-md-textinput": "git+https://github.com/evblurbs/react-native-md-textinput.git#8359f45b38499116ac37a493252b82a35fc25b86",
     "react-native-router-flux": "git+https://github.com/sarovin/react-native-router-flux.git#bd891e0f400976fe9cb950a425bcf0d3f9d4235b",

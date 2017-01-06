@@ -1,7 +1,4 @@
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginManager,
-} = FBSDK;
+import { LoginManager } from 'react-native-fbsdk'
 
 import { logoutFromFacebook } from '../actions/authActions'
 

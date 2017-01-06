@@ -14,6 +14,7 @@ import com.facebook.soloader.SoLoader;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.appevents.AppEventsLogger;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     FacebookSdk.sdkInitialize(getApplicationContext());
+    SoLoader.init(this, /* native exopackage */ false);
     // If you want to use AppEventsLogger to log events.
     // AppEventsLogger.activateApp(this);
   }
@@ -53,11 +55,5 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
-  }
-
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
   }
 }
