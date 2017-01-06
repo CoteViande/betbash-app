@@ -39,7 +39,7 @@ const scenes = Actions.create(
       key="BetBashAuth" default="AuthMain" hideNavBar={true}
     >
       <Scene
-        key="AuthMain" component={AuthMain} title="Login" hideNavBar={true} direction="vertical"
+        key="AuthMain" initial={true} component={AuthMain} title="Login" hideNavBar={true} direction="vertical" type="RESET"
       />
       <Scene
         key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
