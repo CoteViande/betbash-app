@@ -1,7 +1,7 @@
 const timeoutPromise = (ms, promise, message) => {
   if (typeof ms !== 'number') {
     promise = ms;
-    ms = 5000;
+    ms = 7000;
   }
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
