@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import AwesomeButton from 'react-native-awesome-button'
+import AwesomeButton from '../components/AwesomeButton/AwesomeButton'
 
 import btnStates from '../utils/buttonStates'
 import { logoutFromApp } from '../actions/authActions'

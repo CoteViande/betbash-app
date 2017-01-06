@@ -134,7 +134,6 @@ TextField.defaultProps = {
 	underlineColorAndroid: 'rgba(0,0,0,0)',
 	multiline: false,
 	autoGrow: false,
-	height: false,
   keepHightlightColor: false,
   inputError: false,
   errorColor: 'red'
@@ -155,7 +154,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
 		height: 42,
 		lineHeight: 34,
-    paddingBottom: 3
+    paddingBottom: 3,
+    paddingLeft: 0,
   },
 	denseTextInput: {
 		fontSize: 13,

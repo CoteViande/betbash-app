@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
-import AwesomeButton from 'react-native-awesome-button'
+import AwesomeButton from './AwesomeButton/AwesomeButton'
 import { Field, reduxForm } from 'redux-form'
 import dismissKeyboard from 'dismissKeyboard'
 
@@ -46,17 +46,15 @@ const EmailRegisterForm = (props) => {
 
       <View>
         <AwesomeButton
-          backgroundStyle={styles.loginButtonBackground}
-          labelStyle={styles.loginButtonLabel}
-          transitionDuration={200}
-          states={btnStates(
-            handleSubmit,
-            'Register',
-            'Registering',
-            'Registered!',
-            'Try again?'
-          )}
-          buttonState={buttonState(isLoading, loginSuccess, registerError)}
+          backgroundStyle={ styles.loginButtonBackground }
+          labelStyle={ styles.loginButtonLabel }
+          transitionDuration={ 200 }
+          states={
+            btnStates(handleSubmit, 'Register', 'Registering', 'Registered!', 'Try again?')
+          }
+          buttonState={
+            buttonState(isLoading, loginSuccess, registerError)
+          }
         />
       </View>
 

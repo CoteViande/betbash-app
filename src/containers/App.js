@@ -36,15 +36,15 @@ const scenes = Actions.create(
   >
 
     <Scene
-      key="BetBashAuth" default="AuthMain" hideNavBar={true}
+      key="BetBashAuth" default="RegisterEmail" hideNavBar={true}
     >
+    <Scene
+    key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
+    onRight={() => Actions.LoginEmail()} rightTitle="Login"
+    backTitle="Back"
+    />
       <Scene
         key="AuthMain" component={AuthMain} title="Login" hideNavBar={true} direction="vertical"
-      />
-      <Scene
-        key="RegisterEmail" component={RegisterEmail} title="Register" hideNavBar={false} navBar={BetBashNavbar} direction="vertical"
-        onRight={() => Actions.LoginEmail()} rightTitle="Login"
-        backTitle="Back"
       />
       <Scene
         key="LoginEmail" component={LoginEmail} title="Login" hideNavBar={false} navBar={BetBashNavbar}
@@ -80,7 +80,7 @@ class App extends React.Component {
 
     if (initializing) {
       return (
-        <View style={{ flex:1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flexGrow:1, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
             BETBASH
           </Text>
@@ -89,7 +89,7 @@ class App extends React.Component {
     }
 
     return (
-      <View style={{ flex:1 }}>
+      <View style={{ flexGrow: 1 }}>
         <StatusBar translucent={false} backgroundColor={ color.red900 } barStyle="default" />
         <RouterWithRedux scenes={scenes} />
         <Snackbar isSnack={ !isConnected } snackMessage={ "No internet connexion" } />

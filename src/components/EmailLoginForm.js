@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
-import AwesomeButton from 'react-native-awesome-button'
+import AwesomeButton from './AwesomeButton/AwesomeButton'
 import { Field, reduxForm } from 'redux-form'
 import dismissKeyboard from 'dismissKeyboard'
 

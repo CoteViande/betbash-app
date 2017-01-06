@@ -2,9 +2,8 @@ import * as color from '../constants/colors'
 
 const ButtonStyles = {
   loginButtonBackground: {
-    flex: 1,
-    height: 40,
-    borderRadius: 5,
+    height: 50,
+    borderRadius: 0,
   },
   loginButtonLabel: {
     color: color.white,

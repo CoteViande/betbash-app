@@ -5,7 +5,6 @@ import { Actions } from 'react-native-router-flux'
 import { formValueSelector } from 'redux-form'
 
 import { loginWithEmail } from '../actions/authActions'
-import AwesomeButton from 'react-native-awesome-button'
 import EmailRegisterForm from '../components/EmailRegisterForm'
 
 import styles from '../../assets/styles/main'
@@ -18,10 +17,6 @@ const RegisterEmail = React.createClass({
       loginWithEmail(email, password, false);
     }
   },
-
-  // componentWillUnMount() {
-  //   console.warn('unmounted!!')
-  // },
 
   render() {
     const { registerError, registered, loginSuccess, isLoading } = this.props
