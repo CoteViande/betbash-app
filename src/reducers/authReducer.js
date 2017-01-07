@@ -8,27 +8,16 @@ const initLogger = {
 const user = (state = initLogger, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+    case 'EMAIL_LOGIN_SUCCESS':
       let res = action.payload
-      console.log('Payload from FACEBOOK_AUTHENTICATE_SUCCESS: ', res) // TODO backend send ttl
       return {
         isLoggedIn: true,
         accessToken: {
-          id: res.access_token,
-          ttl: 0,
-          created: -1,
+          id: res.id,
+          ttl: res.ttl,
+          created: res.created,
         },
         userId: res.userId,
-      }
-    case 'EMAIL_LOGIN_SUCCESS':
-      let emailLoginRes = action.payload
-      return {
-        isLoggedIn: true,
-        accessToken: {
-          id: emailLoginRes.id,
-          ttl: emailLoginRes.ttl,
-          created: emailLoginRes.created,
-        },
-        userId: emailLoginRes.userId,
       }
     case 'APP_LOGOUT_SUCCESS':
       return {
