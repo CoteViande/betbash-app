@@ -91,7 +91,7 @@ async function actionWith(descriptor, args) {
   }
   descriptor.meta = {
     ...descriptor.meta,
-    'CALL_API': true,
+    'callApi': true,
   } // FIXME make note of an FSA without preventing internal errors
 
   return descriptor;

@@ -9,6 +9,7 @@ import apiErrorMiddleware from 'BetBash/src/middlewares/apiErrorMiddleware'
 import keychainMiddleware from 'BetBash/src/middlewares/keychainMiddleware'
 import logoutMiddleware from 'BetBash/src/middlewares/logoutMiddleware'
 import dismissKeyboardMiddleware from 'BetBash/src/middlewares/dismissKeyboardMiddleware'
+import analyticsMiddleware from 'BetBash/src/middlewares/analyticsMiddleware'
 import reducer from 'BetBash/src/reducers/rootReducer'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
@@ -21,6 +22,7 @@ const configureStore = (initialState) => {
     keychainMiddleware,
     logoutMiddleware,
     dismissKeyboardMiddleware,
+    analyticsMiddleware,
   ]
 
   const store = createStore(

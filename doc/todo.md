@@ -1,5 +1,19 @@
 # List
 
+## Current
+
+* Analytics
+  * https://github.com/rangle/redux-segment : info about type of events
+
+```  
+For Android, make sure you have the following SDK packages installed in the Android SDK Manager:
+
+Google Repository
+Google Play services
+Google APIs (Atom) system image
+For more details about the native SDKs, consult the manual installation guide.
+```
+
 ## Quickies
 
 * check for username already exists case (async maybe?)
@@ -12,7 +26,6 @@
 * Tests!!!
 * stack offline online-required-actions to do it later
 * polling processes in react?
-* Analytics
 * i18n
 
 ## Errors
