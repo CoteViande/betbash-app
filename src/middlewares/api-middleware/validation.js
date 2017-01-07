@@ -175,20 +175,20 @@ function isValidRSAA(action) {
   return !validateRSAA(action).length;
 }
 
-function isFSA(action) {
+function isApiFSA(action) {
   return (action.meta && action.meta.hasOwnProperty("CALL_API"))
 }
 
 function isRequestFSA(action) {
-  return (isFSA(action) && action.type.endsWith('REQUEST'))
+  return (isApiFSA(action) && action.type.endsWith('REQUEST'))
 }
 
 function isSuccessFSA(action) {
-  return (isFSA(action) && action.type.endsWith('SUCCESS'))
+  return (isApiFSA(action) && action.type.endsWith('SUCCESS'))
 }
 
 function isFailureFSA(action) {
-  return (isFSA(action) && action.type.endsWith('FAILURE') && action.error)
+  return (isApiFSA(action) && action.type.endsWith('FAILURE') && action.error)
 }
 
-export { isRSAA, isValidTypeDescriptor, validateRSAA, isValidRSAA, isFSA, isRequestFSA, isSuccessFSA, isFailureFSA };
+export { isRSAA, isValidTypeDescriptor, validateRSAA, isValidRSAA, isApiFSA, isRequestFSA, isSuccessFSA, isFailureFSA }

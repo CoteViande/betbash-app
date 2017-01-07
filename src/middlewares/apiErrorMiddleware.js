@@ -1,8 +1,8 @@
 import { serverResponseChange } from 'BetBash/src/actions/connexionActions'
-import { isFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from 'BetBash/src/middlewares/api-middleware/index'
+import { isApiFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from 'BetBash/src/middlewares/api-middleware/index'
 
 const apiErrorMiddleware = store => next => action => {
-  if (!isFSA(action)) {
+  if (!isApiFSA(action)) {
     return next(action)
   }
 
