@@ -20,9 +20,14 @@ const apiErrorMiddleware = store => next => action => {
       const apiError = error.response.error
       switch(apiError.code) {
         case 'LOGIN_FAILED':
+          // try to refresh token
+          // logout user
         break
         default:
-          if (apiError.message === 'could not find accessToken') {} // TODO backend: better error with code
+          if (apiError.message === 'could not find accessToken') {
+            // try to refresh token
+            // logout user
+          } // TODO backend: better error with code
           console.log('API Error: ', apiError, 'code: ', apiError.code)
         break
       }

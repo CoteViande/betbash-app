@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 const initLogger = {
+  id: null,
   isLoggedIn: false,
   accessToken: null,
-  userId: null,
 }
 const user = (state = initLogger, action) => {
   switch (action.type) {
@@ -11,19 +11,19 @@ const user = (state = initLogger, action) => {
     case 'EMAIL_LOGIN_SUCCESS':
       let res = action.payload
       return {
+        id: res.userId,
         isLoggedIn: true,
         accessToken: {
           id: res.id,
           ttl: res.ttl,
           created: res.created,
         },
-        userId: res.userId,
       }
     case 'APP_LOGOUT_SUCCESS':
       return {
+        id: null,
         isLoggedIn: false,
         accessToken: null,
-        userId: null,
       }
     default:
       return state
