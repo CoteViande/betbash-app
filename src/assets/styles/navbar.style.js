@@ -1,8 +1,6 @@
-import { StyleSheet } from 'react-native'
+import * as color from 'BetBash/src/constants/colors'
 
-import * as color from 'constants/colors'
-
-export const NavbarStyles = StyleSheet.create({
+export const NavbarStyles = {
   header: {
     position: 'absolute',
     top: 0,
@@ -72,4 +70,4 @@ export const NavbarStyles = StyleSheet.create({
     height: 24,
     resizeMode: 'contain',
   },
-})
+}

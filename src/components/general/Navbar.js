@@ -1,19 +1,10 @@
 import React, { PropTypes } from 'react'
-import {
-  Platform,
-  Animated,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Platform, Animated, Image, Text, TouchableOpacity, View } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
-import _drawerImage from 'assets/images/menu_burger.png'
-import _backButtonImage from 'assets/images/ic_arrow_back_white_24dp.png'
-import { NavbarStyles } from 'assets/styles/navbar' // TODO merge navbar styles with main styles
-
-const styles = NavbarStyles;
+import _drawerImage from 'BetBash/src/assets/images/menu_burger.png'
+import _backButtonImage from 'BetBash/src/assets/images/ic_arrow_back_white_24dp.png'
+import styles from 'BetBash/src/assets/styles/main'
 
 const propTypes = {
   navigationState: PropTypes.object,
