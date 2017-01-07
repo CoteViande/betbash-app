@@ -1,6 +1,6 @@
 import * as color from 'BetBash/src/constants/colors'
 
-export const NavbarStyles = {
+const NavbarStyles = {
   header: {
     position: 'absolute',
     top: 0,
@@ -71,3 +71,5 @@ export const NavbarStyles = {
     resizeMode: 'contain',
   },
 }
+
+export default NavbarStyles
