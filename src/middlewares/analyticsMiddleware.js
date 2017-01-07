@@ -1,3 +1,5 @@
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge'
+
 import { isAnalyticsFSA } from 'BetBash/src/utils/fsaValidator'
 
 const analyticsMiddleware = store => next => action => {
@@ -5,8 +7,11 @@ const analyticsMiddleware = store => next => action => {
     return next(action)
   }
 
+  let tracker = new GoogleAnalyticsTracker('UA-89953573-1')
+
   if (isTrackedContainerFocus(action)) {
-    console.log(action)
+    const sceneName = action.scene.name
+    tracker.trackScreenView(sceneName)
     return next(action)
   }
 

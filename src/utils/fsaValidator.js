@@ -1,6 +1,5 @@
 const isFSA = action => (
-  isPlainObject(action)
-  && (typeof action.type === 'string' || typeof action.type === 'symbol')
+  (typeof action.type === 'string' || typeof action.type === 'symbol')
   && Object.keys(action).every(isValidKey)
 )
 
