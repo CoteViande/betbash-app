@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import auth from 'reducers/authReducer'
-import init from 'reducers/initializationReducer'
-import connexion from 'reducers/connexionReducer'
-import scenes from 'reducers/sceneReducer'
+import auth from 'BetBash/src/reducers/authReducer'
+import init from 'BetBash/src/reducers/initializationReducer'
+import connexion from 'BetBash/src/reducers/connexionReducer'
+import scenes from 'BetBash/src/reducers/sceneReducer'
 import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({

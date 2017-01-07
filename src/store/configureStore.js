@@ -4,16 +4,24 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { AsyncStorage } from 'react-native'
 
-import { apiMiddleware } from 'middlewares/api-middleware/index'
-import apiErrorMiddleware from 'middlewares/apiErrorMiddleware'
-import keychainMiddleware from 'middlewares/keychainMiddleware'
-import logoutMiddleware from 'middlewares/logoutMiddleware'
-import reducer from 'reducers/rootReducer'
-import { initializationScript } from 'store/initializationScript'
+import { apiMiddleware } from 'BetBash/src/middlewares/api-middleware/index'
+import apiErrorMiddleware from 'BetBash/src/middlewares/apiErrorMiddleware'
+import keychainMiddleware from 'BetBash/src/middlewares/keychainMiddleware'
+import logoutMiddleware from 'BetBash/src/middlewares/logoutMiddleware'
+import dismissKeyboardMiddleware from 'BetBash/src/middlewares/dismissKeyboardMiddleware'
+import reducer from 'BetBash/src/reducers/rootReducer'
+import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 
 const configureStore = (initialState) => {
-  const middlewares = [thunk, apiMiddleware, apiErrorMiddleware, keychainMiddleware, logoutMiddleware]
+  const middlewares = [
+    thunk,
+    apiMiddleware,
+    apiErrorMiddleware,
+    keychainMiddleware,
+    logoutMiddleware,
+    dismissKeyboardMiddleware,
+  ]
 
   const store = createStore(
     reducer,

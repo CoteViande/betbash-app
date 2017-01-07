@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native'
 
-import styles from 'assets/styles/main'
+import styles from 'BetBash/src/assets/styles/main'
 
 const LoadingPage = React.createClass({
   render: function() {

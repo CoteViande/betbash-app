@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, Image } from 'react-native'
 
-import MainLogin from 'components/auth/MainLogin'
-import LoadingPage from 'components/general/LoadingPage'
-import ErrorMessage from 'components/general/ErrorMessage'
+import MainLogin from 'BetBash/src/components/auth/MainLogin'
+import LoadingPage from 'BetBash/src/components/general/LoadingPage'
+import ErrorMessage from 'BetBash/src/components/general/ErrorMessage'
 
-import styles from 'assets/styles/main'
+import styles from 'BetBash/src/assets/styles/main'
 
 let AuthMain = React.createClass({
   render() {

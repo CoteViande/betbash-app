@@ -1,15 +1,14 @@
 import React from 'react'
 import { TouchableHighlight, View, Text } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
-import dismissKeyboard from 'dismissKeyboard'
 
-import styles from 'assets/styles/main'
-import AwesomeButton from 'components/general/awesome-button/AwesomeButton'
-import TextFieldWithError from 'components/general/md-textfield/TextFieldWithError'
-import * as validator from 'utils/inputValidator'
-import btnStates from 'components/general/awesome-button/buttonStates'
+import styles from 'BetBash/src/assets/styles/main'
+import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
+import TextFieldWithError from 'BetBash/src/components/general/md-textfield/TextFieldWithError'
+import * as validator from 'BetBash/src/utils/inputValidator'
+import btnStates from 'BetBash/src/components/general/awesome-button/buttonStates'
 
-import { registerWithEmail } from 'actions/authActions'
+import { registerWithEmail } from 'BetBash/src/actions/authActions'
 
 const validate = (values, props) => {
   let errors = {}
@@ -69,7 +68,6 @@ EmailRegisterForm = reduxForm({
   touchOnBlur: true,
   touchOnChange: false,
   onSubmit: (fields, dispatch) => {
-    dismissKeyboard()
     dispatch(registerWithEmail(
       fields.email,
       fields.password

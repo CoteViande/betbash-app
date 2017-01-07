@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import AwesomeButton from 'components/general/awesome-button/AwesomeButton'
+import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
 
-import btnStates from 'components/general/awesome-button/buttonStates'
-import { logoutFromApp } from 'actions/authActions'
-import styles from 'assets/styles/main'
+import btnStates from 'BetBash/src/components/general/awesome-button/buttonStates'
+import { logoutFromApp } from 'BetBash/src/actions/authActions'
+import styles from 'BetBash/src/assets/styles/main'
 
 let Profile = React.createClass({
   render() {

@@ -8,7 +8,7 @@ import {
   successFacebookToken,
   authenticateWithFacebookToken,
   logoutFromFacebook,
-} from 'actions/authActions'
+} from 'BetBash/src/actions/authActions'
 
 const FacebookLoginButton = ({ dispatch }) => (
   <LoginButton

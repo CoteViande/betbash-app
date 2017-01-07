@@ -4,7 +4,7 @@ import {
   saveCredentialsKeychain, saveCredentialsKeychainFailure,
   getCredentialsKeychain, getCredentialsKeychainFailure,
   removeCredentialsKeychain, removeCredentialsKeychainFailure,
-} from 'actions/authActions'
+} from 'BetBash/src/actions/authActions'
 
 const keychainMiddleware = store => next => action => {
   let dispatch = store.dispatch

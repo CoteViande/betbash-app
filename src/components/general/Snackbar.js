@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native'
 
-import styles from 'assets/styles/main'
-import * as duration from 'constants/animations'
+import styles from 'BetBash/src/assets/styles/main'
+import * as duration from 'BetBash/src/constants/animations'
 
 class Snackbar extends React.Component {
   static propTypes = {

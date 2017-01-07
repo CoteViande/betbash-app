@@ -3,10 +3,10 @@ import {
   connectedToInternet,
   connectedToServer,
   tokenRefreshed,
-} from 'actions/initializationActions'
+} from 'BetBash/src/actions/initializationActions'
 
-import { isConnectedToTheInternet, isConnectedToTheServer } from 'store/connexionCheck'
-import { refreshUserToken } from 'store/refreshUserToken'
+import { isConnectedToTheInternet, isConnectedToTheServer } from 'BetBash/src/store/connexionCheck'
+import { refreshUserToken } from 'BetBash/src/store/refreshUserToken'
 
 
 export const initializationScript = (store) => {

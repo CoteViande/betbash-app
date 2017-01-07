@@ -1,6 +1,6 @@
 import { LoginManager } from 'react-native-fbsdk'
 
-import { logoutFromFacebook } from 'actions/authActions'
+import { logoutFromFacebook } from 'BetBash/src/actions/authActions'
 
 const logoutMiddleware = store => next => action => {
   let dispatch = store.dispatch

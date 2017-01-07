@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import * as color from 'constants/colors'
+import * as color from 'BetBash/src/constants/colors'
 
 class TabIcon extends React.Component {
   render(){
