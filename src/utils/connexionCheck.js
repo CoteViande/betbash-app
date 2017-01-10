@@ -2,7 +2,7 @@ import { NetInfo } from 'react-native'
 
 import timeout from 'BetBash/src/utils/timeout'
 import * as endpoint from 'BetBash/src/constants/apiEndpoints'
-import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from 'BetBash/src/actions/connexionActions'
+import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from 'BetBash/src/actions/connexion.actions'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 export const isConnectedToTheInternet = (state, dispatch) => {

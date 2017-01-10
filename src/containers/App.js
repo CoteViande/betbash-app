@@ -15,7 +15,7 @@ import BetBashTabIcon from 'BetBash/src/components/general/TabIcon'
 import Snackbar from 'BetBash/src/components/general/Snackbar'
 import * as color from 'BetBash/src/constants/colors'
 
-import { pingServer } from 'BetBash/src/actions/connexionActions'
+import { pingServer } from 'BetBash/src/actions/connexion.actions'
 
 const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
 

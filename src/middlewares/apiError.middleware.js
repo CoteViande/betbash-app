@@ -1,4 +1,4 @@
-import { serverResponseChange } from 'BetBash/src/actions/connexionActions'
+import { serverResponseChange } from 'BetBash/src/actions/connexion.actions'
 import { forcedLogoutFromApp } from 'BetBash/src/actions/auth.actions'
 import { isApiFSA, isRequestFSA, isSuccessFSA, isFailureFSA } from 'BetBash/src/utils/fsaValidator'
 import { refreshUserToken } from 'BetBash/src/utils/refreshUserToken'
