@@ -22,21 +22,33 @@ export function pingServer() {
 export function connexionChange(isConnected, connexionType) {
   return {
     type: 'CONNEXION_CHANGE',
-    isConnected,
-    connexionType,
+    payload: {
+      isConnected,
+      connexionType,
+    },
+    meta: {
+      analytics: {
+        types: ['event'],
+        payload: {isConnected, connexionType}
+      }
+    }
   }
 }
 
 export function serverResponseChange(isServerConnected) {
   return {
     type: 'SERVER_CONNEXION_CHANGE',
-    isServerConnected,
+    payload: {
+      isServerConnected,
+    }
   }
 }
 
 export function connexionChangeTest(isConnected) {
   return {
     type: 'CONNEXION_CHANGE_TEST',
-    isConnected,
+    payload: {
+      isConnected,
+    }
   }
 }

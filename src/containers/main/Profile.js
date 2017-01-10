@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
 
 import btnStates from 'BetBash/src/components/general/awesome-button/buttonStates'
-import { logoutFromApp } from 'BetBash/src/actions/authActions'
+import { logoutFromApp } from 'BetBash/src/actions/auth.actions'
 import styles from 'BetBash/src/assets/styles/main'
 
 let Profile = React.createClass({

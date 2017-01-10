@@ -103,7 +103,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state, { params }) => {
   return {
-    initializing: state.init.initializing,
+    initializing: state.initialization.initializationializing,
     isConnected: state.connexion.isConnected,
     isServerConnected: state.connexion.isServerConnected,
   };

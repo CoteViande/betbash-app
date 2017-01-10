@@ -3,15 +3,16 @@ import { NetInfo } from 'react-native'
 import timeout from 'BetBash/src/utils/timeout'
 import * as endpoint from 'BetBash/src/constants/apiEndpoints'
 import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from 'BetBash/src/actions/connexionActions'
+import { initializationScript } from 'BetBash/src/store/initializationScript'
 
-export const isConnectedToTheInternet = (store) => {
+export const isConnectedToTheInternet = (state, dispatch) => {
   return new Promise((resolve, reject) => {
     NetInfo.fetch()
       .then((reach) => {
         let connected = isConnected(reach)
-        store.dispatch(connexionChange(connected, reach))
-        NetInfo.addEventListener('connectivityChange', handleConnectivityChange(store));
-        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(store));
+        dispatch(connexionChange(connected, reach))
+        NetInfo.addEventListener('connectivityChange', handleConnectivityChange(state.connexion.isConnected, dispatch));
+        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(dispatch));
         resolve(connected);
       })
       .catch((error) => {
@@ -20,9 +21,9 @@ export const isConnectedToTheInternet = (store) => {
   })
 }
 
-export const isConnectedToTheServer = (store) => {
+export const isConnectedToTheServer = (state, dispatch) => {
   return new Promise((resolve, reject) => {
-    store.dispatch(pingServer())
+    dispatch(pingServer())
       .then((res) => {
         resolve(!res.error)
       })
@@ -32,9 +33,12 @@ export const isConnectedToTheServer = (store) => {
   })
 }
 
-const handleConnectivityChange = (store) => (reach) => {
+const handleConnectivityChange = (state, dispatch) => reach => {
   let connected = isConnected(reach)
-  store.dispatch(connexionChange(connected, reach))
+  dispatch(connexionChange(connected, reach))
+  if (connected && !state.initializationialization.finished) {
+    initializationScript(state, dispatch)
+  }
 }
 
 const handlerTest = (store) => (isConnected) => {
@@ -43,7 +47,7 @@ const handlerTest = (store) => (isConnected) => {
   store.dispatch(connexionChangeTest(isConnected))
 }
 
-function isConnected(reach) {
+const isConnected = reach => {
   let connected
   switch (reach.toUpperCase()) {
     case 'NONE':

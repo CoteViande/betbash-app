@@ -8,7 +8,7 @@ import {
   successFacebookToken,
   authenticateWithFacebookToken,
   logoutFromFacebook,
-} from 'BetBash/src/actions/authActions'
+} from 'BetBash/src/actions/auth.actions'
 
 const FacebookLoginButton = ({ dispatch }) => (
   <LoginButton
@@ -25,7 +25,7 @@ const FacebookLoginButton = ({ dispatch }) => (
             (data) => { // https://developers.facebook.com/docs/facebook-login/access-tokens
               let accessToken = data.accessToken;
               dispatch(successFacebookToken());
-              dispatch(authenticateWithFacebookToken(accessToken.toString()));
+              dispatch(authenticateWithFacebookToken(accessToken.toString(), false));
             }
           )
         }

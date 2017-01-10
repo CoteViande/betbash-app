@@ -20,6 +20,7 @@ const user = (state = initLogger, action) => {
         },
       }
     case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
       return {
         id: null,
         isLoggedIn: false,
@@ -44,12 +45,36 @@ const isLoading = (state = false, action) => {
     case 'EMAIL_LOGIN_FAILURE':
     case 'EMAIL_REGISTER_FAILURE':
     case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
     case 'APP_LOGOUT_FAILURE':
       return false
     default:
       return state
   }
 }
+
+// const errors = (state = null, action) => {
+//   switch (action.type) {
+//     case 'FACEBOOK_TOKEN_SUCCESS':
+//       return null
+//     case 'FACEBOOK_TOKEN_FAILURE':
+//       return {
+//         ...state,
+//         facebookAuth: action.message
+//       }
+//     case 'FACEBOOK_AUTHENTICATE_FAILURE':
+//       return {
+//         ...state,
+//         facebookAuth: action.payload.message
+//       }
+//     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+//     case 'EMAIL_REGISTER_SUCCESS':
+//     case 'EMAIL_LOGIN_SUCCESS':
+//       return null
+//     default:
+//       return state
+//   }
+// }
 
 const errorMessageFBAuth = (state = null, action) => {
   switch (action.type) {
@@ -97,6 +122,7 @@ const errorMessageEmailRegister = (state = null, action) => {
 const errorMessageLogout = (state = null, action) => {
   switch (action.type) {
     case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
       return null
     case 'APP_LOGOUT_FAILURE':
       return action.payload.message
@@ -113,6 +139,7 @@ const authenticatedOnFacebook = (state = false, action) => {
     case 'FACEBOOK_LOGOUT':
       return false
     case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
     case 'EMAIL_REGISTER_SUCCESS':
       return false
     default:
@@ -125,6 +152,7 @@ const authenticatedOnEmail = (state = false, action) => {
     case 'EMAIL_REGISTER_SUCCESS':
       return true
     case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
       return false
     case 'FACEBOOK_TOKEN_SUCCESS':
       return false
@@ -167,12 +195,13 @@ const authReducer = combineReducers({
   user,
   isLoading,
   authenticatedOnFacebook,
-  errorMessageFBAuth,
   authenticatedOnEmail,
+  errorMessageFBAuth,
   errorMessageEmailLogin,
   errorMessageEmailRegister,
   errorMessageLogout,
   keychain,
+  // errors,
 })
 
 export default authReducer

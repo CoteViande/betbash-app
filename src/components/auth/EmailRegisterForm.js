@@ -8,7 +8,7 @@ import TextFieldWithError from 'BetBash/src/components/general/md-textfield/Text
 import * as validator from 'BetBash/src/utils/inputValidator'
 import btnStates from 'BetBash/src/components/general/awesome-button/buttonStates'
 
-import { registerWithEmail } from 'BetBash/src/actions/authActions'
+import { registerWithEmail } from 'BetBash/src/actions/auth.actions'
 
 const validate = (values, props) => {
   let errors = {}

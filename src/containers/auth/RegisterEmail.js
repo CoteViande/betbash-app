@@ -4,7 +4,7 @@ import { connect, dispatch } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { formValueSelector } from 'redux-form'
 
-import { loginWithEmail } from 'BetBash/src/actions/authActions'
+import { loginWithEmail } from 'BetBash/src/actions/auth.actions'
 import EmailRegisterForm from 'BetBash/src/components/auth/EmailRegisterForm'
 
 import styles from 'BetBash/src/assets/styles/main'

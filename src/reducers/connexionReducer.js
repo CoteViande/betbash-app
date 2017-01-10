@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 const isConnected = (state = false, action) => {
   switch (action.type) {
     case 'CONNEXION_CHANGE':
-      return action.isConnected
+      return action.payload.isConnected
     default:
       return state
   }
@@ -12,7 +12,7 @@ const isConnected = (state = false, action) => {
 const connexionType = (state = null, action) => {
   switch (action.type) {
     case 'CONNEXION_CHANGE':
-      return action.connexionType
+      return action.payload.connexionType
     default:
       return state
   }
@@ -21,7 +21,7 @@ const connexionType = (state = null, action) => {
 const isConnectedTest = (state = false, action) => {
   switch (action.type) {
     case 'CONNEXION_CHANGE_TEST':
-      return action.isConnected
+      return action.payload.isConnected
     default:
       return state
   }
@@ -30,7 +30,7 @@ const isConnectedTest = (state = false, action) => {
 const isServerConnected = (state = false, action) => {
   switch(action.type) {
     case 'SERVER_CONNEXION_CHANGE':
-      return action.isServerConnected
+      return action.payload.isServerConnected
     default:
       return state
   }

@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 
-const initializing = (state = true, action) => {
+const finished = (state = false, action) => {
   switch (action.type) {
     case 'INITIALIZATION_COMPLETE':
-      return false
+      return true
     default:
       return state
   }
 }
 
 const initializationReducer = combineReducers({
-  initializing,
+  finished,
 })
 
 export default initializationReducer

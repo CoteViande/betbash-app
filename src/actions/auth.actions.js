@@ -22,23 +22,30 @@ export function logoutFromFacebook() {
   };
 }
 
-export function authenticateWithFacebookToken(accessToken) {
-  return {
-    [RSAA]: {
-      types: [
-        'FACEBOOK_AUTHENTICATE_REQUEST',
-        'FACEBOOK_AUTHENTICATE_SUCCESS',
-        'FACEBOOK_AUTHENTICATE_FAILURE'
-      ],
-      endpoint: endpoint.facebookAuthenticateUrl(accessToken),
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json'
-      }
+export const authenticateWithFacebookToken = (accessToken, tokenRefresh) => ({
+  [RSAA]: {
+    types: [
+      'FACEBOOK_AUTHENTICATE_REQUEST',
+      {
+        type: 'FACEBOOK_AUTHENTICATE_SUCCESS',
+        meta: {
+          tokenRefresh,
+          analytics: {
+            types: ['event', 'identify'],
+            payload: {tokenRefresh}
+          }
+        }
+      },
+      'FACEBOOK_AUTHENTICATE_FAILURE'
+    ],
+    endpoint: endpoint.facebookAuthenticateUrl(accessToken),
+    method: 'GET',
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/json'
     }
   }
-}
+})
 
 export function loginWithEmail(email, password, tokenRefresh) {
   return {
@@ -48,15 +55,19 @@ export function loginWithEmail(email, password, tokenRefresh) {
         {
           type: 'EMAIL_LOGIN_SUCCESS',
           payload: (action, state, res) => getJSON(res).then(
-            json => {
-              return {
-                ...json,
-                email,
-                password,
-              }
-            }
+            json => ({
+              ...json,
+              email,
+              password,
+            })
           ),
-          meta: { tokenRefresh }
+          meta: {
+            tokenRefresh,
+            analytics: {
+              types: ['event', 'identify'],
+              payload: {tokenRefresh}
+            }
+          }
         },
         'EMAIL_LOGIN_FAILURE'
       ],
@@ -76,7 +87,14 @@ export function registerWithEmail(email, password) {
     [RSAA]: {
       types: [
         'EMAIL_REGISTER_REQUEST',
-        'EMAIL_REGISTER_SUCCESS',
+        {
+          type: 'EMAIL_REGISTER_SUCCESS',
+          meta: {
+            analytics: {
+              types: ['event']
+            }
+          }
+        },
         'EMAIL_REGISTER_FAILURE'
       ],
       endpoint: endpoint.userUrl,
@@ -95,7 +113,14 @@ export function logoutFromApp(accessToken) {
     [RSAA]: {
       types: [
         'APP_LOGOUT_REQUEST',
-        'APP_LOGOUT_SUCCESS',
+        {
+          type: 'APP_LOGOUT_SUCCESS',
+          meta: {
+            analytics: {
+              types: ['event']
+            }
+          }
+        },
         'APP_LOGOUT_FAILURE'
       ],
       endpoint: endpoint.userLogoutUrl(accessToken),
@@ -107,6 +132,15 @@ export function logoutFromApp(accessToken) {
     }
   }
 }
+
+export const forcedLogoutFromApp = () => ({ // TODO SECURITY use userId to delete his token in api
+  type: 'FORCED_APP_LOGOUT',
+  meta: {
+    analytics: {
+      types: ['event']
+    }
+  }
+})
 
 // TODO create a KeychainActions.js file
 export function saveCredentialsKeychain() {

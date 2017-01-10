@@ -2,26 +2,21 @@
 
 ## Current
 
-* Analytics
-  * https://github.com/rangle/redux-segment : info about type of events
-
-```  
-For Android, make sure you have the following SDK packages installed in the Android SDK Manager:
-
-Google Repository
-Google Play services
-Google APIs (Atom) system image
-For more details about the native SDKs, consult the manual installation guide.
-```
+* Track:
+  - Loading length
+  - Users: figure out a solution
+  - Errors:
+    + http://stackoverflow.com/questions/30918349/how-to-catch-uncaught-exception-globally-in-react-native
+    + https://github.com/facebook/react-native/issues/1665
 
 ## Quickies
 
 * check for username already exists case (async maybe?)
 * yarn: https://github.com/yarnpkg/yarn/
-* make a utility out of refreshToken (should not be in store i feel)
 
 ## Projects
 
+* Crashlytics: https://medium.com/delivery-com-engineering/add-crashlytics-to-your-react-native-ios-app-69a983a9062a#.pl3wyhczn
 * refactor errors in state
 * Tests!!!
 * stack offline online-required-actions to do it later
@@ -30,4 +25,4 @@ For more details about the native SDKs, consult the manual installation guide.
 
 ## Errors
 
-* loopback deprecated loopback#context middleware is deprecated. See https://docs.strongloop.com/display/APIC/Using%20current%20context for more details. node_modules/loopback/server/middleware/rest.js:60:32
+* API: loopback deprecated loopback#context middleware is deprecated. See https://docs.strongloop.com/display/APIC/Using%20current%20context for more details. node_modules/loopback/server/middleware/rest.js:60:32

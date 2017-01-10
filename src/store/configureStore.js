@@ -16,7 +16,6 @@ import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 const configureStore = (initialState) => {
   const middlewares = [
-    thunk,
     apiMiddleware,
     apiErrorMiddleware,
     keychainMiddleware,
@@ -35,10 +34,11 @@ const configureStore = (initialState) => {
   )
 
   const persistConfig = {
-    blacklist: ['init', 'form', 'connexion'],
+    blacklist: ['init', 'form', 'connexion', 'initialization'],
     storage: AsyncStorage,
   }
-  persistStore(store, persistConfig, initializationScript(store))//.purge()
+  persistStore(store, persistConfig, initializationScript(store.getState(), store.dispatch))
+  // .purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers

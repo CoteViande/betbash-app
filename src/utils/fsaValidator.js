@@ -1,5 +1,8 @@
+import isPlainObject from 'lodash.isplainobject'
+
 const isFSA = action => (
-  (typeof action.type === 'string' || typeof action.type === 'symbol')
+  isPlainObject(action)
+  && (typeof action.type === 'string' || typeof action.type === 'symbol')
   && Object.keys(action).every(isValidKey)
 )
 
@@ -28,7 +31,6 @@ const isAnalyticsFSA = action => (
   isFSA(action)
   && action.meta
   && action.meta.hasOwnProperty('analytics')
-  && isFSA(action.meta.analytics)
 )
 
 const isValidKey = key => ['type', 'payload', 'error', 'meta'].indexOf(key) > -1
