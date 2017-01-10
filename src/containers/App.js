@@ -72,13 +72,13 @@ const scenes = Actions.create(
 class App extends React.Component {
   render() {
     const {
-      initializing,
+      initializationFinished,
       isConnected,
       isServerConnected,
       pingServer,
     } = this.props
 
-    if (initializing) {
+    if (!initializationFinished) {
       return (
         <View style={{ flexGrow:1, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
@@ -103,7 +103,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state, { params }) => {
   return {
-    initializing: state.initialization.initializationializing,
+    initializationFinished: state.initialization.finished,
     isConnected: state.connexion.isConnected,
     isServerConnected: state.connexion.isServerConnected,
   };

@@ -3,7 +3,8 @@ import {
   connectedToInternet,
   connectedToServer,
   tokenRefreshed,
-} from 'BetBash/src/actions/initializationActions'
+  initializationCleanup,
+} from 'BetBash/src/actions/initialization.actions'
 
 import { isConnectedToTheInternet, isConnectedToTheServer } from 'BetBash/src/utils/connexionCheck'
 import { refreshUserToken } from 'BetBash/src/utils/refreshUserToken'
@@ -11,6 +12,8 @@ import { refreshUserToken } from 'BetBash/src/utils/refreshUserToken'
 
 export const initializationScript = (state, dispatch) => {
   return async function initialization() {
+    dispatch(initializationCleanup())
+
     initialCheckUp: try {
       let isConnectedInternet = await isConnectedToTheInternet(state, dispatch)
       if (isConnectedInternet) { dispatch(connectedToInternet()) } else { break initialCheckUp }

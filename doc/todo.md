@@ -17,7 +17,6 @@
 ## Projects
 
 * Crashlytics: https://medium.com/delivery-com-engineering/add-crashlytics-to-your-react-native-ios-app-69a983a9062a#.pl3wyhczn
-* refactor errors in state
 * Tests!!!
 * stack offline online-required-actions to do it later
 * polling processes in react?

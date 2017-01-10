@@ -10,7 +10,7 @@ import keychainMiddleware from 'BetBash/src/middlewares/keychainMiddleware'
 import logoutMiddleware from 'BetBash/src/middlewares/logoutMiddleware'
 import dismissKeyboardMiddleware from 'BetBash/src/middlewares/dismissKeyboardMiddleware'
 import analyticsMiddleware from 'BetBash/src/middlewares/analyticsMiddleware'
-import reducer from 'BetBash/src/reducers/rootReducer'
+import reducer from 'BetBash/src/reducers/root.reducer'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 
@@ -34,11 +34,11 @@ const configureStore = (initialState) => {
   )
 
   const persistConfig = {
-    blacklist: ['init', 'form', 'connexion', 'initialization'],
+    blacklist: ['init', 'form', 'connexion', 'initialization', 'auth.isLoading'],
     storage: AsyncStorage,
   }
   persistStore(store, persistConfig, initializationScript(store.getState(), store.dispatch))
-  // .purge()
+  .purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers

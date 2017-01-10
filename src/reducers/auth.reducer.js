@@ -31,51 +31,6 @@ const user = (state = initLogger, action) => {
   }
 }
 
-const isLoading = (state = false, action) => {
-  switch (action.type) {
-    case 'FACEBOOK_AUTHENTICATE_REQUEST':
-    case 'EMAIL_LOGIN_REQUEST':
-    case 'EMAIL_REGISTER_REQUEST':
-    case 'EMAIL_REGISTER_SUCCESS':
-    case 'APP_LOGOUT_REQUEST':
-      return true
-    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-    case 'FACEBOOK_AUTHENTICATE_FAILURE':
-    case 'EMAIL_LOGIN_SUCCESS':
-    case 'EMAIL_LOGIN_FAILURE':
-    case 'EMAIL_REGISTER_FAILURE':
-    case 'APP_LOGOUT_SUCCESS':
-    case 'FORCED_APP_LOGOUT':
-    case 'APP_LOGOUT_FAILURE':
-      return false
-    default:
-      return state
-  }
-}
-
-// const errors = (state = null, action) => {
-//   switch (action.type) {
-//     case 'FACEBOOK_TOKEN_SUCCESS':
-//       return null
-//     case 'FACEBOOK_TOKEN_FAILURE':
-//       return {
-//         ...state,
-//         facebookAuth: action.message
-//       }
-//     case 'FACEBOOK_AUTHENTICATE_FAILURE':
-//       return {
-//         ...state,
-//         facebookAuth: action.payload.message
-//       }
-//     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
-//     case 'EMAIL_REGISTER_SUCCESS':
-//     case 'EMAIL_LOGIN_SUCCESS':
-//       return null
-//     default:
-//       return state
-//   }
-// }
-
 const errorMessageFBAuth = (state = null, action) => {
   switch (action.type) {
     case 'FACEBOOK_TOKEN_SUCCESS':
@@ -191,6 +146,29 @@ const keychain = (state = {
   }
 }
 
+const isLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'FACEBOOK_AUTHENTICATE_REQUEST':
+    case 'EMAIL_LOGIN_REQUEST':
+    case 'EMAIL_REGISTER_REQUEST':
+    case 'EMAIL_REGISTER_SUCCESS':
+    case 'APP_LOGOUT_REQUEST':
+      return true
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+    case 'FACEBOOK_AUTHENTICATE_FAILURE':
+    case 'EMAIL_LOGIN_SUCCESS':
+    case 'EMAIL_LOGIN_FAILURE':
+    case 'EMAIL_REGISTER_FAILURE':
+    case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
+    case 'APP_LOGOUT_FAILURE':
+    case 'INITIALIZATION_CLEANUP':
+      return false
+    default:
+      return state
+  }
+}
+
 const authReducer = combineReducers({
   user,
   isLoading,
@@ -201,7 +179,6 @@ const authReducer = combineReducers({
   errorMessageEmailRegister,
   errorMessageLogout,
   keychain,
-  // errors,
 })
 
 export default authReducer
