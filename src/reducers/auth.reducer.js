@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux'
 
-const initLogger = {
+const user = (state = {
   id: null,
   isLoggedIn: false,
   accessToken: null,
-}
-const user = (state = initLogger, action) => {
+}, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'EMAIL_LOGIN_SUCCESS':
@@ -92,10 +91,9 @@ const authenticatedOnFacebook = (state = false, action) => {
       return true
     case 'FACEBOOK_TOKEN_FAILURE':
     case 'FACEBOOK_LOGOUT':
-      return false
     case 'APP_LOGOUT_SUCCESS':
     case 'FORCED_APP_LOGOUT':
-    case 'EMAIL_REGISTER_SUCCESS':
+    case 'EMAIL_REGISTER_SUCCESS': // FACEBOOK_AUTHENTICATE_FAILURE??
       return false
     default:
       return state
@@ -116,31 +114,27 @@ const authenticatedOnEmail = (state = false, action) => {
   }
 }
 
-const keychain = (state = {
-  saved: false,
-  error: null
-}, action) => {
+const savedInKeychain = (state = false, action) => {
   switch (action.type) {
     case 'KEYCHAIN_CREDENTIALS_SAVE':
-      return {
-        saved: true,
-        error: null
-      }
-    case 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE':
-      return {
-        saved: false,
-        error: action.message
-      }
-    case 'KEYCHAIN_CREDENTIALS_REMOVE':
-      return {
-        saved: false,
-        error: null
-      }
     case 'KEYCHAIN_CREDENTIALS_REMOVE_FAILURE':
-      return {
-        saved: true,
-        error: action.message
-      }
+      return true
+    case 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE':
+    case 'KEYCHAIN_CREDENTIALS_REMOVE':
+      return false
+    default:
+      return state
+  }
+}
+
+const errorInKeychain = (state = null, action) => {
+  switch (action.type) {
+    case 'KEYCHAIN_CREDENTIALS_SAVE':
+    case 'KEYCHAIN_CREDENTIALS_REMOVE':
+      return null
+    case 'KEYCHAIN_CREDENTIALS_SAVE_FAILURE':
+    case 'KEYCHAIN_CREDENTIALS_REMOVE_FAILURE':
+      return action.message
     default:
       return state
   }
@@ -178,7 +172,10 @@ const authReducer = combineReducers({
   errorMessageEmailLogin,
   errorMessageEmailRegister,
   errorMessageLogout,
-  keychain,
+  keychain: combineReducers({
+    saved: savedInKeychain,
+    error: errorInKeychain,
+  }),
 })
 
 export default authReducer

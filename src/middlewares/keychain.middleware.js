@@ -2,7 +2,6 @@ import Keychain from 'react-native-keychain'
 
 import {
   saveCredentialsKeychain, saveCredentialsKeychainFailure,
-  getCredentialsKeychain, getCredentialsKeychainFailure,
   removeCredentialsKeychain, removeCredentialsKeychainFailure,
 } from 'BetBash/src/actions/auth.actions'
 
@@ -10,7 +9,7 @@ const keychainMiddleware = store => next => action => {
   let dispatch = store.dispatch
   let state = store.getState()
 
-  if (action.type === 'EMAIL_LOGIN_SUCCESS' && !action.meta.tokenRefresh) {
+  if (action.type === 'EMAIL_LOGIN_SUCCESS' && action.meta && !action.meta.tokenRefresh) {
     Keychain
       .setGenericPassword(action.payload.email, action.payload.password)
       .then(() => {

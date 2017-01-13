@@ -9,12 +9,11 @@ import { authenticateWithFacebookToken, loginWithEmail } from 'BetBash/src/actio
 
 export const refreshUserToken = (state, dispatch) => {
   return new Promise((resolve, reject) => {
-    if (!state.auth.user.isLoggedIn) {
-      resolve(false)
-      return
-    }
-    if (!isTokenTooOld(state.auth.user.accessToken)) {
-      resolve(true)
+    if (
+      !state.auth.user.isLoggedIn
+      || !isTokenTooOld(state.auth.user.accessToken)
+    ) {
+      resolve(state.auth.user.isLoggedIn)
       return
     }
 

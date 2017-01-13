@@ -31,5 +31,8 @@
     "jest": "^18.1.0",
     "remote-redux-devtools": "^0.5.4",
     "remotedev-server": "^0.1.8"
+  },
+  "jest": {
+    "verbose": true
   }
 }
