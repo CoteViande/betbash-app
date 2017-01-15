@@ -1,8 +1,10 @@
 import { NetInfo } from 'react-native'
 
-import timeout from 'BetBash/src/utils/timeout'
-import * as endpoint from 'BetBash/src/constants/apiEndpoints'
-import { pingServer, connexionChange, connexionChangeTest, serverResponseChange } from 'BetBash/src/actions/connexion.actions'
+import {
+  pingServer,
+  connexionChange,
+  connexionChangeTest,
+} from 'BetBash/src/actions/connexion.actions'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 export const isConnectedToTheInternet = (state, dispatch) => {
@@ -11,9 +13,12 @@ export const isConnectedToTheInternet = (state, dispatch) => {
       .then((reach) => {
         let connected = isConnected(reach)
         dispatch(connexionChange(connected, reach))
-        NetInfo.addEventListener('connectivityChange', handleConnectivityChange(state.connexion.isConnected, dispatch));
-        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(dispatch));
-        resolve(connected);
+        NetInfo.addEventListener(
+          'connectivityChange',
+          handleConnectivityChange(state.connexion.isConnected, dispatch)
+        )
+        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(dispatch))
+        resolve(connected)
       })
       .catch((error) => {
         reject(error)
@@ -41,7 +46,7 @@ const handleConnectivityChange = (state, dispatch) => reach => {
   }
 }
 
-const handlerTest = (store) => (isConnected) => {
+const handlerTest = store => isConnected => {
   let connectedStr = isConnected ? 'online' : 'offline'
   console.warn('Device is now ' + connectedStr )
   store.dispatch(connexionChangeTest(isConnected))
@@ -54,7 +59,7 @@ const isConnected = reach => {
     case 'DUMMY':
     case 'UKNOWN':
       connected = false
-      break;
+      break
     case 'WIFI':
     case 'CELL':
     case 'MOBILE':
@@ -66,10 +71,10 @@ const isConnected = reach => {
     case 'MOBILE_SUPL':
     case 'MOBILE_DUN':
       connected = true
-      break;
+      break
     default:
       connected = true
-      break;
+      break
   }
   return connected
 }
