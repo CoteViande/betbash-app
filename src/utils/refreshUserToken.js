@@ -6,7 +6,7 @@ import {
   authenticateWithFacebookToken,
   loginWithEmail,
 } from 'BetBash/src/actions/auth.actions'
-
+const shouldRefreshTime = 36
 
 export const refreshUserToken = (state, dispatch, force = false) => {
   return new Promise(async (resolve, reject) => {
@@ -56,6 +56,6 @@ const shouldAttemptToRefreshToken = (state, force) => (
 
 const isTokenTooOld = ({ ttl, created }) => (
   moment(created).add(ttl, 'seconds')
-    .subtract(36, 'hours')
+    .subtract(shouldRefreshTime, 'hours')
     .isBefore(moment())
 )

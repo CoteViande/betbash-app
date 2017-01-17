@@ -29,10 +29,9 @@ export const initializationScript = store => async (err, restoredState) => {
     if (userToken) { dispatch(tokenRefreshed()) } else { break initialCheckUp }
 
     let isProfileComplete = await checkIfProfileComplete(store)
-    console.log('initScript.js // isProfileComplete: ', isProfileComplete)
     if (isProfileComplete) { dispatch(profileCompleted()) } else { break initialCheckUp }
   } catch (error) {
-    console.log('intializingScript.js: ', error)
+    console.log('intializingScript.js // error happened: ', error)
   }
   dispatch(initializationComplete())
 }

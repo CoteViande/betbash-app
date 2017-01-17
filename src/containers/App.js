@@ -22,6 +22,14 @@ const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 6
 
 const RouterWithRedux = connect()(Router);
 
+const switchRules = props => (
+  props.isLoggedIn
+    ? props.isUserProfileComplete
+      ? "BetBash"
+      : "CompleteProfile"
+    : "BetBashAuth"
+)
+
 const scenes = Actions.create(
   <Scene
     key="LoginAccessControl" hideNavBar={true} tabs={true}
@@ -31,13 +39,7 @@ const scenes = Actions.create(
         isUserProfileComplete: state.initialization.isUserProfileComplete,
       })
     )(Switch)}
-    selector={ props => (
-      props.isLoggedIn
-        ? props.isUserProfileComplete
-          ? "BetBash"
-          : "CompleteProfile"
-        : "BetBashAuth"
-    )}
+    selector={ switchRules }
     unmountScenes={true}
   >
 

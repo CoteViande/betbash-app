@@ -7,7 +7,6 @@ const apiErrorMiddleware = store => next =>  async action => {
   if (!isApiFSA(action)) {
     return next(action)
   }
-  console.log('ACTION API FSA PAYLOAD: ', action.type)
 
   let state = store.getState()
   let dispatch = store.dispatch
@@ -19,37 +18,7 @@ const apiErrorMiddleware = store => next =>  async action => {
 
     if (error.name === 'ApiError') { // FIXME find better test
       if (!state.connexion.isConnectedServer) { dispatch(serverResponseChange(true)) }
-      console.log('apiError.middleware // ERROR POPPED: ', error)
-      const apiError = error.response.error
-      const { statusCode, code, message } = apiError
-      switch (statusCode) {
-        case 404:
-          console.log('apiError.middleware // 404 DETECTED: ', apiError)
-        break
-        case 500:
-          console.log('apiError.middleware // 500 DETECTED: ', apiError)
-        break
-        default:
-          switch(code) {
-            case 'LOGIN_FAILED':
-            case 'USERNAME_EMAIL_REQUIRED':
-            if (state.auth.user.isLoggedIn) {
-              dispatch(forcedLogoutFromApp())
-            }
-            break
-            case 'AUTHORIZATION_REQUIRED':
-            const force = true
-            let userToken = await refreshUserToken(state, dispatch, force)
-            break
-            default:
-            if (apiError.message === 'could not find accessToken') {
-              let userToken = await refreshUserToken(state, dispatch)
-            } // BACKEND better error with code
-            console.log('apiError.middleware // UNDEALT WITH API ERROR: ', apiError, 'code: ', code)
-            break
-          }
-        break
-      }
+      dealWithApiError(error.response.error, dispatch, state)
     }
 
     if (error.name === 'FetchError') {
@@ -65,6 +34,45 @@ const apiErrorMiddleware = store => next =>  async action => {
   }
 
   return next(action)
+}
+
+const dealWithApiError = (apiError, dispatch, state) => {
+  console.log('apiError.middleware // ERROR POPPED: ', error)
+  const { statusCode, code, message } = apiError
+  switch (statusCode) {
+    case 404:
+      dealWithError404(apiError)
+    break
+    case 500:
+      dealWithError500(apiError)
+    break
+    default:
+      switch(code) {
+        case 'LOGIN_FAILED':
+        case 'USERNAME_EMAIL_REQUIRED':
+          dealWithFailedLogin(state.auth.user.isLoggedIn, dispatch)
+        break
+        case 'AUTHORIZATION_REQUIRED':
+          const force = true
+          let userToken = await refreshUserToken(state, dispatch, force)
+        break
+        default:
+          if (message === 'could not find accessToken') {
+            let userToken = await refreshUserToken(state, dispatch)
+          } // BACKEND better error with code
+          console.log('apiError.middleware // UNDEALT WITH API ERROR: ', apiError, 'code: ', code)
+        break
+      }
+    break
+  }
+}
+
+const dealWithError404 = (apiError) => console.log('apiError.middleware // 404 DETECTED: ', apiError)
+const dealWithError500 = (apiError) => console.log('apiError.middleware // 500 DETECTED: ', apiError)
+const dealWithFailedLogin = (isLoggedIn, dispatch) => {
+  if (isLoggedIn) {
+    dispatch(forcedLogoutFromApp())
+  }
 }
 
 export default apiErrorMiddleware

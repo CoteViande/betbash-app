@@ -25,5 +25,3 @@
 * BACKEND log history of requests
 
 ## Errors
-
-* API: loopback deprecated loopback#context middleware is deprecated. See https://docs.strongloop.com/display/APIC/Using%20current%20context for more details. node_modules/loopback/server/middleware/rest.js:60:32
