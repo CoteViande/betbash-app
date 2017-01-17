@@ -36,7 +36,7 @@ export const authenticateWithFacebookToken = (accessToken, tokenRefresh) => ({
     method: 'GET',
     headers: {
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   }
 })
@@ -69,7 +69,7 @@ export const loginWithEmail = (email, password, tokenRefresh) => ({
     body: JSON.stringify({ email: email, password: password }),
     headers: {
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   }
 })
@@ -93,12 +93,12 @@ export const registerWithEmail = (email, password) => ({
     body: JSON.stringify({ email: email, password: password }),
     headers: {
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   }
 })
 
-export const logoutFromApp = accessToken => ({
+export const logoutFromApp = () => ({
   [RSAA]: {
     types: [
       'APP_LOGOUT_REQUEST',
@@ -112,11 +112,11 @@ export const logoutFromApp = accessToken => ({
       },
       'APP_LOGOUT_FAILURE'
     ],
-    endpoint: endpoint.userLogoutUrl(accessToken),
+    endpoint: endpoint.userLogoutUrl,
     method: 'POST',
     headers: {
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   }
 })
@@ -126,6 +126,42 @@ export const forcedLogoutFromApp = () => ({ // TODO SECURITY use userId to delet
   meta: {
     analytics: {
       types: ['event']
+    }
+  }
+})
+
+export const getFullUser = () => ({
+  [RSAA]: {
+    types: [
+      'GET_FULL_USER_REQUEST',
+      'GET_FULL_USER_SUCCESS',
+      'GET_FULL_USER_FAILURE'
+    ],
+    endpoint: endpoint.fullUserByIdUrl,
+    method: 'GET',
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/json',
+    }
+  }
+})
+
+export const saveUserProfile = (firstName, lastName) => ({
+  [RSAA]: {
+    types: [
+      'SAVE_USER_PROFILE_REQUEST',
+      'SAVE_USER_PROFILE_SUCCESS',
+      'SAVE_USER_PROFILE_FAILURE'
+    ],
+    endpoint: endpoint.personalDetailsByUserIdUrl,
+    method: 'POST',
+    body: JSON.stringify({
+      "first_name": firstName,
+      "last_name": lastName,
+    }),
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/json',
     }
   }
 })

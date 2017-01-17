@@ -2,6 +2,7 @@
 
 ## Current
 
+* Ask for full name if is logged in and first_name, last_name not in state (1) nor db (2)
 * Track:
   - Loading length
   - Users: figure out a solution
@@ -21,6 +22,7 @@
 * stack offline online-required-actions to do it later
 * polling processes in react?
 * i18n
+* BACKEND log history of requests
 
 ## Errors
 

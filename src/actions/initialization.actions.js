@@ -2,6 +2,10 @@ export const initializationComplete = () => ({
   type: 'INITIALIZATION_COMPLETE',
 })
 
+export const profileCompleted = () => ({
+  type: 'INITIALIZATION_PROFILE_COMPLETE',
+})
+
 export const connectedToInternet = () => ({
   type: 'INITIALIZATION_CONNECTED_TO_INTERNET',
 })

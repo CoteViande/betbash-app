@@ -17,3 +17,11 @@ export const password = (inputName, values, errors) => {
 
   return errors
 }
+
+export const notNull = (inputName, values, errors) => {
+  if (!values[inputName]) {
+    errors[inputName] = 'Required'
+  }
+
+  return errors
+}

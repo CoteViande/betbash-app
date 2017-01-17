@@ -8,48 +8,45 @@ import {
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 export const isConnectedToTheInternet = (state, dispatch) => {
-  return new Promise((resolve, reject) => {
-    NetInfo.fetch()
-      .then((reach) => {
-        let connected = isConnected(reach)
-        dispatch(connexionChange(connected, reach))
-        NetInfo.addEventListener(
-          'connectivityChange',
-          handleConnectivityChange(state.connexion.isConnected, dispatch)
-        )
-        NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(dispatch))
-        resolve(connected)
-      })
-      .catch((error) => {
-        reject(error)
-      })
+  return new Promise(async (resolve, reject) => {
+    try {
+      let reach = await NetInfo.fetch()
+      let connected = await isConnected(reach)
+      dispatch(connexionChange(connected, reach))
+
+      NetInfo.addEventListener('connectivityChange', handleConnectivityChange(state.connexion.isConnected, dispatch))
+      NetInfo.isConnected.addEventListener('connectivityChangeTest', handlerTest(dispatch))
+
+      resolve(connected)
+    } catch (error) {
+      reject(error)
+    }
   })
 }
 
 export const isConnectedToTheServer = (state, dispatch) => {
-  return new Promise((resolve, reject) => {
-    dispatch(pingServer())
-      .then((res) => {
-        resolve(!res.error)
-      })
-      .catch((err) => {
-        reject(err)
-      })
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await dispatch(pingServer())
+      resolve(!response.error)
+    } catch (error) {
+      reject(error)
+    }
   })
 }
 
 const handleConnectivityChange = (state, dispatch) => reach => {
   let connected = isConnected(reach)
   dispatch(connexionChange(connected, reach))
-  if (connected && !state.initializationialization.finished) {
-    initializationScript(state, dispatch)
+  if (connected && !state.initialization.isFinished) {
+    // initialization(state, dispatch)
   }
 }
 
-const handlerTest = store => isConnected => {
+const handlerTest = dispatch => isConnected => {
   let connectedStr = isConnected ? 'online' : 'offline'
   console.warn('Device is now ' + connectedStr )
-  store.dispatch(connexionChangeTest(isConnected))
+  dispatch(connexionChangeTest(isConnected))
 }
 
 const isConnected = reach => {

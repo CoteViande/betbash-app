@@ -7,7 +7,7 @@ const analyticsMiddleware = store => next => action => {
   tracker.setSamplingRate(100)
 
   if (isFSA(action) && action.error) {
-    tracker.trackException(action.payload.message, false)
+    tracker.trackException(action.payload && action.payload.message, false)
   }
 
   if (!isAnalyticsFSA(action) && !isTrackedScene(action)) {

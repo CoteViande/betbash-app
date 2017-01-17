@@ -1,12 +1,10 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { connect, dispatch } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
+import { View } from 'react-native'
+import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 
 import { loginWithEmail } from 'BetBash/src/actions/auth.actions'
 import EmailRegisterForm from 'BetBash/src/components/auth/EmailRegisterForm'
-
 import styles from 'BetBash/src/assets/styles/main'
 
 const RegisterEmail = React.createClass({
@@ -23,36 +21,29 @@ const RegisterEmail = React.createClass({
 
     return(
       <View style={styles.navBarContainer}>
-
-        <View style={styles.box}>
-          <EmailRegisterForm
-            registerError={registerError}
-            loginSuccess={loginSuccess}
-            isLoading={isLoading}
-          />
-        </View>
-
+        <EmailRegisterForm
+          registerError={ registerError }
+          loginSuccess={ loginSuccess }
+          isLoading={ isLoading }
+        />
       </View>
-    );
+    )
   }
-});
+})
 
 const selector = formValueSelector('emailRegister')
 
-const mapStateToProps = (state) => {
-  return {
-    registerError: state.auth.errorMessageEmailRegister,
-    loginSuccess: state.auth.user.isLoggedIn,
-    isLoading: state.auth.isLoading,
-    registered: state.auth.authenticatedOnEmail,
-    email: selector(state, 'email'),
-    password: selector(state, 'password'),
-  };
-};
+const mapStateToProps = state => ({
+  registerError: state.auth.error.emailRegister,
+  loginSuccess: state.auth.user.isLoggedIn,
+  isLoading: state.auth.isLoading,
+  registered: state.auth.authenticatedOnEmail,
+  email: selector(state, 'email'),
+  password: selector(state, 'password'),
+})
+
+const mapDispatchToProps = { loginWithEmail }
 
 export default connect(
-  mapStateToProps,
-  {
-    loginWithEmail,
-  }
+  mapStateToProps, mapDispatchToProps
 )(RegisterEmail);

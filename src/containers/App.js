@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import AuthMain from 'BetBash/src/containers/auth/AuthMain'
 import RegisterEmail from 'BetBash/src/containers/auth/RegisterEmail'
 import LoginEmail from 'BetBash/src/containers/auth/LoginEmail'
+import CompleteProfile from 'BetBash/src/containers/auth/CompleteProfile'
 import Home from 'BetBash/src/containers/main/Home'
 import Games from 'BetBash/src/containers/main/Games'
 import Profile from 'BetBash/src/containers/main/Profile'
@@ -24,14 +25,19 @@ const RouterWithRedux = connect()(Router);
 const scenes = Actions.create(
   <Scene
     key="LoginAccessControl" hideNavBar={true} tabs={true}
-    component={
-      connect(
-        state => ({ isLoggedIn: state.auth.user.isLoggedIn })
-      )(Switch)
-    }
-    selector={
-      props => props.isLoggedIn ? "BetBash" : "BetBashAuth"
-    }
+    component={connect(
+      state => ({
+        isLoggedIn: state.auth.user.isLoggedIn,
+        isUserProfileComplete: state.initialization.isUserProfileComplete,
+      })
+    )(Switch)}
+    selector={ props => (
+      props.isLoggedIn
+        ? props.isUserProfileComplete
+          ? "BetBash"
+          : "CompleteProfile"
+        : "BetBashAuth"
+    )}
     unmountScenes={true}
   >
 
@@ -51,6 +57,10 @@ const scenes = Actions.create(
         backTitle="Register"
       />
     </Scene>
+
+    <Scene
+      key="CompleteProfile" component={CompleteProfile} title="Hi! What's your name?" hideNavBar={false} navBar={BetBashNavbar} direction="horizontal"
+    />
 
     <Scene
       key="BetBash" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
@@ -103,7 +113,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state, { params }) => {
   return {
-    initializationFinished: state.initialization.finished,
+    initializationFinished: state.initialization.isFinished,
     isConnected: state.connexion.isConnected,
     isServerConnected: state.connexion.isServerConnected,
   };

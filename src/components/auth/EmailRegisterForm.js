@@ -3,6 +3,7 @@ import { TouchableHighlight, View, Text } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 
 import styles from 'BetBash/src/assets/styles/main'
+import * as duration from 'BetBash/src/constants/animations'
 import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
 import TextFieldWithError from 'BetBash/src/components/general/md-textfield/TextFieldWithError'
 import * as validator from 'BetBash/src/utils/inputValidator'
@@ -30,32 +31,26 @@ const EmailRegisterForm = (props) => {
   }
 
   return (
-    <View>
+    <View style={[ styles.box, styles.thinBox ]}>
 
-      <View>
-        <Field name="email" type="email" component={TextFieldWithError} label="Email" />
-        <Field name="password" type="password" component={TextFieldWithError} label="Password" />
-      </View>
+      <Field name="email" type="email" component={TextFieldWithError} label="Email" />
+      <Field name="password" type="password" component={TextFieldWithError} label="Password" />
 
-      <View>
-        <Text style={styles.textError}>
-          { registerError }
-        </Text>
-      </View>
+      <Text style={styles.textError}>
+        { registerError }
+      </Text>
 
-      <View>
-        <AwesomeButton
-          backgroundStyle={ styles.loginButtonBackground }
-          labelStyle={ styles.loginButtonLabel }
-          transitionDuration={ 200 }
-          states={
-            btnStates(handleSubmit, 'Register', 'Registering', 'Registered!', 'Try again?')
-          }
-          buttonState={
-            buttonState(isLoading, loginSuccess, registerError)
-          }
-        />
-      </View>
+      <AwesomeButton
+        backgroundStyle={ styles.loginButtonBackground }
+        labelStyle={ styles.loginButtonLabel }
+        transitionDuration={ duration.halfBeat }
+        states={
+          btnStates(handleSubmit, 'Register', 'Registering', 'Registered!', 'Try again?')
+        }
+        buttonState={
+          buttonState(isLoading, loginSuccess, registerError)
+        }
+      />
 
     </View>
   );

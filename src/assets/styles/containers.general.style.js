@@ -14,6 +14,10 @@ const ContainerStyles = {
   box: {
     margin: 20,
   },
+  thinBox: {
+    marginLeft: 40,
+    marginRight: 40,
+  },
   navBarContainer: {
     paddingTop: 60,
   },

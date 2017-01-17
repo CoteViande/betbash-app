@@ -3,6 +3,7 @@ import { TouchableHighlight, View, Text } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 
 import styles from 'BetBash/src/assets/styles/main'
+import * as duration from 'BetBash/src/constants/animations'
 import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
 import TextFieldWithError from 'BetBash/src/components/general/md-textfield/TextFieldWithError'
 import * as validator from 'BetBash/src/utils/inputValidator'
@@ -30,35 +31,30 @@ const EmailLoginForm = (props) => {
   }
 
   return (
-    <View style={styles.navBarContainer}>
+    <View style={[ styles.box, styles.thinBox ]}>
+      <Field name="email" type="email" component={TextFieldWithError} label="Email" />
+      <Field name="password" type="password" component={TextFieldWithError} label="Password" />
 
-      <View style={styles.box}>
-        <Field name="email" type="email" component={TextFieldWithError} label="Email" />
-        <Field name="password" type="password" component={TextFieldWithError} label="Password" />
-
-        <Text style={styles.textError}>
-          { loginError }
-        </Text>
-        <AwesomeButton
-          backgroundStyle={styles.loginButtonBackground}
-          labelStyle={styles.loginButtonLabel}
-          transitionDuration={200}
-          states={btnStates(
-            handleSubmit,
-            'Log in',
-            'Logging in...',
-            'Logged in',
-            'Error. Try logging in again?'
-          )}
-          buttonState={buttonState(isLoading, loginSuccess, loginError)}
-        />
-      </View>
-
+      <Text style={styles.textError}>
+        { loginError }
+      </Text>
+      <AwesomeButton
+        backgroundStyle={styles.loginButtonBackground}
+        labelStyle={styles.loginButtonLabel}
+        transitionDuration={duration.halfBeat}
+        states={btnStates(
+          handleSubmit,
+          'Log in',
+          'Logging in...',
+          'Logged in',
+          'Error. Try logging in again?'
+        )}
+        buttonState={buttonState(isLoading, loginSuccess, loginError)}
+      />
     </View>
-  );
+  )
 }
 
-// Decorate the form component
 EmailLoginForm = reduxForm({
   form: 'emailLogin',
   validate: validate,
@@ -67,6 +63,6 @@ EmailLoginForm = reduxForm({
   onSubmit: (fields, dispatch) => {
     dispatch(loginWithEmail(fields.email, fields.password, false))
   }
-})(EmailLoginForm);
+})(EmailLoginForm)
 
-export default EmailLoginForm;
+export default EmailLoginForm

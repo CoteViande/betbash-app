@@ -7,6 +7,7 @@ const apiErrorMiddleware = store => next =>  async action => {
   if (!isApiFSA(action)) {
     return next(action)
   }
+  console.log('ACTION API FSA PAYLOAD: ', action.type)
 
   let state = store.getState()
   let dispatch = store.dispatch
@@ -18,20 +19,35 @@ const apiErrorMiddleware = store => next =>  async action => {
 
     if (error.name === 'ApiError') { // FIXME find better test
       if (!state.connexion.isConnectedServer) { dispatch(serverResponseChange(true)) }
-      console.log('Middleware object: ', error)
+      console.log('apiError.middleware // ERROR POPPED: ', error)
       const apiError = error.response.error
-      switch(apiError.code) {
-        case 'LOGIN_FAILED':
-        case 'USERNAME_EMAIL_REQUIRED':
-          if (state.user.isLoggedIn) {
-            dispatch(forcedLogoutFromApp())
-          }
+      const { statusCode, code, message } = apiError
+      switch (statusCode) {
+        case 404:
+          console.log('apiError.middleware // 404 DETECTED: ', apiError)
+        break
+        case 500:
+          console.log('apiError.middleware // 500 DETECTED: ', apiError)
         break
         default:
-          if (apiError.message === 'could not find accessToken') {
-            let userToken = await refreshUserToken(state, dispatch)
-          } // BACKEND better error with code
-          console.log('API Error: ', apiError, 'code: ', apiError.code)
+          switch(code) {
+            case 'LOGIN_FAILED':
+            case 'USERNAME_EMAIL_REQUIRED':
+            if (state.auth.user.isLoggedIn) {
+              dispatch(forcedLogoutFromApp())
+            }
+            break
+            case 'AUTHORIZATION_REQUIRED':
+            const force = true
+            let userToken = await refreshUserToken(state, dispatch, force)
+            break
+            default:
+            if (apiError.message === 'could not find accessToken') {
+              let userToken = await refreshUserToken(state, dispatch)
+            } // BACKEND better error with code
+            console.log('apiError.middleware // UNDEALT WITH API ERROR: ', apiError, 'code: ', code)
+            break
+          }
         break
       }
     }
@@ -45,7 +61,7 @@ const apiErrorMiddleware = store => next =>  async action => {
     if (!state.connexion.isConnectedServer) {
       dispatch(serverResponseChange(true))
     }
-    let userToken = refreshUserToken(state, dispatch)
+    let userToken = await refreshUserToken(state, dispatch)
   }
 
   return next(action)

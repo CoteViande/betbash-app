@@ -34,21 +34,21 @@ const configureStore = (initialState) => {
   )
 
   const persistConfig = {
-    blacklist: ['init', 'form', 'connexion', 'initialization', 'auth.isLoading'],
+    blacklist: ['init', 'form', 'connexion', 'initialization'],
     storage: AsyncStorage,
   }
-  persistStore(store, persistConfig, initializationScript(store.getState(), store.dispatch))
-  .purge()
+  persistStore(store, persistConfig, initializationScript(store))
+  // .purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers
     module.hot.accept(() => {
-      const nextRootReducer = require('../reducers/rootReducer').default;
-      store.replaceReducer(nextRootReducer);
+      const nextRootReducer = require('../reducers/root.reducer').default
+      store.replaceReducer(nextRootReducer)
     });
   }
 
-  return store;
+  return store
 }
 
 export default configureStore

@@ -34,7 +34,7 @@ let AuthMain = React.createClass({
 const mapStateToProps = (state, { params }) => {
   return {
     isLoggedIn: state.auth.user.isLoggedIn,
-    errorMessage: state.auth.errorMessageFBAuth,
+    errorMessage: state.auth.error.FBAuth,
     isLoading: state.auth.isLoading,
   };
 };

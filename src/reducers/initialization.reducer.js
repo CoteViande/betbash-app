@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-const finished = (state = false, action) => {
+const isFinished = (state = false, action) => {
   switch (action.type) {
     case 'INITIALIZATION_COMPLETE':
       return true
@@ -9,8 +9,25 @@ const finished = (state = false, action) => {
   }
 }
 
+const isUserProfileComplete = (state = false, action) => {
+  switch (action.type) {
+    case 'INITIALIZATION_PROFILE_COMPLETE':
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+      return true
+    case 'SAVE_USER_PROFILE_SUCCESS': // FIXME from other reducer action
+      let personalDetails = action.payload
+      return (personalDetails.first_name && personalDetails.last_name)
+    case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
+      return false
+    default:
+      return state
+  }
+}
+
 const initializationReducer = combineReducers({
-  finished,
+  isFinished,
+  isUserProfileComplete,
 })
 
 export default initializationReducer

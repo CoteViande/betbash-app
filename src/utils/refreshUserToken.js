@@ -2,55 +2,57 @@ import Keychain from 'react-native-keychain'
 import { AccessToken } from 'react-native-fbsdk'
 import moment from 'moment'
 
-import timeout from 'BetBash/src/utils/timeout'
-import * as endpoint from 'BetBash/src/constants/apiEndpoints'
-import { authenticateWithFacebookToken, loginWithEmail } from 'BetBash/src/actions/auth.actions'
+import {
+  authenticateWithFacebookToken,
+  loginWithEmail,
+} from 'BetBash/src/actions/auth.actions'
 
 
-export const refreshUserToken = (state, dispatch) => {
-  return new Promise((resolve, reject) => {
-    if (
-      !state.auth.user.isLoggedIn
-      || !isTokenTooOld(state.auth.user.accessToken)
-    ) {
+export const refreshUserToken = (state, dispatch, force = false) => {
+  return new Promise(async (resolve, reject) => {
+    if (!shouldAttemptToRefreshToken(state, force)) {
       resolve(state.auth.user.isLoggedIn)
       return
     }
 
-    if (state.auth.authenticatedOnFacebook) {
-      AccessToken.refreshCurrentAccessTokenAsync()
-        .then((FBTokenObject) => {
-          let FBToken = FBTokenObject.accessToken
-          dispatch(authenticateWithFacebookToken(FBToken, true))
-            .then((res) => {
-              resolve(!res.error)
-            })
-            .catch((error) => {
-              reject(error)
-            })
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    }
-    if (state.auth.authenticatedOnEmail) {
-      Keychain.getGenericPassword()
-        .then((credentials) => {
-          let email = credentials.username
-          let password = credentials.password
-          dispatch(loginWithEmail(email, password, true))
-            .then((res) => {
-              resolve(!res.error)
-            })
-            .catch((error) => {
-              reject(error)
-            })
-        }).catch((error) => {
-          reject(error)
-        })
+    try {
+      let authenticated = await authenticateWithState(state, dispatch)
+      resolve(authenticated)
+    } catch (error) {
+      reject(error)
     }
   })
 }
+
+const authenticateWithState = async (state, dispatch) => {
+  let response
+  if (state.auth.authenticatedOnFacebook) {
+    response = await authenticateWithFacebook(dispatch)
+  }
+  if (state.auth.authenticatedOnEmail) {
+    response = await authenticateWithEmail(dispatch)
+  }
+  return !response.error
+}
+
+const authenticateWithFacebook = async dispatch => {
+  let FBTokenObject = await AccessToken.refreshCurrentAccessTokenAsync()
+  let FBToken = FBTokenObject.accessToken
+  return await dispatch(authenticateWithFacebookToken(FBToken, true))
+}
+
+const authenticateWithEmail = async dispatch => {
+  let { username, password } = await Keychain.getGenericPassword()
+  return await dispatch(loginWithEmail(username, password, true))
+}
+
+const shouldAttemptToRefreshToken = (state, force) => (
+  state.auth.user.isLoggedIn
+  && (
+    force
+    || isTokenTooOld(state.auth.user.accessToken)
+  )
+)
 
 const isTokenTooOld = ({ ttl, created }) => (
   moment(created).add(ttl, 'seconds')

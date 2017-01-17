@@ -9,7 +9,7 @@ import styles from 'BetBash/src/assets/styles/main'
 
 let Profile = React.createClass({
   render() {
-    const { logoutFromApp, isLoading, error, success, accessToken } = this.props
+    const { logoutFromApp, isLoading, error, success } = this.props
     const buttonState = (isLoading, success, error) => {
       if (success) { return 'success' }
       if (error) { return 'error' }
@@ -26,7 +26,7 @@ let Profile = React.createClass({
             transitionDuration={200}
             states={btnStates(
               () => {
-                logoutFromApp(accessToken.id)
+                logoutFromApp()
               },
               'Log me out!',
               'Logging out...',
@@ -49,8 +49,7 @@ const mapStateToProps = (state, { params }) => {
   return {
     success: !state.auth.user.isLoggedIn,
     isLoading: state.auth.isLoading,
-    error: state.auth.errorMessageLogout,
-    accessToken: state.auth.user.accessToken,
+    error: state.auth.error.logout,
   };
 };
 

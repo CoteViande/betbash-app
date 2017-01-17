@@ -12,22 +12,21 @@ class Home extends React.Component {
           Home Landing
         </Text>
         <TouchableHighlight
-        onPress={()=>{
-          console.warn('Button!')
-        }}>
+          onPress={ ()=> console.warn('Button!')
+        }>
           <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
-            <Text style={{margin: 30}}>Button</Text>
+            <Text style={{margin: 30}}>
+              New Game!
+            </Text>
           </View>
         </TouchableHighlight>
       </View>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {}
-}
+const mapStateToProps = state => ({})
 
 const mapDispatchToProps = {}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

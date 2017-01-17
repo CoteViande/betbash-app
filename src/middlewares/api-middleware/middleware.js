@@ -28,7 +28,7 @@ function apiMiddleware({ getState }) {
         if (requestType && requestType.type) {
           requestType = requestType.type;
         }
-        console.log(validationErrors)
+        // console.log(validationErrors)
         next(await actionWith({
           type: requestType,
           payload: new InvalidRSAA(validationErrors),
