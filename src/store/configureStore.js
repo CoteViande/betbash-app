@@ -10,12 +10,14 @@ import keychainMiddleware from 'BetBash/src/middlewares/keychain.middleware'
 import logoutMiddleware from 'BetBash/src/middlewares/logout.middleware'
 import dismissKeyboardMiddleware from 'BetBash/src/middlewares/dismissKeyboard.middleware'
 import analyticsMiddleware from 'BetBash/src/middlewares/analytics.middleware'
+import crashReporterMiddleware from 'BetBash/src/middlewares/crashReporter.middleware'
 import reducer from 'BetBash/src/reducers/root.reducer'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 
 const configureStore = (initialState) => {
   const middlewares = [
+    crashReporterMiddleware,
     apiMiddleware,
     apiErrorMiddleware,
     keychainMiddleware,
