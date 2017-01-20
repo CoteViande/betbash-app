@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import AwesomeButton from 'BetBash/src/components/general/awesome-button/AwesomeButton'
 
+import styles from 'BetBash/src/assets/styles/main'
 import btnStates from 'BetBash/src/components/general/awesome-button/buttonStates'
 import { logoutFromApp } from 'BetBash/src/actions/auth.actions'
-import styles from 'BetBash/src/assets/styles/main'
 
 let Profile = React.createClass({
   render() {
@@ -35,7 +35,7 @@ let Profile = React.createClass({
             )}
             buttonState={buttonState(isLoading, success, error)}
           />
-          <Text>
+          <Text style={styles.defaultText}>
             { error }
           </Text>
         </View>

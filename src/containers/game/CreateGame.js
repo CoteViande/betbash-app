@@ -43,16 +43,16 @@ class CreateGame extends React.Component {
               <Item label="NBA - Basketball" value="BASKETBALL.NBA" />
             </Picker>
           </View>
-          <Text>
+          <Text style={styles.defaultText}>
             Invite your friends!
           </Text>
-          <Text>
+          <Text style={styles.defaultText}>
             Search on BetBash
           </Text>
-          <Text>
+          <Text style={styles.defaultText}>
             OR
           </Text>
-          <Text>
+          <Text style={styles.defaultText}>
             Send them a BetBashCode
           </Text>
         </View>

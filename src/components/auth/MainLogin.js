@@ -12,14 +12,14 @@ const MainLogin = React.createClass({
     const goToEmailAuth = () => Actions.RegisterEmail()
 
     return (
-      <View style={ {flex: 1} }>
-        <View style={ styles.container }>
+      <View style={{flex: 1}}>
+        <View style={styles.container}>
           <FacebookLogin />
         </View>
-        <View style={ styles.bottomContainer }>
+        <View style={styles.bottomContainer}>
           <TouchableOpacity
             onPress={ goToEmailAuth }>
-            <Text style={ styles.instructions }>
+            <Text style={styles.instructions}>
               {'Don\'t have Facebook?'}
             </Text>
           </TouchableOpacity>

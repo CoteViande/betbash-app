@@ -1,25 +1,20 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
-let Home = React.createClass({
-  render() {
-    return(
-      <View style={ {flex: 1,
+import styles from 'BetBash/src/assets/styles/main'
+
+const Home = () => (
+  <View
+    style={{ flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',} }>
-        <Text>
-          Games
-        </Text>
-      </View>
-    );
-  }
-});
+      alignItems: 'center',
+    }}
+  >
+    <Text style={styles.defaultText}>
+      Games
+    </Text>
+  </View>
+)
 
-const mapStateToProps = (state) => {
-  return {}
-}
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect()(Home)

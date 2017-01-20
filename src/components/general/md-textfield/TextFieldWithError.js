@@ -24,9 +24,10 @@ const TextFieldWithError = ({ input, meta: { touched, error }, label, type }) =>
         multiline={false}
         keepHightlightColor={false}
         inputError={touched && Boolean(error)}
+        errorColor={color.redA700}
         {...input}
       />
-      <Text style={styles.errorText}>
+      <Text style={styles.textInputError}>
         { touched && error }
       </Text>
     </View>

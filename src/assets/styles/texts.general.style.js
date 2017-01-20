@@ -1,11 +1,13 @@
 import * as color from 'BetBash/src/constants/colors'
 
+export const defaultTextStyle = {
+  fontSize: 16,
+  fontFamily: 'Roboto',
+  color: color.black87p,
+}
+
 const TextStyles = {
-  defaultText: {
-    fontSize: 16,
-    fontFamily: 'Roboto',
-    color: color.black87p,
-  },
+  defaultText: defaultTextStyle,
   instructions: {
     textAlign: 'center',
     color: color.white,

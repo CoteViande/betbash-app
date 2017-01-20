@@ -2,7 +2,7 @@ import * as color from 'BetBash/src/constants/colors'
 
 const ButtonStyles = {
   loginButtonBackground: {
-    height: 50,
+    height: 48,
     borderRadius: 0,
   },
   loginButtonLabel: {

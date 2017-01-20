@@ -23,7 +23,7 @@ const CompleteProfile = React.createClass({
         />
         <View style={ styles.bottomContainer }>
           <TouchableOpacity onPress={ onCancelPress }>
-            <Text>
+            <Text style={styles.defaultText}>
               Cancel
             </Text>
           </TouchableOpacity>

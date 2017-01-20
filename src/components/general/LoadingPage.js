@@ -7,7 +7,7 @@ const LoadingPage = React.createClass({
   render: function() {
     return (
       <View style={ styles.container }>
-        <Text>
+        <Text style={styles.defaultText}>
           Loading...
         </Text>
       </View>
