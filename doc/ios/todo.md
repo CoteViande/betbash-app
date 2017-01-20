@@ -9,3 +9,5 @@ libz.tbd
 libsqlite3.0.tbd
 
 2 - Check other modules prior to now (Keychain?)
+
+3 - For react native icons (oblador)
