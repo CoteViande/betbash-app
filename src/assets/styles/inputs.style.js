@@ -1,7 +1,7 @@
 import * as color from 'BetBash/src/constants/colors'
 import { defaultTextStyle } from 'BetBash/src/assets/styles/texts.general.style'
 
-const InputStyles = {
+const textInputStyles = {
   textInputWrapper: {
     paddingTop: 16,
     paddingBottom: 8,
@@ -39,6 +39,28 @@ const InputStyles = {
     height: 36,
     paddingBottom: 0,
   },
+}
+
+const pickerStyles = {
+  pickerWrapper: {
+    borderBottomWidth: 1,
+    borderBottomColor: color.black12p,
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  picker: {
+    alignSelf: 'stretch',
+    height: 31,
+  },
+  pickerLabel: {
+    fontSize: 12,
+    color: color.black54p,
+  },
+}
+
+const InputStyles = {
+  ...textInputStyles,
+  ...pickerStyles,
 }
 
 export default InputStyles

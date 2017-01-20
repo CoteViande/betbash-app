@@ -20,19 +20,12 @@ class CreateGame extends React.Component {
     return (
       <View style={styles.navBarContainer}>
         <View style={[styles.box, styles.thinBox]}>
-          <View
-            style={{
-              borderBottomWidth: 1,
-              borderBottomColor: '#E0E0E0',
-              marginTop: 16,
-              marginBottom: 8,
-            }}
-          >
-            <Text style={{ fontSize: 12 }}>
+          <View style={styles.pickerWrapper}>
+            <Text style={styles.pickerLabel}>
               Choose a competition
             </Text>
             <Picker
-              style={{ alignSelf: 'stretch', height: 32, color: '#E0E0E0' }}
+              style={styles.picker}
               selectedValue={this.state.competition}
               onValueChange={competition => this.setState({ competition })}
               prompt={'Choose your competition!'}
