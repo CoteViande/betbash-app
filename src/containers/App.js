@@ -10,6 +10,7 @@ import CompleteProfile from 'BetBash/src/containers/auth/CompleteProfile'
 import Home from 'BetBash/src/containers/main/Home'
 import Games from 'BetBash/src/containers/main/Games'
 import Profile from 'BetBash/src/containers/main/Profile'
+import CreateGame from 'BetBash/src/containers/game/CreateGame'
 
 import BetBashNavbar from 'BetBash/src/components/general/Navbar'
 import BetBashTabIcon from 'BetBash/src/components/general/TabIcon'
@@ -65,16 +66,23 @@ const scenes = Actions.create(
     />
 
     <Scene
-      key="BetBash" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
+      key="BetBash" default="BetBashMain" hideNavBar={true}
     >
       <Scene
-        key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
-      />
+        key="BetBashMain" default="Home" tabs={true} tabBarStyle={ tabbarStyle } hideNavBar={true}
+      >
+        <Scene
+          key="Home" component={Home} title="Home" icon={BetBashTabIcon} hideNavBar={true} initial={true}
+        />
+        <Scene
+          key="Games" component={Games} title="Games" icon={BetBashTabIcon} hideNavBar={true}
+        />
+        <Scene
+          key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
+        />
+      </Scene>
       <Scene
-        key="Games" component={Games} title="Games" icon={BetBashTabIcon} hideNavBar={true}
-      />
-      <Scene
-        key="Profile" component={Profile} title="Profile" icon={BetBashTabIcon} hideNavBar={true}
+        key="CreateGame" component={CreateGame} title="Start a new game!" hideNavBar={ false } navBar={BetBashNavbar} direction="vertical"
       />
     </Scene>
 

@@ -17,6 +17,9 @@ const isUserProfileComplete = (state = false, action) => {
     case 'SAVE_USER_PROFILE_SUCCESS': // FIXME from other reducer action
       let personalDetails = action.payload
       return (personalDetails.first_name && personalDetails.last_name)
+    case 'GET_FULL_USER_SUCCESS':
+      let user = action.payload
+      return (user.personalDetails.first_name && user.personalDetails.last_name)
     case 'APP_LOGOUT_SUCCESS':
     case 'FORCED_APP_LOGOUT':
       return false

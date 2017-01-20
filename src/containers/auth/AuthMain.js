@@ -27,17 +27,15 @@ let AuthMain = React.createClass({
         />
         <MainLogin />
       </Image>
-    );
+    )
   }
-});
+})
 
-const mapStateToProps = (state, { params }) => {
-  return {
-    isLoggedIn: state.auth.user.isLoggedIn,
-    errorMessage: state.auth.error.FBAuth,
-    isLoading: state.auth.isLoading,
-  };
-};
+const mapStateToProps = (state, { params }) => ({
+  isLoggedIn: state.auth.user.isLoggedIn,
+  errorMessage: state.auth.error.FBAuth,
+  isLoading: state.auth.isLoading,
+})
 
 export default connect(
   mapStateToProps

@@ -6,24 +6,24 @@ import {
   authenticateWithFacebookToken,
   loginWithEmail,
 } from 'BetBash/src/actions/auth.actions'
+
 const shouldRefreshTime = 36
 
-export const refreshUserToken = (state, dispatch, force = false) => {
-  return new Promise(async (resolve, reject) => {
+export const refreshUserToken = (state, dispatch, force = false) => (
+  new Promise(async (resolve, reject) => {
     if (!shouldAttemptToRefreshToken(state, force)) {
       resolve(state.auth.user.isLoggedIn)
       return
     }
 
     try {
-      let authenticated = await authenticateWithState(state, dispatch)
+      const authenticated = await authenticateWithState(state, dispatch)
       resolve(authenticated)
     } catch (error) {
       reject(error)
     }
   })
-}
-
+)
 const authenticateWithState = async (state, dispatch) => {
   let response
   if (state.auth.authenticatedOnFacebook) {
@@ -36,13 +36,14 @@ const authenticateWithState = async (state, dispatch) => {
 }
 
 const authenticateWithFacebook = async dispatch => {
-  let FBTokenObject = await AccessToken.refreshCurrentAccessTokenAsync()
-  let FBToken = FBTokenObject.accessToken
+  const FBTokenObject = await AccessToken.refreshCurrentAccessTokenAsync()
+  const FBToken = FBTokenObject.accessToken
+  // TOCHECK return await bad? eslint...
   return await dispatch(authenticateWithFacebookToken(FBToken, true))
 }
 
 const authenticateWithEmail = async dispatch => {
-  let { username, password } = await Keychain.getGenericPassword()
+  const { username, password } = await Keychain.getGenericPassword()
   return await dispatch(loginWithEmail(username, password, true))
 }
 

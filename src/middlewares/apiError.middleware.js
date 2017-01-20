@@ -36,8 +36,8 @@ const apiErrorMiddleware = store => next =>  async action => {
   return next(action)
 }
 
-const dealWithApiError = (apiError, dispatch, state) => {
-  console.log('apiError.middleware // ERROR POPPED: ', error)
+const dealWithApiError = async (apiError, dispatch, state) => {
+  console.log('apiError.middleware // ERROR POPPED: ', apiError)
   const { statusCode, code, message } = apiError
   switch (statusCode) {
     case 404:

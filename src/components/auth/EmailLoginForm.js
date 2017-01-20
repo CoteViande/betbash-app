@@ -35,7 +35,7 @@ const EmailLoginForm = (props) => {
       <Field name="email" type="email" component={TextFieldWithError} label="Email" />
       <Field name="password" type="password" component={TextFieldWithError} label="Password" />
 
-      <Text style={styles.textError}>
+      <Text style={styles.errorText}>
         { loginError }
       </Text>
       <AwesomeButton

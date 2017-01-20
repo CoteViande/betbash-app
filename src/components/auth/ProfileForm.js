@@ -39,7 +39,7 @@ const ProfileForm = (props) => {
         label={ 'Family name' } value={ name ? name.lastName : null }
       />
 
-      <Text style={ styles.textError }>
+      <Text style={ styles.errorText }>
         { sendError }
       </Text>
       <AwesomeButton
