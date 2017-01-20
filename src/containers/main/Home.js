@@ -1,32 +1,33 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
+import { Text, View, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 
-class Home extends React.Component {
-  render() {
-    return(
-      <View style={ {flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',} }>
-        <Text>
-          Home Landing
-        </Text>
-        <TouchableHighlight
-          onPress={ ()=> console.warn('Button!')
-        }>
-          <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
-            <Text style={{margin: 30}}>
-              New Game!
-            </Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    )
-  }
+import BetBashActionButton from 'BetBash/src/components/general/ActionButton'
+
+const Home = () => {
+  const goToGameCreation = () => Actions.CreateGame()
+
+  return (
+    <View
+      style={{ flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text>
+        { 'Welcome to BetBash' }
+      </Text>
+      <TouchableHighlight onPress={goToGameCreation}>
+        <View style={{ width: 150, height: 100, backgroundColor: 'red' }}>
+          <Text style={{ margin: 30 }}>
+            New Game!
+          </Text>
+        </View>
+      </TouchableHighlight>
+      <BetBashActionButton />
+    </View>
+  )
 }
 
-const mapStateToProps = state => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect()(Home)
