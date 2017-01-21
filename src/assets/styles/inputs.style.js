@@ -53,14 +53,23 @@ const pickerStyles = {
     height: 31,
   },
   pickerLabel: {
+    fontFamily: defaultTextStyle.fontFamily,
     fontSize: 12,
     color: color.black54p,
+  },
+}
+
+const friendSelectorStyles = {
+  selectorLabel: pickerStyles.pickerLabel,
+  selectorWrapper: {
+    marginTop: 16,
   },
 }
 
 const InputStyles = {
   ...textInputStyles,
   ...pickerStyles,
+  ...friendSelectorStyles,
 }
 
 export default InputStyles

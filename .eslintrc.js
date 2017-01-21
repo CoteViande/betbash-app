@@ -335,7 +335,7 @@ module.exports = {
       ],
     }],
     'react/display-name': ['off', { ignoreTranspilerName: false }],
-    'react/forbid-prop-types': ['error', { forbid: ['any', 'array', 'object'] }],
+    'react/forbid-prop-types': ['warn', { forbid: ['any', 'array', 'object'] }],
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
