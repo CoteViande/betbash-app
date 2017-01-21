@@ -1,4 +1,4 @@
-import * as color from 'BetBash/src/constants/colors'
+import * as color from 'BetBash/src/assets/styles/colors.settings'
 
 const ButtonStyles = {
   loginButtonBackground: {

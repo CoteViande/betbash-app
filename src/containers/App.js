@@ -15,11 +15,11 @@ import CreateGame from 'BetBash/src/containers/game/CreateGame'
 import BetBashNavbar from 'BetBash/src/components/general/Navbar'
 import BetBashTabIcon from 'BetBash/src/components/general/TabIcon'
 import Snackbar from 'BetBash/src/components/general/Snackbar'
-import * as color from 'BetBash/src/constants/colors'
+import * as color from 'BetBash/src/assets/styles/colors.settings'
 
 import { pingServer } from 'BetBash/src/actions/connexion.actions'
 
-const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 60, backgroundColor: color.red500 }
+const tabbarStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 56, backgroundColor: color.red500 }
 
 const RouterWithRedux = connect()(Router);
 
@@ -121,16 +121,16 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
+const mapStateToProps = state => {
   return {
     initializationFinished: state.initialization.isFinished,
     isConnected: state.connexion.isConnected,
     isServerConnected: state.connexion.isServerConnected,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = {
   pingServer,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,4 +1,4 @@
-import * as color from 'BetBash/src/constants/colors'
+import * as color from 'BetBash/src/assets/styles/colors.settings'
 
 const ContainerStyles = {
   imageBgContainer: {
@@ -19,7 +19,7 @@ const ContainerStyles = {
     marginRight: 40,
   },
   navBarContainer: {
-    paddingTop: 60,
+    paddingTop: 56,
   },
   topBarContainer: {
     paddingTop: 60,

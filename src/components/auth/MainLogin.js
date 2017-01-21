@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from 'BetBash/src/assets/styles/main'
-import * as color from 'BetBash/src/constants/colors'
 import FacebookLogin from 'BetBash/src/components/auth/FacebookLogin'
 
 const MainLogin = React.createClass({
