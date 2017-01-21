@@ -1,4 +1,5 @@
 import * as color from 'BetBash/src/assets/styles/colors.settings'
+import * as constant from 'BetBash/src/assets/styles/constants.settings'
 
 const ContainerStyles = {
   imageBgContainer: {
@@ -12,20 +13,20 @@ const ContainerStyles = {
     alignItems: 'center',
   },
   box: {
-    margin: 20,
+    margin: constant.doubleUnit,
   },
   thinBox: {
-    marginLeft: 40,
-    marginRight: 40,
+    marginLeft: constant.quadUnit,
+    marginRight: constant.quadUnit,
   },
   navBarContainer: {
-    paddingTop: 56,
+    paddingTop: constant.navbarHeight,
   },
   topBarContainer: {
-    paddingTop: 60,
+    paddingTop: 56,
   },
   tabBarContainer: {
-    marginBottom: 60,
+    marginBottom: 56,
   },
   leftAlignContainer: {
     flex: 1,

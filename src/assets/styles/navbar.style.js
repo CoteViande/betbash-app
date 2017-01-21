@@ -1,4 +1,5 @@
 import * as color from 'BetBash/src/assets/styles/colors.settings'
+import * as constant from 'BetBash/src/assets/styles/constants.settings'
 
 const NavbarStyles = {
   header: {
@@ -6,7 +7,7 @@ const NavbarStyles = {
     top: 0,
     left: 0,
     right: 0,
-    height: 56,
+    height: constant.navbarHeight,
     padding: 15,
     backgroundColor: color.red500,
   },
