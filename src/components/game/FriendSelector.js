@@ -7,13 +7,18 @@ import {
 } from 'react-native'
 
 import styles from 'BetBash/src/assets/styles/main'
+import BBButton from 'BetBash/src/components/general/BBButton'
 
 class FriendSelector extends React.Component {
+  componentWillMount() {
+    this.state = { searchingForFriends: false }
+  }
+
   render() {
     const shareMessage = async () => {
       try {
         const result = await Share.share({
-          message: 'React Native | A framework for building native apps using React'
+          message: 'React Native | A framework for building native apps using React',
         })
         showResult(result)
       } catch (error) {
@@ -26,13 +31,13 @@ class FriendSelector extends React.Component {
         const result = await Share.share({
           message: 'A framework for building native apps using React',
           url: 'http://facebook.github.io/react-native/',
-          title: 'React Native'
+          title: 'React Native',
         }, {
           dialogTitle: 'Share React Native website',
           excludedActivityTypes: [
-            'com.apple.UIKit.activity.PostToTwitter'
+            'com.apple.UIKit.activity.PostToTwitter',
           ],
-          tintColor: 'green'
+          tintColor: 'green',
         })
         showResult(result)
       } catch (error) {
@@ -44,7 +49,7 @@ class FriendSelector extends React.Component {
       console.log(result)
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          console.log('shared with an activityType: ' + result.activityType)
+          console.log(`shared with an activityType: ${result.activityType}`)
         } else {
           console.log('shared')
         }
@@ -58,13 +63,18 @@ class FriendSelector extends React.Component {
         <Text style={styles.selectorLabel}>
           Add friends to your game
         </Text>
-        <Text style={styles.defaultText}>
-          Search on BetBash
-        </Text>
+        <BBButton
+          text="Search on BetBash"
+          onPress={() => this.setState({ searchingForFriends: true })}
+        />
         <Text style={styles.defaultText}>
           OR
         </Text>
-        <Button title="Send them a secret code" onPress={() => shareMessage()} color="#841584" />
+        <BBButton
+          text="Send them a secret code"
+          onPress={() => shareMessage()}
+        />
+
       </View>
     )
   }
