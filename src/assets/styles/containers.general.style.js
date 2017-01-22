@@ -21,16 +21,7 @@ const ContainerStyles = {
   },
   navBarContainer: {
     paddingTop: constant.navbarHeight,
-  },
-  topBarContainer: {
-    paddingTop: 56,
-  },
-  tabBarContainer: {
-    marginBottom: 56,
-  },
-  leftAlignContainer: {
-    flex: 1,
-    justifyContent: 'center',
+    flexGrow: 1,
   },
   topRedContainer: {
     justifyContent: 'center',

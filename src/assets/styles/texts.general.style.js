@@ -3,7 +3,7 @@ import * as color from 'BetBash/src/assets/styles/colors.settings'
 export const defaultTextStyle = {
   fontSize: 16,
   fontFamily: 'Roboto',
-  color: color.black87p,
+  color: color.blackOne,
 }
 
 const TextStyles = {

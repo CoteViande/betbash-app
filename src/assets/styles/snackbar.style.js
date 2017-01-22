@@ -1,4 +1,5 @@
 import * as color from 'BetBash/src/assets/styles/colors.settings'
+import * as constant from 'BetBash/src/assets/styles/constants.settings'
 
 const SnackbarStyles = {
   snackbarContainer: {
@@ -22,7 +23,8 @@ const SnackbarStyles = {
   },
   snackbarButton: {
     color: color.blue500,
-    fontWeight: 'bold',
+    fontFamily: constant.mediumTextFont,
+    fontSize: 14,
   },
 }
 

@@ -44,7 +44,7 @@ const textInputStyles = {
 const pickerStyles = {
   pickerWrapper: {
     borderBottomWidth: 1,
-    borderBottomColor: color.black12p,
+    borderBottomColor: color.blackWeak,
     marginTop: 16,
     marginBottom: 8,
   },
@@ -55,7 +55,7 @@ const pickerStyles = {
   pickerLabel: {
     fontFamily: defaultTextStyle.fontFamily,
     fontSize: 12,
-    color: color.black54p,
+    color: color.blackTwo,
   },
 }
 
