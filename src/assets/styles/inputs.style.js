@@ -1,5 +1,5 @@
 import * as color from 'BetBash/src/assets/styles/colors.settings'
-import { defaultTextStyle } from 'BetBash/src/assets/styles/texts.general.style'
+import * as constant from 'BetBash/src/assets/styles/constants.settings'
 
 const textInputStyles = {
   textInputWrapper: {
@@ -8,14 +8,14 @@ const textInputStyles = {
     position: 'relative',
   },
   textInput: {
-    fontFamily: defaultTextStyle.fontFamily,
+    fontFamily: constant.defaultTextFont,
     fontSize: 16,
     height: 44,
     paddingBottom: 0,
     paddingLeft: 0,
   },
   textInputLabel: {
-    fontFamily: defaultTextStyle.fontFamily,
+    fontFamily: constant.defaultTextFont,
     position: 'absolute',
     left: 0,
     backgroundColor: color.transparent,
@@ -34,7 +34,7 @@ const textInputStyles = {
     position: 'relative',
   },
   denseTextInput: {
-    fontFamily: defaultTextStyle.fontFamily,
+    fontFamily: constant.defaultTextFont,
     fontSize: 12,
     height: 36,
     paddingBottom: 0,
@@ -53,23 +53,15 @@ const pickerStyles = {
     height: 31,
   },
   pickerLabel: {
-    fontFamily: defaultTextStyle.fontFamily,
+    fontFamily: constant.defaultTextFont,
     fontSize: 12,
     color: color.blackTwo,
-  },
-}
-
-const friendSelectorStyles = {
-  selectorLabel: pickerStyles.pickerLabel,
-  selectorWrapper: {
-    marginTop: 16,
   },
 }
 
 const InputStyles = {
   ...textInputStyles,
   ...pickerStyles,
-  ...friendSelectorStyles,
 }
 
 export default InputStyles

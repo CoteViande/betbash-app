@@ -2,7 +2,6 @@
 
 ## Current
 
-* Set constants in style for material design objects
 * Ask for full name if is logged in and first_name, last_name not in state (1) nor db (2)
 * Track:
   - Loading length
@@ -13,6 +12,7 @@
 
 ## Quickies
 
+* increase touchable area around back button in navbar
 * check for username already exists case (async maybe?)
 * yarn: https://github.com/yarnpkg/yarn/
 

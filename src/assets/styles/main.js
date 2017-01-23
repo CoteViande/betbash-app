@@ -11,6 +11,7 @@ import TextStyles from 'BetBash/src/assets/styles/texts.general.style'
 import InputStyles from 'BetBash/src/assets/styles/inputs.style'
 import SnackbarStyles from 'BetBash/src/assets/styles/snackbar.style'
 import NavbarStyles from 'BetBash/src/assets/styles/navbar.style'
+import addPeopleComponentStyles from 'BetBash/src/assets/styles/friendSelector.style'
 
 const MainStyles = {
   divider: {
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
   ...InputStyles,
   ...SnackbarStyles,
   ...NavbarStyles,
+  ...addPeopleComponentStyles,
 })
 
 export default styles
