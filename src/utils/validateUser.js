@@ -2,12 +2,12 @@ import { getFullUser } from 'BetBash/src/actions/auth.actions'
 
 export const checkIfProfileComplete = ({ getState, dispatch }) => {
   return new Promise(async (resolve, reject) => {
-    let state = getState()
-    const user = state.auth.user
+    const state = getState()
+    // const user = state.auth.user
     try {
       const response = await dispatch(getFullUser())
       const profileComplete = isProfileComplete(response.payload)
-      resolve (profileComplete)
+      resolve(profileComplete)
     } catch (error) {
       reject(error)
     }
@@ -20,10 +20,10 @@ const isProfileComplete = user => (
   && userHasProfilePicture(user)
 )
 
-const userHasProfilePicture = user => true // TODO
+const userHasProfilePicture = () => true // TODO
 
 const userHasValidName = user => (
-  !!user.name
-  && !!user.name.firstName
-  && !!user.name.lastName
+  !!user.personalDetails
+  && !!user.personalDetails.first_name
+  && !!user.personalDetails.last_name
 )

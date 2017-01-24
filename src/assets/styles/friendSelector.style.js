@@ -24,7 +24,7 @@ const generalStyles = {
 
 const friendSelectorStyles = {
   friendSelectorInputContainer: {
-    backgroundColor: color.red700,
+    backgroundColor: color.red900,
     paddingLeft: 16,
     paddingRight: 16,
     flexDirection: 'row',
@@ -34,7 +34,7 @@ const friendSelectorStyles = {
     height: 56,
     fontSize: 16,
     flex: 1,
-    color: color.whiteOne,
+    color: color.white,
   },
   friendSuggestionRow: {
     height: 72,

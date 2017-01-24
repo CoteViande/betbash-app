@@ -4,7 +4,7 @@ const userId = (state = null, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'EMAIL_LOGIN_SUCCESS':
-      let result = action.payload
+      const result = action.payload
       return result.userId
     default:
       return state
@@ -25,7 +25,7 @@ const accessToken = (state = null, action) => {
   switch (action.type) {
     case 'FACEBOOK_AUTHENTICATE_SUCCESS':
     case 'EMAIL_LOGIN_SUCCESS':
-      let result = action.payload
+      const result = action.payload
       return {
         id: result.id,
         ttl: result.ttl,
@@ -39,13 +39,13 @@ const accessToken = (state = null, action) => {
 const name = (state = null, action) => {
   switch (action.type) {
     case 'GET_FULL_USER_SUCCESS':
-      let user = action.payload
+      const user = action.payload
       return {
         firstName: user.personalDetails && user.personalDetails.first_name,
         lastName: user.personalDetails && user.personalDetails.last_name,
       }
     case 'SAVE_USER_PROFILE_SUCCESS':
-      let personalDetails = action.payload
+      const personalDetails = action.payload
       return {
         firstName: personalDetails.first_name,
         lastName: personalDetails.last_name,
@@ -140,6 +140,26 @@ const authenticatedOnEmail = (state = false, action) => {
   }
 }
 
+const isUserProfileComplete = (state = false, action) => {
+  switch (action.type) {
+    case 'INITIALIZATION_PROFILE_COMPLETE':
+    case 'FACEBOOK_AUTHENTICATE_SUCCESS':
+      return true
+    case 'SAVE_USER_PROFILE_SUCCESS':
+      const personalDetails = action.payload
+      return !!(personalDetails.first_name && personalDetails.last_name)
+    case 'GET_FULL_USER_SUCCESS':
+      const user = action.payload
+      return !!(user.personalDetails.first_name && user.personalDetails.last_name)
+    case 'INITIALIZATION_PROFILE_NOT_COMPLETE':
+    case 'APP_LOGOUT_SUCCESS':
+    case 'FORCED_APP_LOGOUT':
+      return false
+    default:
+      return state
+  }
+}
+
 const savedInKeychain = (state = false, action) => {
   switch (action.type) {
     case 'KEYCHAIN_CREDENTIALS_SAVE':
@@ -190,11 +210,6 @@ const isLoading = (state = false, action) => {
   }
 }
 
-const user = (state, action) => {
-
-  return userReducer(state, action)
-}
-
 const auth = combineReducers({
   user: combineReducers({
     id: userId,
@@ -205,6 +220,7 @@ const auth = combineReducers({
   isLoading,
   authenticatedOnFacebook,
   authenticatedOnEmail,
+  isUserProfileComplete,
   error: combineReducers({
     saveProfile: errorMessageSaveProfile,
     FBAuth: errorMessageFBAuth,

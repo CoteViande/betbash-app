@@ -6,6 +6,10 @@ export const profileCompleted = () => ({
   type: 'INITIALIZATION_PROFILE_COMPLETE',
 })
 
+export const profileIsNotComplete = () => ({
+  type: 'INITIALIZATION_PROFILE_NOT_COMPLETE',
+})
+
 export const connectedToInternet = () => ({
   type: 'INITIALIZATION_CONNECTED_TO_INTERNET',
 })

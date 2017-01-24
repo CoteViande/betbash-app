@@ -6,6 +6,8 @@ import styles from 'BetBash/src/assets/styles/main'
 import BBPicker from 'BetBash/src/components/general/BBPicker'
 import FriendSelector from 'BetBash/src/components/game/FriendSelector'
 
+import { updateFriendSuggestions } from 'BetBash/src/actions/friendSelector.actions'
+
 class CreateGame extends React.Component {
   componentWillMount() {
     this.state = {
@@ -14,6 +16,11 @@ class CreateGame extends React.Component {
   }
 
   render() {
+    const {
+      usersList,
+      updateFriendSuggestions,
+    } = this.props
+
     return (
       <View style={styles.navBarContainer}>
         <View style={[styles.box, styles.thinBox]}>
@@ -28,11 +35,25 @@ class CreateGame extends React.Component {
               { title: 'NBA - Basketball', id: 'BASKETBALL.NBA' },
             ]}
           />
-          <FriendSelector />
+          <FriendSelector
+            suggestionsList={usersList}
+            onSuggestionTextChange={searchString => updateFriendSuggestions(searchString)}
+          />
         </View>
       </View>
     )
   }
 }
 
-export default connect()(CreateGame)
+const mapStateToProps = state => ({
+  usersList: state.friendSuggestions.suggestions.users,
+})
+
+const mapDispatchToProps = {
+  updateFriendSuggestions,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CreateGame)

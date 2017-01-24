@@ -84,6 +84,7 @@ module.exports = {
     'arrow-spacing': ['error', { before: true, after: true }],
     'constructor-super': 'error',
     'generator-star-spacing': ['error', { before: false, after: true }],
+    'no-case-declarations': 'off',
     'no-class-assign': 'error',
     'no-confusing-arrow': ['error', {
       allowParens: true,
@@ -215,7 +216,7 @@ module.exports = {
     'max-params': ['warn', 3], // check
     'max-statements': ['off', 10],
     'max-statements-per-line': ['warn', { max: 1 }],
-    'multiline-ternary': ['error', 'never'],
+    'multiline-ternary': ['off', 'never'],
     'new-cap': ['error', {
       newIsCap: true,
       newIsCapExceptions: [],
@@ -249,7 +250,6 @@ module.exports = {
       'error',
       'ForInStatement',
       'ForOfStatement',
-      'LabeledStatement',
       'WithStatement',
     ],
     'no-spaced-func': 'error',
@@ -309,7 +309,7 @@ module.exports = {
     'no-delete-var': 'error',
     'no-label-var': 'error',
     'no-restricted-globals': 'off',
-    'no-shadow': 'error',
+    'no-shadow': 'off',
     'no-shadow-restricted-names': 'error',
     'no-undef': 'error',
     'no-undef-init': 'error',

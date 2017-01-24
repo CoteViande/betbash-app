@@ -28,7 +28,7 @@ const isConnectedTest = (state = false, action) => {
 }
 
 const isServerConnected = (state = false, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SERVER_CONNEXION_CHANGE':
       return action.payload.isServerConnected
     default:

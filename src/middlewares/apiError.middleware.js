@@ -42,33 +42,33 @@ const dealWithApiError = async (apiError, dispatch, state) => {
   switch (statusCode) {
     case 404:
       dealWithError404(apiError)
-    break
+      break
     case 500:
       dealWithError500(apiError)
-    break
+      break
     default:
-      switch(code) {
+      switch (code) {
         case 'LOGIN_FAILED':
         case 'USERNAME_EMAIL_REQUIRED':
           dealWithFailedLogin(state.auth.user.isLoggedIn, dispatch)
-        break
+          break
         case 'AUTHORIZATION_REQUIRED':
           const force = true
-          let userToken = await refreshUserToken(state, dispatch, force)
-        break
+          await refreshUserToken(state, dispatch, force)
+          break
         default:
-          if (message === 'could not find accessToken') {
-            let userToken = await refreshUserToken(state, dispatch)
+          if (message === 'Value is not a string.') {
+            await refreshUserToken(state, dispatch)
           } // BACKEND better error with code
           console.log('apiError.middleware // UNDEALT WITH API ERROR: ', apiError, 'code: ', code)
-        break
+          break
       }
-    break
+      break
   }
 }
 
-const dealWithError404 = (apiError) => console.log('apiError.middleware // 404 DETECTED: ', apiError)
-const dealWithError500 = (apiError) => console.log('apiError.middleware // 500 DETECTED: ', apiError)
+const dealWithError404 = apiError => console.log('apiError.middleware // 404 DETECTED: ', apiError)
+const dealWithError500 = apiError => console.log('apiError.middleware // 500 DETECTED: ', apiError)
 const dealWithFailedLogin = (isLoggedIn, dispatch) => {
   if (isLoggedIn) {
     dispatch(forcedLogoutFromApp())

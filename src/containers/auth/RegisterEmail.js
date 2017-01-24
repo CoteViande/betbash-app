@@ -7,29 +7,38 @@ import { loginWithEmail } from 'BetBash/src/actions/auth.actions'
 import EmailRegisterForm from 'BetBash/src/components/auth/EmailRegisterForm'
 import styles from 'BetBash/src/assets/styles/main'
 
-const RegisterEmail = React.createClass({
+class RegisterEmail extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { loginWithEmail, email, password } = this.props
+    const {
+      loginWithEmail,
+      email,
+      password,
+    } = this.props
     if (nextProps.registered &&
       nextProps.registered !== this.props.registered) {
-      loginWithEmail(email, password, false);
+      loginWithEmail(email, password, false)
     }
-  },
+  }
 
   render() {
-    const { registerError, registered, loginSuccess, isLoading } = this.props
+    const {
+      registerError,
+      registered,
+      loginSuccess,
+      isLoading,
+    } = this.props
 
-    return(
+    return (
       <View style={styles.navBarContainer}>
         <EmailRegisterForm
-          registerError={ registerError }
-          loginSuccess={ loginSuccess }
-          isLoading={ isLoading }
+          registerError={registerError}
+          loginSuccess={loginSuccess}
+          isLoading={isLoading}
         />
       </View>
     )
   }
-})
+}
 
 const selector = formValueSelector('emailRegister')
 
@@ -45,5 +54,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = { loginWithEmail }
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
-)(RegisterEmail);
+  mapStateToProps,
+  mapDispatchToProps,
+)(RegisterEmail)

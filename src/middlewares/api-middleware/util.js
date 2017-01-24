@@ -97,4 +97,10 @@ async function actionWith(descriptor, args) {
   return descriptor;
 }
 
-export { getJSON, normalizeTypeDescriptors, actionWith };
+const generateTypes = rootType => ({
+  request: `${rootType}_REQUEST`,
+  success: `${rootType}_SUCCESS`,
+  failure: `${rootType}_FAILURE`,
+})
+
+export { getJSON, normalizeTypeDescriptors, actionWith, generateTypes };

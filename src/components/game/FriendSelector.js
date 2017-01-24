@@ -1,11 +1,7 @@
 import React from 'react'
 import {
-  View,
-  Text,
-  Share,
-  Modal,
-  ListView,
-  TouchableOpacity,
+  View, Text, Share,
+  Modal, ScrollView, TouchableOpacity,
   TextInput,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -16,29 +12,23 @@ import BBButton from 'BetBash/src/components/general/BBButton'
 
 class FriendSelector extends React.Component {
   componentWillMount() {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
-      searchingForFriends: false,
       isModalVisible: false,
-      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2', 'row 2']),
+      searchString: '',
     }
   }
 
   render() {
+    const {
+      suggestionsList,
+      onSuggestionTextChange,
+    } = this.props
+
     const shareMessage = async () => {
       try {
         const result = await Share.share({
           message: 'React Native | A framework for building native apps using React',
-        })
-        // IOS STUFF
-        // const result = await Share.share({
-        //   message: 'A framework for building native apps using React',
-        //   url: 'http://facebook.github.io/react-native/',
-        //   title: 'React Native',
-        // }, {
-        //   dialogTitle: 'Share React Native website',
-        //   tintColor: 'green',
-        // })
+        }) // IOS: can add url, title, and dialog color
         showResult(result)
       } catch (error) {
         console.log('FriendSelector / Share / Error: ', error)
@@ -58,8 +48,8 @@ class FriendSelector extends React.Component {
       }
     }
 
-    const renderFriendRow = data => (
-      <TouchableOpacity onPress={() => console.log('yo')}>
+    const renderFriendRow = suggestion => (
+      <TouchableOpacity key={suggestion.userId} onPress={() => {}}>
         <View style={styles.friendSuggestionRow}>
           <View style={styles.friendSuggestionCircle}>
             <Text style={styles.friendSuggestionInitials}>
@@ -68,7 +58,7 @@ class FriendSelector extends React.Component {
           </View>
           <View style={styles.friendSuggestionTextContainer}>
             <Text style={styles.friendSuggestionText}>
-              {data}
+              {suggestion.full_name}
             </Text>
           </View>
         </View>
@@ -114,9 +104,12 @@ class FriendSelector extends React.Component {
               placeholder="Enter your friend's name"
               placeholderTextColor={color.whiteThree}
               style={styles.friendSelectorInputText}
-              onChangeText={userInput => {
-                console.log(userInput)
+              onChangeText={text => {
+                onSuggestionTextChange(text)
+                this.setState({ searchString: text })
               }}
+              onFocus={() => onSuggestionTextChange(this.state.searchString)}
+              value={this.state.searchString}
             />
             <TouchableOpacity
               onPress={() => {
@@ -126,10 +119,12 @@ class FriendSelector extends React.Component {
               <Icon name="done" style={styles.greenRoundIcon} />
             </TouchableOpacity>
           </View>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={renderFriendRow}
-          />
+          <ScrollView
+            keyboardDismissMode="on-drag"
+            keyboardShouldPersistTaps="always"
+          >
+            {suggestionsList.map(renderFriendRow)}
+          </ScrollView>
         </Modal>
       </View>
     )

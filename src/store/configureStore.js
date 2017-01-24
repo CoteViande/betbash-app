@@ -15,7 +15,7 @@ import reducer from 'BetBash/src/reducers/root.reducer'
 import { initializationScript } from 'BetBash/src/store/initializationScript'
 
 
-const configureStore = (initialState) => {
+const configureStore = initialState => {
   const middlewares = [
     crashReporterMiddleware,
     apiMiddleware,
@@ -31,12 +31,12 @@ const configureStore = (initialState) => {
     initialState,
     composeWithDevTools(
       applyMiddleware(...middlewares),
-      autoRehydrate()
-    )
+      autoRehydrate(),
+    ),
   )
 
   const persistConfig = {
-    blacklist: ['init', 'form', 'connexion', 'initialization'],
+    blacklist: ['init', 'form', 'connexion', 'initialization', 'friendSuggestions'],
     storage: AsyncStorage,
   }
   persistStore(store, persistConfig, initializationScript(store))
@@ -47,7 +47,7 @@ const configureStore = (initialState) => {
     module.hot.accept(() => {
       const nextRootReducer = require('../reducers/root.reducer').default
       store.replaceReducer(nextRootReducer)
-    });
+    })
   }
 
   return store
