@@ -73,10 +73,13 @@ class FriendSelector extends React.Component {
       <TouchableOpacity
         key={suggestion.userId}
         onPress={() => {
-          this.setState({ suggestions: [
-            ...this.state.suggestions,
-            suggestion,
-          ] })
+          this.setState({
+            suggestions: [
+              ...this.state.suggestions,
+              suggestion,
+            ],
+            searchString: '',
+          })
           onItemAdd(suggestion)
         }}
       >
