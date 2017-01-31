@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-  View, Text, Share,
-  Modal, ScrollView, TouchableOpacity,
+  View, Text, TouchableOpacity,
+  Modal, ScrollView, Share,
   TextInput,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -15,6 +15,7 @@ class FriendSelector extends React.Component {
     this.state = {
       isModalVisible: false,
       searchString: '',
+      suggestions: [],
     }
   }
 
@@ -22,6 +23,8 @@ class FriendSelector extends React.Component {
     const {
       suggestionsList,
       onSuggestionTextChange,
+      onItemAdd,
+      onItemRemove,
     } = this.props
 
     const shareMessage = async () => {
@@ -41,15 +44,42 @@ class FriendSelector extends React.Component {
         if (result.activityType) {
           console.log(`shared with an activityType: ${result.activityType}`)
         } else {
-          console.log('shared')
+          console.log('shared without an activityType')
         }
       } else if (result.action === Share.dismissedAction) {
         console.log('dismissed')
       }
     }
 
+    const renderFriendsInInput = suggestions => suggestions.map(renderFriendInInput)
+    const renderFriendInInput = suggestion => (
+      <View key={suggestion.userId} style={styles.selectedFriendContainer}>
+        <Text>{suggestion.full_name}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            const suggestions = this.state.suggestions
+            this.setState({ suggestions: suggestions.filter(
+              item => item !== suggestion,
+            ) })
+            onItemRemove(suggestion)
+          }}
+        >
+          <Icon name="close" style={styles.smallCloseIcon} />
+        </TouchableOpacity>
+      </View>
+    )
+
     const renderFriendRow = suggestion => (
-      <TouchableOpacity key={suggestion.userId} onPress={() => {}}>
+      <TouchableOpacity
+        key={suggestion.userId}
+        onPress={() => {
+          this.setState({ suggestions: [
+            ...this.state.suggestions,
+            suggestion,
+          ] })
+          onItemAdd(suggestion)
+        }}
+      >
         <View style={styles.friendSuggestionRow}>
           <View style={styles.friendSuggestionCircle}>
             <Text style={styles.friendSuggestionInitials}>
@@ -95,6 +125,7 @@ class FriendSelector extends React.Component {
           }}
         >
           <View style={styles.friendSelectorInputContainer}>
+            {renderFriendsInInput(this.state.suggestions)}
             <TextInput
               ref={c => {
                 this.addFriendInput = c
@@ -123,7 +154,15 @@ class FriendSelector extends React.Component {
             keyboardDismissMode="on-drag"
             keyboardShouldPersistTaps="always"
           >
-            {suggestionsList.map(renderFriendRow)}
+            {
+              suggestionsList.length
+                ? suggestionsList.map(renderFriendRow)
+                : this.state.searchString.length
+                  ? (<Text>
+                      No result match your search, share a secret code with your friend here
+                    </Text>)
+                  : null
+            }
           </ScrollView>
         </Modal>
       </View>

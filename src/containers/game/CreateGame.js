@@ -12,6 +12,7 @@ class CreateGame extends React.Component {
   componentWillMount() {
     this.state = {
       competition: '',
+      friends: [],
     }
   }
 
@@ -38,6 +39,16 @@ class CreateGame extends React.Component {
           <FriendSelector
             suggestionsList={usersList}
             onSuggestionTextChange={searchString => updateFriendSuggestions(searchString)}
+            onItemAdd={friend => this.setState({ friends: [
+              ...this.state.friends,
+              friend,
+            ] })}
+            onItemRemove={friendToRemove => {
+              const friends = this.state.friends
+              this.setState({ friends: friends.filter(
+                friend => friend !== friendToRemove,
+              ) })
+            }}
           />
         </View>
       </View>

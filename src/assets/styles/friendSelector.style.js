@@ -63,6 +63,19 @@ const friendSelectorStyles = {
     fontSize: constant.defaultTextSize,
     color: color.blackOne,
   },
+  selectedFriendContainer: {
+    backgroundColor: color.red900,
+  },
+  smallCloseIcon: {
+    color: color.white,
+    backgroundColor: color.red500,
+    margin: 2,
+    fontSize: 16,
+    padding: 6,
+    borderRadius: 11,
+    alignSelf: 'center',
+    textAlign: 'center',
+  },
 }
 
 const addPeopleComponentStyles = {

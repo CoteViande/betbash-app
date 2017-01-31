@@ -241,7 +241,7 @@ const authReducer = (state, action) => {
   }
 
   return auth(state, action)
-}
+} // TODO replace in root reducer
 
 const isLogOut = action => (
   action.type === 'APP_LOGOUT_SUCCESS'
