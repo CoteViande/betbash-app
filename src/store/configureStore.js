@@ -7,6 +7,7 @@ import reducer from 'BetBash/src/reducers/root.reducer'
 
 import { apiMiddleware } from 'BetBash/src/middlewares/api-middleware/index'
 import apiErrorMiddleware from 'BetBash/src/middlewares/apiError.middleware'
+import routingMiddleware from 'BetBash/src/middlewares/routing.middleware'
 import keychainMiddleware from 'BetBash/src/middlewares/keychain.middleware'
 import logoutMiddleware from 'BetBash/src/middlewares/logout.middleware'
 import dismissKeyboardMiddleware from 'BetBash/src/middlewares/dismissKeyboard.middleware'
@@ -21,8 +22,9 @@ const configureStore = initialState => {
     crashReporterMiddleware,
     apiMiddleware,
     apiErrorMiddleware,
-    keychainMiddleware,
     logoutMiddleware,
+    routingMiddleware,
+    keychainMiddleware,
     dismissKeyboardMiddleware,
     analyticsMiddleware,
   ]

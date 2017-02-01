@@ -6,7 +6,7 @@ const Item = ActionButton.Item
 
 class BetBashActionButton extends React.Component {
   render() {
-    const { navigate } = this.props.navigation
+    const { navigate } = this.props
     const goToGameCreation = () => navigate('GameCreate')
 
     return (
@@ -19,7 +19,7 @@ class BetBashActionButton extends React.Component {
           title="Start a new game"
           buttonColor="#9b59b6"
           size={44}
-          onPress={() => goToGameCreation()}
+          onPress={goToGameCreation}
         >
           <Icon
             name="add-circle"

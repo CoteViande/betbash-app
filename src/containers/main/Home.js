@@ -13,20 +13,22 @@ class Home extends React.Component {
 
     return (
       <View
-      style={{ flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+        style={{ flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-      <Text style={styles.defaultText}>
-      { 'Welcome to BetBash' }
-      </Text>
-      <BBButton
-      text="TEST ZONE"
-      onPress={goToGameCreation}
-      iconName="fingerprint"
-      />
-      <BetBashActionButton />
+        <Text style={styles.defaultText}>
+          { 'Welcome to BetBash' }
+        </Text>
+        <BBButton
+          text="TEST ZONE"
+          onPress={goToGameCreation}
+          iconName="fingerprint"
+        />
+        <BetBashActionButton
+          navigate={navigate}
+        />
       </View>
     )
   }

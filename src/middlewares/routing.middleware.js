@@ -1,12 +1,13 @@
 import { isCurrentRouteInRightSection } from 'BetBash/src/components/router/Navigator'
 
-const middleware = store => next => action => {
+const routingMiddleware = store => next => action => {
   let dispatch = store.dispatch
   let prevState = store.getState()
   let result = next(action)
   let nextState = store.getState()
 
   // care for init // only at init???
+  console.log(prevState.auth.user.isLoggedIn)
   if (prevState.auth.user.isLoggedIn !== nextState.auth.user.isLoggedIn) {
     const nextRouteName = nextState.auth.user.isLoggedIn
       ? 'Main'
@@ -25,4 +26,4 @@ const middleware = store => next => action => {
   return result
 }
 
-export default middleware
+export default routingMiddleware
