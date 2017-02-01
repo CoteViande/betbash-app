@@ -41,7 +41,7 @@ const configureStore = initialState => {
     storage: AsyncStorage,
   }
   persistStore(store, persistConfig, initializationScript(store))
-  // .purge()
+  .purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers

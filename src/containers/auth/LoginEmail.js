@@ -1,16 +1,19 @@
 import React from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 
 import EmailLoginForm from 'BetBash/src/components/auth/EmailLoginForm'
 import styles from 'BetBash/src/assets/styles/main'
 
-const LoginEmail = React.createClass({
+class LoginEmail extends React.Component {
   render() {
-    const { loginError, loginSuccess, isLoading } = this.props
+    const {
+      loginError,
+      loginSuccess,
+      isLoading,
+    } = this.props
 
-    return(
+    return (
       <View style={styles.navBarContainer}>
         <EmailLoginForm
           loginError={loginError}
@@ -20,14 +23,14 @@ const LoginEmail = React.createClass({
       </View>
     )
   }
-})
+}
 
-const mapStateToProps = (state, { params }) => ({
+const mapStateToProps = state => ({
   loginError: state.auth.error.emailLogin,
   loginSuccess: state.auth.user.isLoggedIn,
   isLoading: state.auth.isLoading,
 })
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
 )(LoginEmail)

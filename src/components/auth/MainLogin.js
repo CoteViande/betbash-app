@@ -1,23 +1,26 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Text, View, TouchableOpacity } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native'
 
 import styles from 'BetBash/src/assets/styles/main'
 import FacebookLogin from 'BetBash/src/components/auth/FacebookLogin'
 
-const MainLogin = React.createClass({
-  render: function() {
-    const goToEmailAuth = () => Actions.RegisterEmail()
+class MainLogin extends React.Component {
+  render() {
+    const goToEmailAuth = this.props.otherLoginPress
 
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
         <View style={styles.container}>
           <FacebookLogin />
         </View>
         <View style={styles.bottomContainer}>
           <TouchableOpacity
-            onPress={ goToEmailAuth }>
+            onPress={goToEmailAuth}
+          >
             <Text style={styles.instructions}>
               {'Don\'t have Facebook?'}
             </Text>
@@ -26,6 +29,6 @@ const MainLogin = React.createClass({
       </View>
     )
   }
-})
+}
 
 export default MainLogin

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
 
 import {
@@ -10,31 +9,47 @@ import {
   logoutFromFacebook,
 } from 'BetBash/src/actions/auth.actions'
 
-const FacebookLoginButton = ({ dispatch }) => (
-  <LoginButton
-    onLoginFinished={
-      (error, result) => {
-        if (error) {
-          dispatch(failureFacebookToken(result.error))
-        } else if (result.isCancelled) {
-          dispatch(failureFacebookToken({
-            message: 'Login has been canceled.'
-          }))
-        } else {
-          AccessToken.getCurrentAccessToken().then(
-            (data) => { // https://developers.facebook.com/docs/facebook-login/access-tokens
-              let accessToken = data.accessToken
-              dispatch(successFacebookToken())
-              dispatch(authenticateWithFacebookToken(accessToken.toString(), false))
-            }
-          )
-        }
-      }
-    }
-    onLogoutFinished={() => {
-      dispatch(logoutFromFacebook())
-    }}
-  />
-);
+class FacebookLoginButton extends React.Component {
+  render() {
+    const {
+      failureFacebookToken,
+      successFacebookToken,
+      authenticateWithFacebookToken,
+      logoutFromFacebook,
+    } = this.props
 
-export default connect()(FacebookLoginButton)
+    return (
+      <LoginButton
+        onLoginFinished={
+          (error, result) => {
+            if (error) {
+              failureFacebookToken(result.error)
+            } else if (result.isCancelled) {
+              failureFacebookToken({
+                message: 'Login has been canceled.',
+              })
+            } else {
+              AccessToken.getCurrentAccessToken().then(data => { // https://developers.facebook.com/docs/facebook-login/access-tokens
+                const accessToken = data.accessToken
+                successFacebookToken()
+                authenticateWithFacebookToken(accessToken.toString(), false)
+              })
+            }
+          }
+        }
+        onLogoutFinished={logoutFromFacebook}
+      />
+    )
+  }
+}
+
+const mapDispatchToProps = {
+  failureFacebookToken,
+  successFacebookToken,
+  authenticateWithFacebookToken,
+  logoutFromFacebook,
+} // TODO Do the connecting in the container
+export default connect(
+  null,
+  mapDispatchToProps,
+)(FacebookLoginButton)

@@ -1,33 +1,35 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 
 import styles from 'BetBash/src/assets/styles/main'
 import BetBashActionButton from 'BetBash/src/components/general/ActionButton'
 import BBButton from 'BetBash/src/components/general/BBButton'
 
-const Home = () => {
-  const goToGameCreation = () => Actions.CreateGame()
+class Home extends React.Component {
+  render() {
+    const { navigate } = this.props.navigation
+    const goToGameCreation = () => navigate('CreateGame')
 
-  return (
-    <View
+    return (
+      <View
       style={{ flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
       }}
-    >
+      >
       <Text style={styles.defaultText}>
-        { 'Welcome to BetBash' }
+      { 'Welcome to BetBash' }
       </Text>
       <BBButton
-        text="TEST ZONE"
-        onPress={goToGameCreation}
-        iconName="fingerprint"
+      text="TEST ZONE"
+      onPress={goToGameCreation}
+      iconName="fingerprint"
       />
       <BetBashActionButton />
-    </View>
-  )
+      </View>
+    )
+  }
 }
 
-export default connect()(Home)
+export default Home

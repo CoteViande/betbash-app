@@ -1,20 +1,5 @@
-import { ActionConst } from 'react-native-router-flux';
+import Navigator from 'BetBash/src/components/router/Navigator'
 
-const initialState = {
-  scene: {},
-};
+const navigationReducer = (state, action) => Navigator.router.getStateForAction(action, state)
 
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case ActionConst.FOCUS:
-      return {
-        ...state,
-        scene: action.scene,
-      };
-
-    // ...other actions
-
-    default:
-      return state;
-  }
-}
+export default navigationReducer
