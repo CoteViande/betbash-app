@@ -12,14 +12,14 @@
 
 ## Quickies
 
-* increase touchable area around back button in navbar
 * check for username already exists case (async maybe?)
 * yarn: https://github.com/yarnpkg/yarn/
 
 ## Projects
 
+* Script for images while building
 * Crashlytics: https://medium.com/delivery-com-engineering/add-crashlytics-to-your-react-native-ios-app-69a983a9062a#.pl3wyhczn
-* Tests!!!
+* Tests
 * stack offline online-required-actions to do it later
 * polling processes in react?
 * i18n

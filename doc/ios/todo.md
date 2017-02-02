@@ -11,3 +11,9 @@ libsqlite3.0.tbd
 2 - Check other modules prior to now (Keychain?)
 
 3 - For react native icons (oblador)
+
+# Splash screen
+
+* Check implementation
+* Add images for every sreen size
+* NOTE: iOS can be used to customize your startup screen via LaunchImage or LaunchScreen.xib.

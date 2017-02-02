@@ -1,12 +1,8 @@
 import React from 'react'
-import {
-  StatusBar,
-  // Text,
-  View,
-  BackAndroid,
-} from 'react-native'
+import { StatusBar, View, BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { addNavigationHelpers } from 'react-navigation'
+import SplashScreen from 'react-native-splash-screen'
 
 import Navigator, { backAndroidHandler } from 'BetBash/src/components/router/Navigator'
 
@@ -21,10 +17,19 @@ class App extends React.Component {
       const { dispatch, nav } = this.props
       return backAndroidHandler(dispatch, nav)
     })
+    if (this.props.isHydrationComplete) {
+      SplashScreen.hide()
+    }
   }
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('backPress')
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isHydrationComplete !== nextProps.isHydrationComplete) {
+      SplashScreen.hide()
+    }
   }
 
   render() {
@@ -35,16 +40,6 @@ class App extends React.Component {
       dispatch,
       nav,
     } = this.props
-
-    // if (!initializationFinished) {
-    //   return (
-    //     <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
-    //       <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-    //         BETBASH
-    //       </Text>
-    //     </View>
-    //   )
-    // }
 
     return (
       <View style={{ flexGrow: 1 }}>
@@ -61,6 +56,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isHydrationComplete: state.initialization.isHydrationComplete,
   initializationFinished: state.initialization.isFinished,
   isConnected: state.connexion.isConnected,
   isServerConnected: state.connexion.isServerConnected,
