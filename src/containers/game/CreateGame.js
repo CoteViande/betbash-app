@@ -9,6 +9,13 @@ import FriendSelector from 'BetBash/src/components/game/FriendSelector'
 import { updateFriendSuggestions } from 'BetBash/src/actions/friendSelector.actions'
 
 class CreateGame extends React.Component {
+  static navigationOptions = {
+    title: 'Create a game',
+    header: {
+      visible: true,
+    },
+  }
+
   componentWillMount() {
     this.state = {
       competition: '',

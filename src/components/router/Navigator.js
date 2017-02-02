@@ -11,6 +11,7 @@ import Profile from 'BetBash/src/containers/main/Profile'
 import CreateGame from 'BetBash/src/containers/game/CreateGame'
 
 import * as styles from 'BetBash/src/assets/styles/main'
+import * as color from 'BetBash/src/assets/styles/colors.settings'
 
 // TODO switchRules
 //     ? isUserProfileComplete
@@ -21,19 +22,15 @@ const MainScreenTabs = TabNavigator({
   Profile: { screen: Profile },
 }, {
   initialTab: 'Home',
-  navigationOptions: { // default
-    title: 'Bet Bash',
-    header: {
-      style: {
-        elevation: 0,
-        backgroundColor: 'red',
-      },
-      visible: true,
+  tabBarOptions: { // default
+    activeTintColor: 'white',
+    style: {
+      backgroundColor: color.red500,
+      elevation: 0,
     },
   },
 })
 
-// TODO RegisterEmail: onRight={() => Actions.LoginEmail()} rightTitle="Login"
 const Navigator = StackNavigator({
   FacebookAuthentication: { screen: FacebookAuthentication },
   EmailRegister: { screen: RegisterEmail }, // TODO rename to EmailRegister
@@ -46,7 +43,10 @@ const Navigator = StackNavigator({
   initialRouteName: 'FacebookAuthentication',
   navigationOptions: {
     header: {
-      style: styles.header, // TODO make this work
+      style: {
+        backgroundColor: color.red500,
+        elevation: 0,
+      }, // TODO make this work
       visible: false,
     },
   },
