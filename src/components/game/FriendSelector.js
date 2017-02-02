@@ -2,7 +2,7 @@ import React from 'react'
 import {
   View, Text, TouchableOpacity,
   Modal, ScrollView, Share,
-  TextInput,
+  TextInput, ActivityIndicator,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -22,6 +22,7 @@ class FriendSelector extends React.Component {
   render() {
     const {
       suggestionsList,
+      isSuggestionsListLoading,
       onSuggestionTextChange,
       onItemAdd,
       onItemRemove,
@@ -54,7 +55,11 @@ class FriendSelector extends React.Component {
     const renderFriendsInInput = suggestions => suggestions.map(renderFriendInInput)
     const renderFriendInInput = suggestion => (
       <View key={suggestion.userId} style={styles.selectedFriendContainer}>
-        <Text>{suggestion.full_name}</Text>
+        <View style={styles.selectedFriendTextContainer}>
+          <Text style={styles.selectedFriendText}>
+            {suggestion.full_name}
+          </Text>
+        </View>
         <TouchableOpacity
           onPress={() => {
             const suggestions = this.state.suggestions
@@ -73,6 +78,8 @@ class FriendSelector extends React.Component {
       <TouchableOpacity
         key={suggestion.userId}
         onPress={() => {
+          if (this.state.suggestions.includes(suggestion)) return
+
           this.setState({
             suggestions: [
               ...this.state.suggestions,
@@ -135,7 +142,7 @@ class FriendSelector extends React.Component {
               }}
               multiline={true}
               underlineColorAndroid="transparent"
-              placeholder="Enter your friend's name"
+              placeholder="Enter friend's name"
               placeholderTextColor={color.whiteThree}
               style={styles.friendSelectorInputText}
               onChangeText={text => {
@@ -157,13 +164,15 @@ class FriendSelector extends React.Component {
             keyboardDismissMode="on-drag"
             keyboardShouldPersistTaps="always"
           >
-            {
+            { // is loading case
               suggestionsList.length
                 ? suggestionsList.map(renderFriendRow)
                 : this.state.searchString.length
-                  ? (<Text>
-                      No result match your search, share a secret code with your friend here
-                    </Text>)
+                  ? isSuggestionsListLoading
+                    ? (<ActivityIndicator style={{ margin: 32 }} />)
+                    : (<Text>
+                        No result match your search, share a secret code with your friend here
+                      </Text>)
                   : null
             }
           </ScrollView>

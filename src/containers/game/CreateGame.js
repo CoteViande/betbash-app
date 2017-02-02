@@ -27,6 +27,7 @@ class CreateGame extends React.Component {
     const {
       usersList,
       updateFriendSuggestions,
+      isUsersListLoading,
     } = this.props
 
     return (
@@ -45,6 +46,7 @@ class CreateGame extends React.Component {
           />
           <FriendSelector
             suggestionsList={usersList}
+            isSuggestionsListLoading={isUsersListLoading}
             onSuggestionTextChange={searchString => updateFriendSuggestions(searchString)}
             onItemAdd={friend => this.setState({ friends: [
               ...this.state.friends,
@@ -65,6 +67,7 @@ class CreateGame extends React.Component {
 
 const mapStateToProps = state => ({
   usersList: state.friendSuggestions.suggestions.users,
+  isUsersListLoading: state.friendSuggestions.isLoading,
 })
 
 const mapDispatchToProps = {
