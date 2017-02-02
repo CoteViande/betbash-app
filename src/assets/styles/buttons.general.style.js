@@ -2,14 +2,6 @@ import * as color from 'BetBash/src/assets/styles/colors.settings'
 import * as constant from 'BetBash/src/assets/styles/constants.settings'
 
 const ButtonStyles = {
-  loginButtonBackground: {
-    height: 48,
-    borderRadius: 0,
-  },
-  loginButtonLabel: {
-    color: color.white,
-    fontSize: 16,
-  },
   defaultButton: {
     backgroundColor: color.blue500,
     padding: 0,
@@ -32,6 +24,13 @@ const ButtonStyles = {
     fontSize: 14,
     textAlign: 'center',
     marginRight: 8,
+  },
+  headerRightButton: {
+    marginRight: 8,
+    backgroundColor: color.transparent,
+  },
+  headerRightButtonText: {
+    color: color.blue500,
   },
 }
 

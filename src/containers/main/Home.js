@@ -7,6 +7,12 @@ import BetBashActionButton from 'BetBash/src/components/general/ActionButton'
 import BBButton from 'BetBash/src/components/general/BBButton'
 
 class Home extends React.Component {
+  static navigationOptions = {
+    tabBar: {
+      label: 'Home',
+    },
+  }
+
   render() {
     const { navigate } = this.props.navigation
     const goToGameCreation = () => navigate('CreateGame')

@@ -1,7 +1,7 @@
 import parse from 'url-parse'
 
 // const ROOT_URL = 'https://cascade-requin.herokuapp.com'
-const ROOT_URL = 'http://192.168.1.17:3000'
+const ROOT_URL = 'http://192.168.0.20:3000'
 const BASE_URL = `${ROOT_URL}/api`
 
 export const betbashMain = ROOT_URL

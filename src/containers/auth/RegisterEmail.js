@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 
@@ -8,6 +8,23 @@ import EmailRegisterForm from 'BetBash/src/components/auth/EmailRegisterForm'
 import styles from 'BetBash/src/assets/styles/main'
 
 class RegisterEmail extends React.Component {
+  static navigationOptions = {
+    title: 'Register',
+    header: ({ navigate }) => ({
+      visible: true,
+      right: (
+        <TouchableOpacity
+          onPress={() => navigate('EmailLogin')}
+        >
+          <View style={[ styles.defaultButton, styles.headerRightButton ]}>
+            <Text style={[ styles.defaultButtonText, styles.headerRightButtonText ]}>LOG IN</Text>
+          </View>
+        </TouchableOpacity>
+      )
+      // style: styles.header,
+    }),
+  }
+
   componentWillReceiveProps(nextProps) {
     const {
       loginWithEmail,

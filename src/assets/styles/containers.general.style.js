@@ -20,7 +20,6 @@ const ContainerStyles = {
     marginRight: constant.quadUnit,
   },
   navBarContainer: {
-    paddingTop: constant.navbarHeight,
     flexGrow: 1,
   },
   topRedContainer: {

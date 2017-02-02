@@ -15,7 +15,7 @@ class InnerButtonView extends Component {
     return(
       <View style={styles.insideView}>
         { this.props.currentStateObject.spinner ? <ProgressBar color={ this.props.spinnerColor } style={styles.activityIndicator}/> : null }
-        <Text style={ this.props.labelStyle }>{ this.props.currentStateObject.text }</Text>
+        <Text style={ this.props.labelStyle }>{ this.props.currentStateObject.text.toUpperCase() }</Text>
       </View>
     )
   }
@@ -114,10 +114,8 @@ AwesomeButton.defaultProps = {
 
 const styles = StyleSheet.create({
   insideView: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'center'
   },
   activityIndicator: {
     marginRight: 8,

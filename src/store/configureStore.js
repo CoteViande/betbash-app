@@ -23,8 +23,8 @@ const configureStore = initialState => {
     apiMiddleware,
     apiErrorMiddleware,
     logoutMiddleware,
-    routingMiddleware,
     keychainMiddleware,
+    routingMiddleware,
     dismissKeyboardMiddleware,
     analyticsMiddleware,
   ]
@@ -43,7 +43,7 @@ const configureStore = initialState => {
     storage: AsyncStorage,
   }
   persistStore(store, persistConfig, initializationScript(store))
-  .purge()
+  // .purge()
 
   if (module.hot) {
     // Enable hot module replacement for reducers

@@ -11,7 +11,7 @@ import btnStates from 'BetBash/src/components/general/awesome-button/buttonState
 
 import { loginWithEmail } from 'BetBash/src/actions/auth.actions'
 
-const validate = (values, props) => {
+const validate = values => {
   let errors = {}
 
   errors = validator.email('email', values, errors)
@@ -20,18 +20,18 @@ const validate = (values, props) => {
   return errors
 }
 
-const EmailLoginForm = (props) => {
+const EmailLoginForm = props => {
   const { handleSubmit, loginError, isLoading, loginSuccess } = props;
 
-  let buttonState = (isLoading, loginSuccess, loginError) => {
-    if (isLoading) { return 'busy' }
-    if (loginSuccess) { return 'success' }
-    if (loginError) { return 'error' }
+  const buttonState = (isLoading, loginSuccess, loginError) => {
+    if (isLoading) return 'busy'
+    if (loginSuccess) return 'success'
+    if (loginError) return 'error'
     return 'idle'
   }
 
   return (
-    <View style={[ styles.box, styles.thinBox ]}>
+    <View style={[styles.box, styles.thinBox]}>
       <Field name="email" type="email" component={TextFieldWithError} label="Email" />
       <Field name="password" type="password" component={TextFieldWithError} label="Password" />
 
@@ -39,15 +39,15 @@ const EmailLoginForm = (props) => {
         { loginError }
       </Text>
       <AwesomeButton
-        backgroundStyle={styles.loginButtonBackground}
-        labelStyle={styles.loginButtonLabel}
+        backgroundStyle={styles.defaultButton}
+        labelStyle={styles.defaultButtonText}
         transitionDuration={duration.halfBeat}
         states={btnStates(
           handleSubmit,
           'Log in',
           'Logging in...',
           'Logged in',
-          'Error. Try logging in again?'
+          'Error. Try logging in again?',
         )}
         buttonState={buttonState(isLoading, loginSuccess, loginError)}
       />
@@ -62,7 +62,7 @@ EmailLoginForm = reduxForm({
   touchOnChange: false,
   onSubmit: (fields, dispatch) => {
     dispatch(loginWithEmail(fields.email, fields.password, false))
-  }
+  },
 })(EmailLoginForm)
 
 export default EmailLoginForm

@@ -6,6 +6,13 @@ import EmailLoginForm from 'BetBash/src/components/auth/EmailLoginForm'
 import styles from 'BetBash/src/assets/styles/main'
 
 class LoginEmail extends React.Component {
+  static navigationOptions = {
+    title: 'Log In',
+    header: {
+      visible: true,
+    },
+  }
+
   render() {
     const {
       loginError,

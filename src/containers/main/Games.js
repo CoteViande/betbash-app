@@ -4,17 +4,22 @@ import { connect } from 'react-redux'
 
 import styles from 'BetBash/src/assets/styles/main'
 
-const Home = () => (
-  <View
-    style={{ flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <Text style={styles.defaultText}>
-      Games
-    </Text>
-  </View>
-)
+class Games extends React.Component {
+  static navigationOptions = {
+    tabBar: {
+      label: 'Games',
+    },
+  }
 
-export default connect()(Home)
+  render() {
+    return (
+      <View style={styles.navBarContainer}>
+        <Text style={styles.defaultText}>
+          Games
+        </Text>
+      </View>
+    )
+  }
+}
+
+export default Games

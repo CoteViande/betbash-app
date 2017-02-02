@@ -11,7 +11,7 @@ import btnStates from 'BetBash/src/components/general/awesome-button/buttonState
 
 import { registerWithEmail } from 'BetBash/src/actions/auth.actions'
 
-const validate = (values, props) => {
+const validate = values => {
   let errors = {}
 
   errors = validator.email('email', values, errors)
@@ -20,18 +20,23 @@ const validate = (values, props) => {
   return errors
 }
 
-const EmailRegisterForm = (props) => {
-  const { handleSubmit, registerError, isLoading, loginSuccess } = props;
+const EmailRegisterForm = props => {
+  const {
+    handleSubmit,
+    registerError,
+    isLoading,
+    loginSuccess,
+  } = props
 
-  let buttonState = (isLoading, loginSuccess, registerError) => {
-    if (isLoading) { return 'busy' }
-    if (loginSuccess) { return 'success' }
-    if (registerError) { return 'error' }
+  const buttonState = (isLoading, loginSuccess, registerError) => {
+    if (isLoading) return 'busy'
+    if (loginSuccess) return 'success'
+    if (registerError) return 'error'
     return 'idle'
   }
 
   return (
-    <View style={[ styles.box, styles.thinBox ]}>
+    <View style={[styles.box, styles.thinBox]}>
 
       <Field name="email" type="email" component={TextFieldWithError} label="Email" />
       <Field name="password" type="password" component={TextFieldWithError} label="Password" />
@@ -41,9 +46,9 @@ const EmailRegisterForm = (props) => {
       </Text>
 
       <AwesomeButton
-        backgroundStyle={ styles.loginButtonBackground }
-        labelStyle={ styles.loginButtonLabel }
-        transitionDuration={ duration.halfBeat }
+        backgroundStyle={styles.defaultButton}
+        labelStyle={styles.defaultButtonText}
+        transitionDuration={duration.halfBeat}
         states={
           btnStates(handleSubmit, 'Register', 'Registering', 'Registered!', 'Try again?')
         }
@@ -53,10 +58,9 @@ const EmailRegisterForm = (props) => {
       />
 
     </View>
-  );
+  )
 }
 
-// Decorate the form component
 EmailRegisterForm = reduxForm({
   form: 'emailRegister',
   validate: validate,
@@ -65,9 +69,9 @@ EmailRegisterForm = reduxForm({
   onSubmit: (fields, dispatch) => {
     dispatch(registerWithEmail(
       fields.email,
-      fields.password
+      fields.password,
     ))
-  }
-})(EmailRegisterForm);
+  },
+})(EmailRegisterForm)
 
-export default EmailRegisterForm;
+export default EmailRegisterForm

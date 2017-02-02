@@ -10,13 +10,11 @@ import Games from 'BetBash/src/containers/main/Games'
 import Profile from 'BetBash/src/containers/main/Profile'
 import CreateGame from 'BetBash/src/containers/game/CreateGame'
 
-// TODO const switchRules = props => (
-//   props.isLoggedIn
-//     ? props.isUserProfileComplete
-//       ? 'BetBash'
+import * as styles from 'BetBash/src/assets/styles/main'
+
+// TODO switchRules
+//     ? isUserProfileComplete
 //       : 'CompleteProfile'
-//     : 'BetBashAuth'
-// )
 const MainScreenTabs = TabNavigator({
   Home: { screen: Home },
   Games: { screen: Games },
@@ -48,6 +46,7 @@ const Navigator = StackNavigator({
   initialRouteName: 'FacebookAuthentication',
   navigationOptions: {
     header: {
+      style: styles.header, // TODO make this work
       visible: false,
     },
   },
@@ -56,6 +55,7 @@ export default Navigator
 
 export const isCurrentRouteInRightSection = (targetRouteName, currentNavState) => {
   const currentRouteName = getCurrentRoute(currentNavState).routeName
+  // TODO AuthenticationGroup.includes(targetRouteName) && AuthenticationGroup.includes(currentRouteName)
   if (AuthenticationGroup.includes(targetRouteName)) {
     return AuthenticationGroup.includes(currentRouteName)
   } else {
