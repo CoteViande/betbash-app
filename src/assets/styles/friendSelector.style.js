@@ -80,6 +80,7 @@ const friendSelectorStyles = {
     marginBottom: 6,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   selectedFriendTextContainer: {
     paddingLeft: 12,

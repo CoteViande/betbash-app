@@ -112,9 +112,14 @@ class FriendSelector extends React.Component {
           <Text style={styles.selectorLabel}>
             Add friends to your game
           </Text>
+          <View style={{ marginLeft: 6 }}>
+            {renderFriendsInInput(this.state.suggestions)}
+          </View>
           <BBButton
             text="Search BetBash"
             onPress={() => this.setState({ isModalVisible: true })}
+            buttonStyle={[styles.defaultButton, styles.invertedButton]}
+            textStyle={[styles.defaultButtonText, styles.invertedButtonText]}
           />
         </View>
         <View style={styles.selectorWrapper}>
@@ -124,6 +129,8 @@ class FriendSelector extends React.Component {
           <BBButton
             text="Send secret code"
             onPress={shareMessage}
+            buttonStyle={[styles.defaultButton, styles.invertedButton]}
+            textStyle={[styles.defaultButtonText, styles.invertedButtonText]}
           />
         </View>
         <Modal

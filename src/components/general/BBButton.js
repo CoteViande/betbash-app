@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import styles from 'BetBash/src/assets/styles/main'
@@ -39,11 +39,11 @@ class BBButton extends React.Component {
     }
 
     return (
-      <TouchableHighlight onPress={onPress}>
+      <TouchableOpacity onPress={onPress}>
         <View style={buttonStyle}>
           {renderButtonContent()}
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 }

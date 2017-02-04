@@ -25,6 +25,15 @@ const ButtonStyles = {
     textAlign: 'center',
     marginRight: 8,
   },
+  invertedButton: {
+    backgroundColor: color.transparent,
+  },
+  invertedButtonText: {
+    color: color.blue500,
+  },
+  greenButton: {
+    backgroundColor: color.green500,
+  },
   headerRightButton: {
     marginRight: 8,
     backgroundColor: color.transparent,

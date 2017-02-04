@@ -22,6 +22,9 @@ const ContainerStyles = {
   navBarContainer: {
     flexGrow: 1,
   },
+  topSpacerContainer: {
+    marginTop: 16,
+  },
   topRedContainer: {
     justifyContent: 'center',
     alignItems: 'center',

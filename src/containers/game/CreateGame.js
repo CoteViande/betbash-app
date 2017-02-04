@@ -4,6 +4,7 @@ import { View } from 'react-native'
 
 import styles from 'BetBash/src/assets/styles/main'
 import BBPicker from 'BetBash/src/components/general/BBPicker'
+import BBButton from 'BetBash/src/components/general/BBButton'
 import FriendSelector from 'BetBash/src/components/game/FriendSelector'
 
 import { updateFriendSuggestions } from 'BetBash/src/actions/friendSelector.actions'
@@ -59,6 +60,14 @@ class CreateGame extends React.Component {
               ) })
             }}
           />
+          <View style={styles.topSpacerContainer}>
+            <BBButton
+              text="Create new game!"
+              onPress={() => {}}
+              buttonStyle={[styles.defaultButton, styles.greenButton]}
+              textStyle={styles.defaultButtonText}
+            />
+          </View>
         </View>
       </View>
     )
