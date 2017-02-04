@@ -23,8 +23,10 @@ const generalStyles = {
 }
 
 const friendSelectorStyles = {
-  friendSelectorInputContainer: {
+  friendSelectorTopBar: {
     backgroundColor: color.red900,
+  },
+  friendSelectorInputContainer: {
     paddingLeft: 16,
     paddingRight: 16,
     flexDirection: 'row',
@@ -64,12 +66,18 @@ const friendSelectorStyles = {
     fontSize: constant.defaultTextSize,
     color: color.blackOne,
   },
+  selectedFriendsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    paddingTop: 6,
+    paddingLeft: 6,
+  },
   selectedFriendContainer: {
     backgroundColor: color.red500,
     borderRadius: 12,
-    marginTop: 12,
-    marginBottom: 12,
-    marginRight: 12,
+    marginRight: 6,
+    marginBottom: 6,
     flexDirection: 'row',
     alignItems: 'center',
   },

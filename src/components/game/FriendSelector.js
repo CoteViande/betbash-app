@@ -28,6 +28,7 @@ class FriendSelector extends React.Component {
       onItemRemove,
     } = this.props
 
+    // TODO separate file for sharing
     const shareMessage = async () => {
       try {
         const result = await Share.share({
@@ -112,14 +113,16 @@ class FriendSelector extends React.Component {
             Add friends to your game
           </Text>
           <BBButton
-            text="Search on BetBash"
+            text="Search BetBash"
             onPress={() => this.setState({ isModalVisible: true })}
           />
-          <Text style={styles.defaultText}>
-            OR
+        </View>
+        <View style={styles.selectorWrapper}>
+          <Text style={styles.selectorLabel}>
+            Give friends a secret code so they can join later
           </Text>
           <BBButton
-            text="Send them a secret code"
+            text="Send secret code"
             onPress={shareMessage}
           />
         </View>
@@ -134,45 +137,55 @@ class FriendSelector extends React.Component {
             this.setState({ isModalVisible: false })
           }}
         >
-          <View style={styles.friendSelectorInputContainer}>
-            {renderFriendsInInput(this.state.suggestions)}
-            <TextInput
-              ref={c => {
-                this.addFriendInput = c
-              }}
-              multiline={true}
-              underlineColorAndroid="transparent"
-              placeholder="Enter friend's name"
-              placeholderTextColor={color.whiteThree}
-              style={styles.friendSelectorInputText}
-              onChangeText={text => {
-                onSuggestionTextChange(text)
-                this.setState({ searchString: text })
-              }}
-              onFocus={() => onSuggestionTextChange(this.state.searchString)}
-              value={this.state.searchString}
-            />
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({ isModalVisible: false })
-              }}
-            >
-              <Icon name="done" style={styles.greenRoundIcon} />
-            </TouchableOpacity>
+          <View style={styles.friendSelectorTopBar}>
+            <View style={styles.selectedFriendsContainer}>
+              {renderFriendsInInput(this.state.suggestions)}
+            </View>
+            <View style={styles.friendSelectorInputContainer}>
+              <TextInput
+                ref={c => {
+                  this.addFriendInput = c
+                }}
+                multiline={true}
+                underlineColorAndroid="transparent"
+                placeholder="Enter friend's name"
+                placeholderTextColor={color.whiteThree}
+                style={styles.friendSelectorInputText}
+                onChangeText={text => {
+                  onSuggestionTextChange(text)
+                  this.setState({ searchString: text })
+                }}
+                onFocus={() => onSuggestionTextChange(this.state.searchString)}
+                value={this.state.searchString}
+              />
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ isModalVisible: false })
+                }}
+              >
+                <Icon name="done" style={styles.greenRoundIcon} />
+              </TouchableOpacity>
+            </View>
           </View>
           <ScrollView
             keyboardDismissMode="on-drag"
             keyboardShouldPersistTaps="always"
           >
-            { // is loading case
+            {
               suggestionsList.length
                 ? suggestionsList.map(renderFriendRow)
                 : this.state.searchString.length
                   ? isSuggestionsListLoading
                     ? (<ActivityIndicator style={{ margin: 32 }} />)
-                    : (<Text>
-                        No result match your search, share a secret code with your friend here
-                      </Text>)
+                    : (<View style={[styles.box, styles.thinBox]}>
+                      <Text style={{ paddingBottom: 12 }}>
+                        No result match your search, share a secret code with your friend
+                      </Text>
+                      <BBButton
+                        text="Send secret code"
+                        onPress={shareMessage}
+                      />
+                    </View>)
                   : null
             }
           </ScrollView>

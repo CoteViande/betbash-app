@@ -13,9 +13,6 @@ import CreateGame from 'BetBash/src/containers/game/CreateGame'
 import * as styles from 'BetBash/src/assets/styles/main'
 import * as color from 'BetBash/src/assets/styles/colors.settings'
 
-// TODO switchRules
-//     ? isUserProfileComplete
-//       : 'CompleteProfile'
 const MainScreenTabs = TabNavigator({
   Home: { screen: Home },
   Games: { screen: Games },
