@@ -11,17 +11,17 @@ import btnStates from 'BetBash/src/components/general/awesome-button/buttonState
 
 import { saveUserProfile } from 'BetBash/src/actions/auth.actions'
 
-const validate = (values, props) => {
+const validate = values => {
   let errors = {}
   errors = validator.notNull('firstName', values, errors)
   errors = validator.notNull('lastName', values, errors)
   return errors
 }
 
-const ProfileForm = (props) => {
-  const { handleSubmit, name, sendError, isLoading, sendSuccess } = props;
+const ProfileForm = props => {
+  const { handleSubmit, name, sendError, isLoading, sendSuccess } = props
 
-  let buttonState = (isLoading, sendSuccess, sendError) => {
+  const buttonState = (isLoading, sendSuccess, sendError) => {
     if (isLoading) return 'busy'
     if (sendSuccess) return 'success'
     if (sendError) return 'error'
@@ -29,33 +29,33 @@ const ProfileForm = (props) => {
   }
 
   return (
-    <View style={[ styles.box, styles.thinBox ]}>
+    <View style={[styles.box, styles.thinBox]}>
       <Field
-        name={ 'firstName' } type={ 'text' } component={ TextFieldWithError }
-        label={ 'First name' } value={ name ? name.firstName : null }
+        name={'firstName'} type={'text'} component={TextFieldWithError}
+        label={'First name'} value={name ? name.firstName : null}
       />
       <Field
-        name={ 'lastName' } type={ 'text' } component={ TextFieldWithError }
-        label={ 'Family name' } value={ name ? name.lastName : null }
+        name={'lastName'} type={'text'} component={TextFieldWithError}
+        label={'Family name'} value={name ? name.lastName : null}
       />
 
-      <Text style={ styles.errorText }>
+      <Text style={styles.errorText}>
         { sendError }
       </Text>
       <AwesomeButton
-        backgroundStyle={ styles.loginButtonBackground }
-        labelStyle={ styles.loginButtonLabel }
-        transitionDuration={ duration.halfBeat }
+        backgroundStyle={styles.defaultButton}
+        labelStyle={styles.defaultButtonText}
+        transitionDuration={duration.halfBeat}
         states={
           btnStates(
             handleSubmit,
             'Complete registration',
             'Completing...',
             'Completed!',
-            'Error. Try again?'
+            'Error. Try again?',
           )
         }
-        buttonState={ buttonState(isLoading, sendSuccess, sendError) }
+        buttonState={buttonState(isLoading, sendSuccess, sendError)}
       />
     </View>
   )
@@ -68,9 +68,9 @@ ProfileForm = reduxForm({
   touchOnChange: false,
   onSubmit: (fields, dispatch) => {
     dispatch(
-      saveUserProfile(fields.firstName, fields.lastName)
+      saveUserProfile(fields.firstName, fields.lastName),
     )
-  }
+  },
 })(ProfileForm)
 
 export default ProfileForm

@@ -32,6 +32,20 @@ const routingMiddleware = store => next => action => {
     return result
   }
 
+  if (prevState.auth.isUserProfileComplete !== nextState.auth.isUserProfileComplete
+    && nextState.auth.isUserProfileComplete
+    && isCurrentRouteAlready('CompleteProfile', nextState.nav)
+  ) {
+    dispatch({
+      type: 'Reset',
+      index: 0,
+      actions: [{
+        type: 'Navigate',
+        routeName: 'Main',
+      }],
+    })
+  }
+
   return result
 }
 
