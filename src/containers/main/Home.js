@@ -15,7 +15,7 @@ class Home extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation
-    const goToGameCreation = () => navigate('CreateGame')
+    const goToGameCreation = () => navigate('GameCreate')
 
     return (
       <View

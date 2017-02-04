@@ -63,6 +63,11 @@ export const isCurrentRouteInRightSection = (targetRouteName, currentNavState) =
   }
 }
 
+export const isCurrentRouteAlready = (targetRouteName, currentNavState) => {
+  const currentRouteName = getCurrentRoute(currentNavState).routeName
+  return (targetRouteName === currentRouteName)
+}
+
 const AuthenticationGroup = [
   'FacebookAuthentication',
   'EmailLogin',
@@ -78,10 +83,15 @@ export const backAndroidHandler = (dispatch, nav) => {
 const shouldCloseApp = nav => (
   isAuthenticationInitialScreen(nav)
   || isHomeInitialScreen(nav)
+  || isCompleteProfileScreen(nav)
 )
 
 const isAuthenticationInitialScreen = nav => (
   getCurrentRoute(nav).routeName === 'FacebookAuthentication'
+)
+
+const isCompleteProfileScreen = nav => (
+  getCurrentRoute(nav).routeName === 'CompleteProfile'
 )
 
 const isHomeInitialScreen = nav => {

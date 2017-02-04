@@ -7,7 +7,14 @@ import ProfileForm from 'BetBash/src/components/auth/ProfileForm'
 
 import styles from 'BetBash/src/assets/styles/main'
 
-const CompleteProfile = React.createClass({
+class CompleteProfile extends React.Component {
+  static navigationOptions = {
+    title: 'Complete your profile',
+    header: {
+      visible: true,
+    },
+  }
+
   render() {
     const { name, isLoading, sendSuccess, sendError, logoutFromApp } = this.props
 
@@ -31,7 +38,7 @@ const CompleteProfile = React.createClass({
       </View>
     )
   }
-})
+}
 
 const mapStateToProps = state => ({
   name: state.auth.user.name,
