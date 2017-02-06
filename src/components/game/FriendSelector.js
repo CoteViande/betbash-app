@@ -120,6 +120,7 @@ class FriendSelector extends React.Component {
             onPress={() => this.setState({ isModalVisible: true })}
             buttonStyle={[styles.defaultButton, styles.invertedButton]}
             textStyle={[styles.defaultButtonText, styles.invertedButtonText]}
+            fullWidth={false}
           />
         </View>
         <View style={styles.selectorWrapper}>
@@ -131,6 +132,7 @@ class FriendSelector extends React.Component {
             onPress={shareMessage}
             buttonStyle={[styles.defaultButton, styles.invertedButton]}
             textStyle={[styles.defaultButtonText, styles.invertedButtonText]}
+            fullWidth={false}
           />
         </View>
         <Modal

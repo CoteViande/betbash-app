@@ -54,6 +54,7 @@ class CreateGame extends React.Component {
               friend,
             ] })}
             onItemRemove={friendToRemove => {
+              console.warn(friendToRemove)
               const friends = this.state.friends
               this.setState({ friends: friends.filter(
                 friend => friend !== friendToRemove,
@@ -63,7 +64,17 @@ class CreateGame extends React.Component {
           <View style={styles.topSpacerContainer}>
             <BBButton
               text="Create new game!"
-              onPress={() => {}}
+              onPress={() => {
+                const currentUser = null
+                const payload = {
+                  competition: this.state.competition,
+                  players: [
+                    ...this.state.friends,
+                    currentUser,
+                  ]
+                }
+                // createNewGame(payload)
+              }}
               buttonStyle={[styles.defaultButton, styles.greenButton]}
               textStyle={styles.defaultButtonText}
             />
@@ -81,6 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateFriendSuggestions,
+  // createNewGame,
 }
 
 export default connect(
