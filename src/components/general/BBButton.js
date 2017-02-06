@@ -9,7 +9,7 @@ class BBButton extends React.Component {
     const {
       text, onPress, iconName,
       buttonStyle, textStyle, iconStyle,
-      upperCase,
+      upperCase, fullWidth,
     } = this.props
 
     const renderButtonContent = () => {
@@ -38,13 +38,25 @@ class BBButton extends React.Component {
       }
     }
 
-    return (
-      <TouchableOpacity onPress={onPress}>
-        <View style={buttonStyle}>
-          {renderButtonContent()}
-        </View>
-      </TouchableOpacity>
-    )
+    const renderButton = fullWidth => {
+      if (fullWidth) {
+        return (<TouchableOpacity onPress={onPress}>
+          <View style={buttonStyle}>
+            {renderButtonContent()}
+          </View>
+        </TouchableOpacity>)
+      } else {
+        return (<View style={{ alignItems: 'center' }}>
+          <TouchableOpacity onPress={onPress}>
+            <View style={buttonStyle}>
+              {renderButtonContent()}
+            </View>
+          </TouchableOpacity>
+        </View>)
+      }
+    }
+
+    return renderButton(fullWidth)
   }
 }
 
@@ -53,18 +65,20 @@ BBButton.propTypes = {
   onPress: React.PropTypes.func,
   buttonStyle: React.PropTypes.any,
   textStyle: React.PropTypes.any,
-  upperCase: React.PropTypes.bool,
   iconName: React.PropTypes.string,
   iconStyle: React.PropTypes.any,
+  upperCase: React.PropTypes.bool,
+  fullWidth: React.PropTypes.bool,
 }
 
 BBButton.defaultProps = {
   onPress: () => {},
   buttonStyle: styles.defaultButton,
   textStyle: styles.defaultButtonText,
-  upperCase: true,
   iconName: null,
   iconStyle: styles.defaultButtonIcon,
+  upperCase: true,
+  fullWidth: true,
 }
 
 export default BBButton
